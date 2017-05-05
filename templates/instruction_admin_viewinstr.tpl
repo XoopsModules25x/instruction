@@ -1,0 +1,3 @@
+<{$insNavigation}>
+<{$insButton}>
+<{$insListPage}>
