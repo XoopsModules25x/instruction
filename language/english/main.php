@@ -1,5 +1,6 @@
 <?php
 
+define("_MD_INSTRUCTION_MODULE_NAME", "Instruction");
 define("_MD_INSTRUCTION_PAGENOTEXIST", "This page does not exist.");
 define("_MD_INSTRUCTION_INSTRNOTEXIST", "This instruction does not exist.");
 
