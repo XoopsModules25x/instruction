@@ -32,8 +32,9 @@
     </tr>
   <{/foreach}>
     <tr class="foot">
-      <td colspan="2"></td>
-      <td><{if $insPagenav}><{$insPagenav}><{/if}></td>
+      <td style="text-align:center;"><{if $insPagenav}><{$insPagenav}><{/if}></td>
+      <td></td>
+      <{if $xoops_isuser}><td></td><{/if}>
     </tr>
   </table>
 <{/if}>
