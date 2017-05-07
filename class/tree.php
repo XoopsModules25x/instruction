@@ -117,7 +117,7 @@ class InstructionTree extends XoopsObjectTree {
 			$class = ($class == 'even') ? 'odd' : 'even';
 			
 			// ID категории
-			$catid = $this->_tree[$key]['obj']->getVar( 'catid' );
+			$catid = $this->_tree[$key]['obj']->getVar( 'cid' );
 			// Название категории
 			$cattitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Вес
