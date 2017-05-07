@@ -23,6 +23,6 @@
     <div><{include file="db:tag_bar.tpl"}></div>
   <{/if}>
   <div class="itemFoot">
-    <span class="itemAdminLink"><{$insInstr.adminlink}>&nbsp;<a href="#instrmenu"><i class="material-icons md-36">present_to_all</i></a></span>
+    <span class="itemAdminLink"><{$insInstr.adminlink}> <a href="#instrmenu"><{$lang_menu}></a></span>
   </div>
 </div>
