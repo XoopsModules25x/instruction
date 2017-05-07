@@ -10,9 +10,9 @@ include_once $GLOBALS['xoops']->path('class/tree.php');
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree {
 	
+    	
 	
-	
-	function _makePagesAdminOptions( $key, &$ret, $prefix_orig, &$objInsinstr, &$class = 'odd', $prefix_curr = '' ) {
+	function _makePagesAdminOptions( $key, &$ret, $prefix_orig, $objInsinstr, $class = 'odd', $prefix_curr = '' ) {
 		
 		if ( $key > 0 ) {
 			
@@ -22,7 +22,7 @@ class InstructionTree extends XoopsObjectTree {
 			$instrid = $objInsinstr->getVar('instrid');
 			
 			// ID страницы
-			$pageid = $this->_tree[$key]['obj']->getVar( $this->_myId );
+			$pageid = $this->_tree[$key]['obj']->getVar( 'pageid' );
 			// Название страницы
 			$pagetitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Вес
@@ -30,7 +30,7 @@ class InstructionTree extends XoopsObjectTree {
 			// Статус
 			$pagestatus = $this->_tree[$key]['obj']->getVar( 'status' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
 			
 			// Дочернии страницы
 			$page_childs =& $this->getAllChild( $pageid );
@@ -115,7 +115,7 @@ class InstructionTree extends XoopsObjectTree {
 			$class = ($class == 'even') ? 'odd' : 'even';
 			
 			// ID категории
-			$catid = $this->_tree[$key]['obj']->getVar( $this->_myId );
+			$catid = $this->_tree[$key]['obj']->getVar( 'catid' );
 			// Название категории
 			$cattitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Вес
@@ -190,11 +190,11 @@ class InstructionTree extends XoopsObjectTree {
 		if ( $key > 0 ) {
 			
 			// ID страницы
-			$pageid = $this->_tree[$key]['obj']->getVar( $this->_myId );
+			$pageid = $this->_tree[$key]['obj']->getVar( 'pageid' );
 			// Название страницы
 			$pagetitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
 			
 			// Дочернии категории
 			$page_childs =& $this->getAllChild( $pageid );
@@ -244,14 +244,14 @@ class InstructionTree extends XoopsObjectTree {
 			$ret .= '<div class="InstrTreeContent">';
 			
 			// Если это лист дерева
-			if( $pagetype == 0 ) {
+			if( $pageid == 0 ) {
 				$ret .= '<span class="InstrTreeEmptyPage">' . $pagetitle . '</span>';
 			//
 			} elseif( $currpageid == $pageid ) {
 				$ret .= $pagetitle;
 			//
 			} else {
-				$ret .= '<a href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '#pagetext">' . $pagetitle . '</a>';
+				$ret .= '<a href="' . XOOPS_URL . '/modules/instruction/page.php?id='. $pageid .'#pagetext">'. $pagetitle .'</a>';
 			}
 			
 			$ret .= '</div>';
@@ -288,11 +288,11 @@ class InstructionTree extends XoopsObjectTree {
 		
 		if ( $key > 0 ) {
 			// ID страницы
-			$pageid = $this->_tree[$key]['obj']->getVar( $this->_myId );
+			$pageid = $this->_tree[$key]['obj']->getVar( 'pageid' );
 			// Название страницы
 			$pagetitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
 			
 			// Если мы передали ID текущей страницы, то находить предыдудую и следующую страницы
 			// Не находить предыдущие и следующие для "Пустой страницы"

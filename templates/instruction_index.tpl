@@ -26,7 +26,7 @@
       <!--<td><a href="<{$xoops_url}>/modules/instruction/index.php?cid=<{$insInstr.cid}>"><{$insInstr.ctitle}></a></td>-->
       <td style="text-align:center; width:100px;"><{$insInstr.pages}></td>
       <{if $xoops_isuser}><td style="text-align:center; width:100px;">
-        <{if $insInstr.permsubmit}><a href="<{$xoops_url}>/modules/instruction/submit.php?op=editpage&amp;instrid=<{$insInstr.instrid}>"><img src="./images/icons/add_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" title="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" /></a><{/if}> 
+        <{if $insInstr.permsubmit}><a href="<{$xoops_url}>/modules/instruction/_submit.php?op=editpage&amp;instrid=<{$insInstr.instrid}>"><img src="./images/icons/add_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" title="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" /></a><{/if}> 
         <{if $insInstr.permedit}><a href="<{$xoops_url}>/modules/instruction/admin/instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img src="./images/icons/edit_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_EDIT}>" title="<{$smarty.const._MD_INSTRUCTION_EDIT}>" /></a><{/if}> 
       </td><{/if}>
     </tr>

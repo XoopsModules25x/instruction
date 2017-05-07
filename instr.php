@@ -3,11 +3,12 @@
 include_once 'header.php';
 // Подключаем трей
 include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
+include_once $GLOBALS['xoops']->path('class/tree.php');
 
 // Объявляем объекты
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
-$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
+$inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
+$inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
 
 $instrid = isset( $_GET['id'] ) ? intval( $_GET['id'] ) : 0;
 
