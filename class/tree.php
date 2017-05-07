@@ -10,9 +10,11 @@ include_once $GLOBALS['xoops']->path('class/tree.php');
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree {
 	
-    	
+    public function __constrcut()
+    {
+    }    	
 	
-	function _makePagesAdminOptions( $key, &$ret, $prefix_orig, $objInsinstr, $class = 'odd', $prefix_curr = '' ) {
+	public function _makePagesAdminOptions( $key, &$ret, $prefix_orig, $objInsinstr, $class = 'odd', $prefix_curr = '' ) {
 		
 		if ( $key > 0 ) {
 			
@@ -30,7 +32,7 @@ class InstructionTree extends XoopsObjectTree {
 			// Статус
 			$pagestatus = $this->_tree[$key]['obj']->getVar( 'status' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
 			
 			// Дочернии страницы
 			$page_childs =& $this->getAllChild( $pageid );
@@ -75,7 +77,7 @@ class InstructionTree extends XoopsObjectTree {
 		}
 	}
 
-	function makePagesAdmin( &$objInsinstr, $prefix = '-', $key = 0 ) {
+	public function makePagesAdmin( &$objInsinstr, $prefix = '-', $key = 0 ) {
 		$ret = '<form name="inspages" action="instr.php" method="post">
   <table width="100%" cellspacing="1" class="outer">
     <tr>
@@ -108,7 +110,7 @@ class InstructionTree extends XoopsObjectTree {
 	// === Дерево категорий в админке ===
 	// ==================================
 	
-	function _makeCatsAdminOptions( $key, &$ret, $prefix_orig, $cidinstrids = array(), &$class = 'odd', $prefix_curr = '' ) {
+	public function _makeCatsAdminOptions( $key, &$ret, $prefix_orig, $cidinstrids = array(), &$class = 'odd', $prefix_curr = '' ) {
 		if ( $key > 0 ) {
 			
 			//
@@ -158,7 +160,7 @@ class InstructionTree extends XoopsObjectTree {
 		}
 	}
 
-	function makeCatsAdmin( $prefix = '-', $cidinstrids = array(), $key = 0 ) {
+	public function makeCatsAdmin( $prefix = '-', $cidinstrids = array(), $key = 0 ) {
 		$ret = '<table width="100%" cellspacing="1" class="outer">
     <tr>
       <th align="center" colspan="4">' . _AM_INSTR_LISTALLCATS . '</th>
@@ -182,7 +184,7 @@ class InstructionTree extends XoopsObjectTree {
 	// Список страниц на стороне пользователя
 	// ======================================
 	
-	function _makePagesUserTree( $key, &$ret, $currpageid = 0, &$lastpageids = array(), $level = 0 ) {
+	public function _makePagesUserTree( $key, &$ret, $currpageid = 0, &$lastpageids = array(), $level = 0 ) {
 		
 		// Сохраняем значение предыдущей страницы
 		//static $stat_prevpages;
@@ -194,7 +196,7 @@ class InstructionTree extends XoopsObjectTree {
 			// Название страницы
 			$pagetitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
 			
 			// Дочернии категории
 			$page_childs =& $this->getAllChild( $pageid );
@@ -244,7 +246,7 @@ class InstructionTree extends XoopsObjectTree {
 			$ret .= '<div class="InstrTreeContent">';
 			
 			// Если это лист дерева
-			if( $pageid == 0 ) {
+			if( $pagetype == 0 ) {
 				$ret .= '<span class="InstrTreeEmptyPage">' . $pagetitle . '</span>';
 			//
 			} elseif( $currpageid == $pageid ) {
@@ -281,7 +283,7 @@ class InstructionTree extends XoopsObjectTree {
 	
 	// Находим предыдущую и следующую страницы.
 	// Находим последнии страницы на каждом уровне.
-	function _makePagesUserCalc( $key, $currpageid = 0, &$prevpages = array(), &$nextpages = array(), &$lastpageids = array(), $level = 0 ) {
+	public function _makePagesUserCalc( $key, $currpageid = 0, &$prevpages = array(), &$nextpages = array(), &$lastpageids = array(), $level = 0 ) {
 		
 		// Сохраняем значение предыдущей страницы
 		static $stat_prevpages;
@@ -292,7 +294,7 @@ class InstructionTree extends XoopsObjectTree {
 			// Название страницы
 			$pagetitle = $this->_tree[$key]['obj']->getVar( 'title' );
 			// Тип страницы
-			$pagetype = $this->_tree[$key]['obj']->getVar( 'title' );
+			$pagetype = $this->_tree[$key]['obj']->getVar( 'type' );
 			
 			// Если мы передали ID текущей страницы, то находить предыдудую и следующую страницы
 			// Не находить предыдущие и следующие для "Пустой страницы"
@@ -333,7 +335,7 @@ class InstructionTree extends XoopsObjectTree {
 	
 	//
 	
-	function makePagesUser( $currpageid = 0, &$prevpages = array(), &$nextpages = array(), $key = 0 ) {
+	public function makePagesUser( $currpageid = 0, &$prevpages = array(), &$nextpages = array(), $key = 0 ) {
 		
 		// Массив последней страницы на каждом уровне
 		// level => pageid
