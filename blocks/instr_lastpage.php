@@ -5,7 +5,7 @@
 function b_instr_lastpage_show( $options = array() ) {
 	
 	// Подключаем функции
-	include_once $GLOBALS['xoops']->path('modules/instruction/include/functions.php');
+	include_once XOOPS_ROOT_PATH . '/modules/instruction/include/functions.php';
 	//
 	$myts =& MyTextSanitizer::getInstance();
 	//
@@ -70,6 +70,3 @@ function b_instr_lastpage_edit( $options = array() ) {
 	// Возвращаем форму
 	return $form;
 }
-
-
-?>

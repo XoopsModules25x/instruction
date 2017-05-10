@@ -55,6 +55,3 @@ function instr_CleanVars(&$global, $key, $default = '', $type = 'int') {
     }
     return $ret;
 }
-
-
-?>

@@ -1,18 +1,10 @@
 <?php
-/*
- *
- *
- *
- *
- *
- *
- */
- 
-include dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'mainfile.php';
+
+global $xoopsModule;
+include __DIR__ . '/../../mainfile.php';
+xoops_load('XoopsRequest');
 //
-include_once $GLOBALS['xoops']->path('modules/instruction/include/functions.php');
+include_once __DIR__ . '/include/functions.php';
 // Трей
-include_once $GLOBALS['xoops']->path( '/class/tree.php' );
+include_once XOOPS_ROOT_PATH . '/class/tree.php';
 
-
-?>

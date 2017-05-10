@@ -65,5 +65,3 @@ function instruction_tag_synchronization( $mid )
 		//xoops_error($link_handler->db->error());
 	}
 }
-
-?>

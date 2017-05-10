@@ -1,23 +1,21 @@
 <?php
-// andrey3761
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
-}
-$moduleDirName = basename( dirname( __FILE__ ) ) ;
+defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+
+$moduleDirName = basename(__DIR__);
 
 $modversion['name'] = _MI_INSTRUCTION_NAME;
-$modversion['version'] = 1.05;
+$modversion['version'] = 1.06;
 $modversion['description'] = _MI_INSTRUCTION_DESC;
-$modversion['credits'] = "radio-hobby.org";
-$modversion['author'] = 'andrey3761';
+$modversion['credits'] = "radio-hobby.org, www.shmel.org";
+$modversion['author'] = 'andrey3761, aerograf';
 $modversion['nickname'] = '';
 //$modversion['help'] = 'page=help';
 $modversion['license'] = 'GNU GPL 2.0';
 $modversion['license_url'] = "www.gnu.org/licenses/gpl-2.0.html/";
 $modversion['official'] = 0;
 //$modversion['image'] = _MI_INSTRUCTION_IMAGE;
-$modversion['image'] = 'images/slogo.png';
+$modversion['image'] = 'assets/images/slogo.png';
 $modversion['dirname'] = "instruction";
 $modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
 $modversion['icons16'] = 'Frameworks/moduleclasses/icons/16';
@@ -26,8 +24,8 @@ $modversion['icons32'] = 'Frameworks/moduleclasses/icons/32';
 // О модуле
 $modversion["module_website_url"] = "radio-hobby.org";
 $modversion["module_website_name"] = "radio-hobby.org";
-$modversion["release_date"] = "2012/04/19";
-$modversion["module_status"] = "Demo";
+$modversion["release_date"] = "2017/05/11";
+$modversion["module_status"] = "Beta 1";
 $modversion["author_website_url"] = "radio-hobby.org";
 $modversion["author_website_name"] = "andrey3761";
 $modversion['min_php']='5.2';

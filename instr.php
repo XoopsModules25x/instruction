@@ -1,9 +1,9 @@
 <?php
 
-include_once 'header.php';
+include __DIR__ . '/header.php';
 // Подключаем трей
-include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
-include_once $GLOBALS['xoops']->path('class/tree.php');
+include_once XOOPS_ROOT_PATH . '/modules/instruction/class/tree.php';
+include_once XOOPS_ROOT_PATH . '/class/tree.php';
 
 // Объявляем объекты
 $insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
@@ -29,13 +29,13 @@ $objInsinstr = $insinstr_Handler->get( $instrid );
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name() . ' - ' . $objInsinstr->getVar( 'title' );
 // Шаблон
-$xoopsOption['template_main'] = 'instruction_instr.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'instruction_instr.tpl';
 // Заголовок
-include $GLOBALS['xoops']->path('header.php');
+include XOOPS_ROOT_PATH . '/header.php';
 // Стили
-$xoTheme->addStylesheet( XOOPS_URL . '/modules/instruction/css/style.css' );
+$xoTheme->addStylesheet( XOOPS_URL . '/modules/instruction/assets/css/style.css' );
 // Скрипты
-$xoTheme->addScript( XOOPS_URL . '/modules/instruction/js/tree.js' );
+$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/tree.js' );
 
 // Права на просмотр инструкции
 $categories = instr_MygetItemIds();
@@ -108,7 +108,7 @@ $xoopsTpl->assign( 'lang_menu', _MD_INSTRUCTION_MENU );
 
 // Теги
 if ( xoops_getModuleOption( 'usetag', 'instruction') ){
-	require_once $GLOBALS['xoops']->path('modules/tag/include/tagbar.php');
+	require_once XOOPS_ROOT_PATH . '/modules/tag/include/tagbar.php';
 	$xoopsTpl->assign( 'tags', true );
 	$xoopsTpl->assign( 'tagbar', tagBar( $instrid, 0 ) );
 } else {
@@ -124,6 +124,6 @@ if ( xoops_getModuleOption( 'userat', 'instruction' ) ){
 
 
 // Подвал
-include $GLOBALS['xoops']->path('footer.php');
+include XOOPS_ROOT_PATH . '/footer.php';
 
 ?>

@@ -12,4 +12,3 @@ function instruction_com_update( $pageid, $total_num ) {
 function instruction_com_approve( &$comment ){
 	// notification mail here
 }
-?>

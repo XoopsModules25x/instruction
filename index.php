@@ -1,22 +1,22 @@
 <?php
 
-include_once 'header.php';
+include __DIR__ . '/header.php';
 // Подключаем трей
-include_once $GLOBALS['xoops']->path( 'class/tree.php' );
+include_once XOOPS_ROOT_PATH . '/class/tree.php';
 // Пагинатор
-include_once $GLOBALS['xoops']->path( 'class/pagenav.php' );
+include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 // Объявляем объекты
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
-$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
+$inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
 //$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
 
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name();
 // Шаблон
-$xoopsOption['template_main'] = 'instruction_index.tpl';
+$GLOBALS['xoopsOption']['template_main']  = 'instruction_index.tpl';
 // Заголовок
-include $GLOBALS['xoops']->path('header.php');
+include XOOPS_ROOT_PATH . '/header.php';
 //
 $cid = isset( $_GET['cid'] ) ? intval( $_GET['cid'] ) : 0;
 //
@@ -132,6 +132,4 @@ if( count( $index_metadescript ) ) $xoTheme->addMeta( 'meta', 'description', imp
 
 
 // Подвал
-include $GLOBALS['xoops']->path('footer.php');
-
-?>
+include XOOPS_ROOT_PATH . '/footer.php';

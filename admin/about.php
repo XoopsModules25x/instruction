@@ -1,9 +1,8 @@
 <?php
 // Автор: andrey3761
 
-include '../../../include/cp_header.php';
-include '../../../class/xoopsformloader.php';
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
+
 //
 $aboutAdmin = new ModuleAdmin();
 
@@ -20,8 +19,6 @@ $xoopsTpl->assign( 'insAbout', $aboutAdmin->renderabout('', false) );
 // Выводим шаблон
 $GLOBALS['xoopsTpl']->display("db:instruction_admin_about.tpl");
 
-include 'admin_footer.php';
+include_once __DIR__ . '/admin_footer.php';
 //
 xoops_cp_footer();
-
-?>

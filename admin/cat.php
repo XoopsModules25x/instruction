@@ -1,7 +1,7 @@
 <?php
 
 //
-include 'admin_header.php';
+include __DIR__ . '/admin_header.php';
 // Функции модуля
 include '../include/functions.php';
 
@@ -9,8 +9,8 @@ include '../include/functions.php';
 $indexAdmin = new ModuleAdmin();
 
 // Объявляем объекты
-$instructioncat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
+$instructioncat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
 
 $time = time();
 
@@ -360,7 +360,3 @@ switch ( $op ) {
 		break;
 
 }
-
-
-
-?>

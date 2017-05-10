@@ -1,8 +1,8 @@
 <?php
 
-include_once 'header.php';
+include __DIR__ . '/header.php';
 // Подключаем трей
-include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
+include_once __DIR__ . '/class/tree.php';
 
 // Права на просмотр
 //$cat_view = instr_MygetItemIds();
@@ -12,15 +12,15 @@ include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
 //$cat_edit = instr_MygetItemIds( 'instruction_edit' );
 
 $groups = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-$gperm_handler =& xoops_gethandler('groupperm');
+$gperm_handler = xoops_gethandler('groupperm');
 
 // Права на просмотр страницы
 // ==========================
 
 // Объявляем объекты
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
-$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
+$inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
+$inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
 
 // Получаем данные
 // ID страницы
@@ -53,13 +53,13 @@ if( is_object( $GLOBALS['xoopsUser'] ) && $GLOBALS['xoopsUser']->isAdmin() && $n
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name() . ' - ' . $objInsinstr->getVar('title') . ' - ' . $objInspage->getVar( 'title' );
 // Шаблон
-$xoopsOption['template_main'] = 'instruction_page.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'instruction_page.tpl';
 // Заголовок
-include $GLOBALS['xoops']->path('header.php');
+include XOOPS_ROOT_PATH . '/header.php';
 // Стили
-$xoTheme->addStylesheet( XOOPS_URL . '/modules/instruction/css/style.css' );
+$xoTheme->addStylesheet( XOOPS_URL . '/modules/instruction/assets/css/style.css' );
 // Скрипты
-$xoTheme->addScript( XOOPS_URL . '/modules/instruction/js/tree.js' );
+$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/tree.js' );
 
 // Права на просмотр инструкции
 $categories = instr_MygetItemIds();
@@ -162,8 +162,6 @@ $xoTheme->addMeta( 'meta', 'keywords', $objInspage->getVar( 'keywords' ) );
 $xoTheme->addMeta( 'meta', 'description', $objInspage->getVar( 'description' ) );
 
 // Комментарии
-include $GLOBALS['xoops']->path('include/comment_view.php');
+include XOOPS_ROOT_PATH . '/include/comment_view.php';
 // Подвал
-include $GLOBALS['xoops']->path('footer.php');
-
-?>
+include XOOPS_ROOT_PATH . '/footer.php';

@@ -1,6 +1,6 @@
 <?php
 
-include 'header.php';
+include __DIR__ . 'header.php';
 $com_itemid = isset( $_GET['com_itemid'] ) ? intval( $_GET['com_itemid'] ) : 0;
 if ( $com_itemid > 0 ) {
 	// Находим заголовок
@@ -15,8 +15,7 @@ if ( $com_itemid > 0 ) {
 			exit();
 		}
 		$com_replytitle = $ptitle;
-		include $GLOBALS['xoops']->path('include/comment_new.php');
+		include XOOPS_ROOT_PATH . '/include/comment_new.php';
 	}
 }
 
-?>

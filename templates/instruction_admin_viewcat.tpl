@@ -14,6 +14,6 @@
   </tr>
   <tr class="even">
     <td style="width:30%;"><{$lang_action}></td>
-    <td><a href="cat.php?op=editcat&cid=<{$insCat.cid}>"><img src="../images/icons/edit_mini.png" alt="<{$lang_edit}>" title="<{$lang_edit}>"></a>&nbsp;<a href="cat.php?op=delcat&cid=<{$insCat.cid}>"><img src="../images/icons/delete_mini.png" alt="<{$lang_del}>" title="<{$lang_del}>"></a></td>
+    <td><a href="cat.php?op=editcat&cid=<{$insCat.cid}>"><img src="../assets/icons/edit_mini.png" alt="<{$lang_edit}>" title="<{$lang_edit}>"></a>&nbsp;<a href="cat.php?op=delcat&cid=<{$insCat.cid}>"><img src="../assets/icons/delete_mini.png" alt="<{$lang_del}>" title="<{$lang_del}>"></a></td>
   </tr>
 </table>

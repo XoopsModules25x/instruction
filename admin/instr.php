@@ -1,18 +1,18 @@
 <?php
 //
-include 'admin_header.php';
+include __DIR__ . '/admin_header.php';
 // Функции модуля
 include '../include/functions.php';
 // Пагинатор
-include_once $GLOBALS['xoops']->path( 'class/pagenav.php' );
+include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 // Admin Gui
 $indexAdmin = new ModuleAdmin();
 
 // Объявляем объекты
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
-$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
+$inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
+$inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
 
 //
 $uid = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
@@ -143,7 +143,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_instr.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -174,7 +174,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_editinstr.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -278,7 +278,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_saveinstr.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -288,7 +288,7 @@ switch ( $op ) {
 	case 'viewinstr':
 		
 		// Подключаем трей
-		include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
+		include_once XOOPS_ROOT_PATH . '/modules/instruction/class/tree.php';
 		
 		// Заголовок админки
 		xoops_cp_header();
@@ -320,7 +320,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_viewinstr.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -384,7 +384,7 @@ switch ( $op ) {
 			// Форма
 			xoops_confirm( array( 'ok' => 1, 'instrid' => $instrid, 'op' => 'delinstr' ), 'instr.php', sprintf( _AM_INSTRUCTION_FORMDELINSTR, $objInsinstr->getVar('title') ) );
 			// Текст внизу админки
-			include 'admin_footer.php';
+			include __DIR__ . '/admin_footer.php';
 			// Подвал админки
 			xoops_cp_footer();
 			
@@ -398,7 +398,7 @@ switch ( $op ) {
 		// Заголовок админки
 		xoops_cp_header();
 		// Скрипты
-		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/js/admin.js' );
+		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/admin.js' );
 		// Меню
 		//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITPAGE );
 		$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
@@ -427,7 +427,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_editpage.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -564,7 +564,7 @@ switch ( $op ) {
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInspage->getHtmlErrors() );
 		}
 		// Скрипты
-		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/js/admin.js' );
+		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/admin.js' );
 		// Выводим форму
 		$form =& $objInspage->getForm( 'instr.php', $instrid );
 		// Форма
@@ -574,7 +574,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_savepage.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -625,7 +625,7 @@ switch ( $op ) {
 			// Форма
 			xoops_confirm( array( 'ok' => 1, 'pageid' => $pageid, 'op' => 'delpage' ), 'instr.php', sprintf( _AM_INSTRUCTION_FORMDELPAGE, $objInspage->getVar('title') ) );
 			// Текст внизу админки
-			include 'admin_footer.php';
+			include __DIR__ . '/admin_footer.php';
 			// Подвал админки
 			xoops_cp_footer();
 			
@@ -659,7 +659,3 @@ switch ( $op ) {
 		break;
 
 }
-
-
-
-?>

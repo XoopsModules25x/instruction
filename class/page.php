@@ -10,7 +10,7 @@ class InstructionPage extends XoopsObject
 	// constructor
 	function __construct()
 	{
-		$this->XoopsObject();
+	//	$this->XoopsObject();
 		$this->initVar( "pageid", XOBJ_DTYPE_INT, NULL, false, 11 );
 		$this->initVar( "pid", XOBJ_DTYPE_INT, 0, false, 11 );
 		$this->initVar( "instrid", XOBJ_DTYPE_INT, 0, false, 11 );
@@ -52,7 +52,7 @@ class InstructionPage extends XoopsObject
 		}
 		
 		// Подключаем формы
-		include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
+		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 		// Подключаем типы страниц
 		$pagetypes = include $GLOBALS['xoops']->path('modules/instruction/include/pagetypes.inc.php');
 		
@@ -78,7 +78,7 @@ class InstructionPage extends XoopsObject
 		$inspage_arr = $inspage_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once $GLOBALS['xoops']->path('class/tree.php');
+		include_once XOOPS_ROOT_PATH . '/class/tree.php';
 		$mytree = new XoopsObjectTree( $inspage_arr, 'pageid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox( 'pid', 'title', '--', $this->getVar('pid'), true ) ) );
 		
@@ -213,5 +213,3 @@ class InstructionPageHandler extends XoopsPersistableObjectHandler
 		}
 	}
 }
-
-?>

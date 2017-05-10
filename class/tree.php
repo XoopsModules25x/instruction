@@ -5,7 +5,7 @@
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 // Подключаем трей
-include_once $GLOBALS['xoops']->path('class/tree.php');
+include_once XOOPS_ROOT_PATH . '/class/tree.php';
 
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree {
@@ -40,7 +40,7 @@ class InstructionTree extends XoopsObjectTree {
 			$num_childs = count( $page_childs );
 			
 			// Действие - удаление
-			$act_del = ( $num_childs > 0 ) ? '<img src="../images/icons/no_delete_mini.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" />' : '<a href="instr.php?op=delpage&pageid=' . $pageid . '"><img src="../images/icons/delete_mini.png" alt="' . _AM_INSTRUCTION_DEL . '" title="' . _AM_INSTRUCTION_DEL . '"></a>';
+			$act_del = ( $num_childs > 0 ) ? '<img src="../assets/icons/no_delete_mini.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" />' : '<a href="instr.php?op=delpage&pageid=' . $pageid . '"><img src="../assets/icons/delete_mini.png" alt="' . _AM_INSTRUCTION_DEL . '" title="' . _AM_INSTRUCTION_DEL . '"></a>';
 			//
 			$page_link = '<a name="pageid_' . $pageid . '" ' . ( $pagetype ? 'href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '#pagetext"' : '' ) . '>' . $pagetitle . '</a>';
 			
@@ -52,17 +52,17 @@ class InstructionTree extends XoopsObjectTree {
       </td>
       <td align="center" width="180">';
 			// Просмотре без кэша
-			$ret .= ' <a href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../images/icons/no_cache.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" /></a> ';
+			$ret .= ' <a href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../assets/icons/no_cache.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" /></a> ';
 			// Добавить подстраницу
-			$ret .= ' <a href="instr.php?op=editpage&instrid=' . $instrid . '&pid=' . $pageid . '"><img src="../images/icons/add_mini.png" alt="' . _AM_INSTRUCTION_ADDSUBPAGE . '" title="' . _AM_INSTRUCTION_ADDSUBPAGE . '" /></a> ';
+			$ret .= ' <a href="instr.php?op=editpage&instrid=' . $instrid . '&pid=' . $pageid . '"><img src="../assets/icons/add_mini.png" alt="' . _AM_INSTRUCTION_ADDSUBPAGE . '" title="' . _AM_INSTRUCTION_ADDSUBPAGE . '" /></a> ';
 			
 			if( $pagestatus ){
-				$ret .= ' <img src="../images/icons/lock_mini.png" alt="' . _AM_INSTRUCTION_LOCK . '" title="' . _AM_INSTRUCTION_LOCK . '"> ';
+				$ret .= ' <img src="../assets/icons/lock_mini.png" alt="' . _AM_INSTRUCTION_LOCK . '" title="' . _AM_INSTRUCTION_LOCK . '"> ';
 			} else {
-				$ret .= ' <img src="../images/icons/unlock_mini.png" alt="' . _AM_INSTRUCTION_UNLOCK . '" title="' . _AM_INSTRUCTION_UNLOCK . '"> ';
+				$ret .= ' <img src="../assets/icons/unlock_mini.png" alt="' . _AM_INSTRUCTION_UNLOCK . '" title="' . _AM_INSTRUCTION_UNLOCK . '"> ';
 			}
 			
-			$ret .= ' <a href="instr.php?op=editpage&pageid=' . $pageid . '"><img src="../images/icons/edit_mini.png" alt="' . _AM_INSTRUCTION_EDIT . '" title="' . _AM_INSTRUCTION_EDIT . '"></a> ' . $act_del . '
+			$ret .= ' <a href="instr.php?op=editpage&pageid=' . $pageid . '"><img src="../assets/icons/edit_mini.png" alt="' . _AM_INSTRUCTION_EDIT . '" title="' . _AM_INSTRUCTION_EDIT . '"></a> ' . $act_del . '
       </td>
     </tr>';
 			
@@ -93,7 +93,7 @@ class InstructionTree extends XoopsObjectTree {
 		$this->_makePagesAdminOptions( $key, $ret, $prefix, $objInsinstr );
 		
 		$ret .= '<tr class="foot">
-      <td><a href="instr.php?op=editpage&instrid=' . $objInsinstr->getVar('instrid') . '"><img src="../images/icons/add_mini.png" alt="' . _AM_INSTRUCTION_ADDPAGE . '" title="' . _AM_INSTRUCTION_ADDPAGE . '"></a></td>
+      <td><a href="instr.php?op=editpage&instrid=' . $objInsinstr->getVar('instrid') . '"><img src="../assets/icons/add_mini.png" alt="' . _AM_INSTRUCTION_ADDPAGE . '" title="' . _AM_INSTRUCTION_ADDPAGE . '"></a></td>
       <td colspan="2">
         <input type="hidden" name="instrid" value="' . $objInsinstr->getVar('instrid') . '" />
         <input type="hidden" name="op" value="updpage" />
@@ -133,9 +133,9 @@ class InstructionTree extends XoopsObjectTree {
 			$num_instrs = isset( $cidinstrids[ $catid ] ) ? $cidinstrids[ $catid ] : 0;
 			
 			// Действие - удаление
-			$act_del = ( ( $num_instrs > 0 ) || ( $num_childs > 0 ) ) ? '<img src="../images/icons/no_delete_mini.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" />' : '<a href="cat.php?op=delcat&cid=' . $catid . '"><img src="../images/icons/delete_mini.png" alt="' . _AM_INSTRUCTION_DEL . '" title="' . _AM_INSTRUCTION_DEL . '" /></a>';
+			$act_del = ( ( $num_instrs > 0 ) || ( $num_childs > 0 ) ) ? '<img src="../assets/icons/no_delete_mini.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" />' : '<a href="cat.php?op=delcat&cid=' . $catid . '"><img src="../assets/icons/delete_mini.png" alt="' . _AM_INSTRUCTION_DEL . '" title="' . _AM_INSTRUCTION_DEL . '" /></a>';
 			// Действие - просмотр
-			$act_view = ( $num_instrs > 0 ) ? '<a href="instr.php?cid=' . $catid . '"><img src="../images/icons/view_mini.png" alt="' . _AM_INSTR_VIEWINSTR . '" title="' . _AM_INSTR_VIEWINSTR . '" /></a>' : '<img src="../images/icons/no_view_mini.png" alt="' . _AM_INSTR_NOVIEWINSTR . '" title="' . _AM_INSTR_NOVIEWINSTR . '" />';
+			$act_view = ( $num_instrs > 0 ) ? '<a href="instr.php?cid=' . $catid . '"><img src="../assets/icons/view_mini.png" alt="' . _AM_INSTR_VIEWINSTR . '" title="' . _AM_INSTR_VIEWINSTR . '" /></a>' : '<img src="../assets/icons/no_view_mini.png" alt="' . _AM_INSTR_NOVIEWINSTR . '" title="' . _AM_INSTR_NOVIEWINSTR . '" />';
 			
 			
 			$ret .= '<tr class="' . $class . '">
@@ -144,7 +144,7 @@ class InstructionTree extends XoopsObjectTree {
       <td align="center" width="100">' . $num_instrs . '</td>
       <td align="center" width="150">
         ' . $act_view . '
-        <a href="cat.php?op=editcat&cid=' . $catid . '"><img src="../images/icons/edit_mini.png" alt="' . _AM_INSTRUCTION_EDIT . '" title="' . _AM_INSTRUCTION_EDIT . '"></a>
+        <a href="cat.php?op=editcat&cid=' . $catid . '"><img src="../assets/icons/edit_mini.png" alt="' . _AM_INSTRUCTION_EDIT . '" title="' . _AM_INSTRUCTION_EDIT . '"></a>
         ' . $act_del . '
       </td>
     </tr>';
@@ -358,6 +358,3 @@ class InstructionTree extends XoopsObjectTree {
 	}
 	
 }
-
-
-?>

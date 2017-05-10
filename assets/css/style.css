@@ -1,3 +1,4 @@
+/* Style INSTRUCTION */
 #instr-footnotes {
 	background: #F8F8F8;
 	border: 1px solid #999999;
@@ -23,7 +24,7 @@
 
 /* indent for all tree children excepts root */
 .InstrTreeNode {
-    background-image : url(../images/tree/i.gif);
+    background-image : url(../tree/i.gif);
     background-position : top left;
     background-repeat : repeat-y;
     margin-left: 18px;
@@ -37,24 +38,24 @@
 
 /* left vertical line (grid) for all nodes */
 .InstrTreeIsLast {
-    background-image: url(../images/tree/i_half.gif);
+    background-image: url(../tree/i_half.gif);
     background-repeat : no-repeat;
 }
 
 .InstrTreeExpandOpen .InstrTreeExpand {
-    background-image: url(../images/tree/expand_minus.gif);
+    background-image: url(../tree/expand_minus.gif);
     background-repeat : no-repeat;
 }
 
 /* closed is higher priority than open */
 .InstrTreeExpandClosed .InstrTreeExpand {
-    background-image: url(../images/tree/expand_plus.gif);
+    background-image: url(../tree/expand_plus.gif);
     background-repeat : no-repeat;
 }
 
 /* highest priority */
 .InstrTreeExpandLeaf .InstrTreeExpand {
-    background-image: url(../images/tree/expand_leaf.gif);
+    background-image: url(../tree/expand_leaf.gif);
 }
 
 .InstrTreeContent {

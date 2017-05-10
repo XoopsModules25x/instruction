@@ -10,7 +10,7 @@ class InstructionCategory extends XoopsObject
 	// constructor
 	function __construct()
 	{
-		$this->XoopsObject();
+//		$this->XoopsObject();
 		$this->initVar( "cid", XOBJ_DTYPE_INT, NULL, false, 5 );
 		$this->initVar( "pid", XOBJ_DTYPE_INT, 0, false, 5 );
 		$this->initVar( "title", XOBJ_DTYPE_TXTBOX, '', false );
@@ -43,7 +43,7 @@ class InstructionCategory extends XoopsObject
 			$action = xoops_getenv('REQUEST_URI');
 		}
 		// Подключаем формы
-		include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
+		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 		
 		// Название формы       
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDCAT ) : sprintf( _AM_INSTRUCTION_FORMEDITCAT );
@@ -85,7 +85,7 @@ class InstructionCategory extends XoopsObject
 		$instructioncat_arr = $instructioncat_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once $GLOBALS['xoops']->path('class/tree.php');
+		include_once XOOPS_ROOT_PATH . '/class/tree.php';
 		$mytree = new XoopsObjectTree( $instructioncat_arr, 'cid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_PCATC, $mytree->makeSelBox( 'pid', 'title', '--', $this->getVar('pid'), true ) ) );
 		// Вес
@@ -184,5 +184,3 @@ class InstructionCategoryHandler extends XoopsPersistableObjectHandler
 	}
 	
 }
-
-?>

@@ -1,9 +1,10 @@
 <?php
 // Автор: andrey3761
 
-include_once dirname(dirname(dirname(dirname(__FILE__)))) . '/mainfile.php';
-include_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
-include("../../../include/cp_header.php");
+$moduleDirName = basename(dirname(__DIR__));
+include_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+include_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
+include_once $GLOBALS['xoops']->path('www/include/cp_header.php');
 
 if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
         include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
@@ -14,14 +15,14 @@ if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/
     }
 
 
-$moduleInfo =& $module_handler->get($xoopsModule->getVar('mid'));
+$moduleInfo = $module_handler->get($xoopsModule->getVar('mid'));
 $pathImageIcon = XOOPS_URL .'/'. $moduleInfo->getInfo('icons16');
 $pathImageAdmin = XOOPS_URL .'/'. $moduleInfo->getInfo('icons32');
 
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 
 if ($xoopsUser) {
-    $moduleperm_handler =& xoops_gethandler('groupperm');
+    $moduleperm_handler = xoops_gethandler('groupperm');
     if (!$moduleperm_handler->checkRight('module_admin', $xoopsModule->getVar( 'mid' ), $xoopsUser->getGroups())) {
         redirect_header(XOOPS_URL, 1, _NOPERM);
         exit();
@@ -31,9 +32,9 @@ if ($xoopsUser) {
     exit();
 }
 
-if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
-	include_once(XOOPS_ROOT_PATH."/class/template.php");
-	$xoopsTpl = new XoopsTpl();
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+    include_once $GLOBALS['xoops']->path('class/template.php');
+    $xoopsTpl = new XoopsTpl();
 }
 
 //xoops_cp_header();
@@ -45,5 +46,3 @@ if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
 //xoops_loadLanguage('admin', $xoopsModule->getVar("dirname"));
 //xoops_loadLanguage('modinfo', $xoopsModule->getVar("dirname"));
 //xoops_loadLanguage('main', $xoopsModule->getVar("dirname"));
-
-?>

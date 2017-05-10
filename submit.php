@@ -1,11 +1,11 @@
 <?php
 
-include_once 'header.php';
+include __DIR__ . '/header.php';
 
 // Объявляем объекты
-$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
+$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
 //$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+$inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
 
 //
 $uid = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
@@ -39,9 +39,9 @@ switch ( $op ) {
 		// Задание тайтла
 		$xoopsOption['xoops_pagetitle'] = '';
 		// Шаблон
-		$xoopsOption['template_main'] = 'instruction_editpage.tpl';
+		$GLOBALS['xoopsOption']['template_main'] = 'instruction_editpage.tpl';
 		// Заголовок
-		include $GLOBALS['xoops']->path('header.php');
+		include XOOPS_ROOT_PATH . '/header.php';
 		
 		// Если мы редактируем страницу
 		if( $pageid ) {
@@ -90,7 +90,7 @@ switch ( $op ) {
 		
 		
 		// Подвал
-		include $GLOBALS['xoops']->path('footer.php');
+		include XOOPS_ROOT_PATH . '/footer.php';
 		
 		break;
 	// Сохранение страницы
@@ -162,9 +162,9 @@ switch ( $op ) {
 			// Задание тайтла
 			$xoopsOption['xoops_pagetitle'] = '';
 			// Шаблон
-			$xoopsOption['template_main'] = 'instruction_savepage.tpl';
+			$GLOBALS['xoopsOption']['template_main'] = 'instruction_savepage.tpl';
 			// Заголовок
-			include $GLOBALS['xoops']->path('header.php');
+			include XOOPS_ROOT_PATH . '/header.php';
 			// Сообщение об ошибке
 			$message_err = '<div class="errorMsg" style="text-align: left;">' . $message_err . '</div>';
 			// Выводим ошибки в шаблон
@@ -201,9 +201,9 @@ switch ( $op ) {
 			// Задание тайтла
 			$xoopsOption['xoops_pagetitle'] = '';
 			// Шаблон
-			$xoopsOption['template_main'] = 'instruction_savepage.tpl';
+			$GLOBALS['xoopsOption']['template_main'] = 'instruction_savepage.tpl';
 			// Заголовок
-			include $GLOBALS['xoops']->path('header.php');
+			include XOOPS_ROOT_PATH . '/header.php';
 			
 			// Выводим ошибки в шаблон
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInspage->getHtmlErrors() );
@@ -215,10 +215,8 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->assign( 'insFormPage', $form->render() );
 		
 		// Подвал
-		include $GLOBALS['xoops']->path('footer.php');
+		include XOOPS_ROOT_PATH . '/footer.php';
 		
 		break;
 	
 }
-
-?>

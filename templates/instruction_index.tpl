@@ -1,7 +1,7 @@
 <{* Форма выбора категории *}>
-<div style="font: bold italic 1.6em serif; text-align: center; vertical-align:middle; line-height: 1.4;"><img src="<{$xoops_url}>/modules/instruction/images/open.png" style="width:36px; height:24px;" alt="open" />&nbsp;<{$smarty.const._MD_INSTRUCTION_MODULE_NAME}>&nbsp;<img src="<{$xoops_url}>/modules/instruction/images/close.png" style="width:36px; height:24px;" alt="close" /></div>
+<div style="font: bold italic 1.6em serif; text-align: center; vertical-align:middle; line-height: 1.4;"><img src="<{$xoops_url}>/modules/instruction/assets/images/open.png" style="width:36px; height:24px;" alt="open" />&nbsp;<{$smarty.const._MD_INSTRUCTION_MODULE_NAME}>&nbsp;<img src="<{$xoops_url}>/modules/instruction/assets/images/close.png" style="width:36px; height:24px;" alt="close" /></div>
 <div style="text-align: center;">
-  <form name="insformselcat" action="<{$xoops_url}>/modules/instruction/index.php" method="get">
+  <form name="insformselcat" action="<{$xoops_url}>/modules/instruction/" method="get">
     <{$smarty.const._MD_INSTRUCTION_SELCAT}>
     <{$insFormSelCat}>
     <input type="submit" value="<{$smarty.const._MD_INSTRUCTION_GO}>" class="formButton" />
@@ -26,8 +26,8 @@
       <!--<td><a href="<{$xoops_url}>/modules/instruction/index.php?cid=<{$insInstr.cid}>"><{$insInstr.ctitle}></a></td>-->
       <td style="text-align:center; width:100px;"><{$insInstr.pages}></td>
       <{if $xoops_isuser}><td style="text-align:center; width:100px;">
-        <{if $insInstr.permsubmit}><a href="<{$xoops_url}>/modules/instruction/_submit.php?op=editpage&amp;instrid=<{$insInstr.instrid}>"><img src="./images/icons/add_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" title="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" /></a><{/if}> 
-        <{if $insInstr.permedit}><a href="<{$xoops_url}>/modules/instruction/admin/instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img src="./images/icons/edit_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_EDIT}>" title="<{$smarty.const._MD_INSTRUCTION_EDIT}>" /></a><{/if}> 
+        <{if $insInstr.permsubmit}><a href="<{$xoops_url}>/modules/instruction/submit.php?op=editpage&amp;instrid=<{$insInstr.instrid}>"><img src="./assets/icons/add_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" title="<{$smarty.const._MD_INSTRUCTION_ADDPAGE}>" /></a><{/if}> 
+        <{if $insInstr.permedit}><a href="<{$xoops_url}>/modules/instruction/admin/instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img src="./assets/icons/edit_mini.png" alt="<{$smarty.const._MD_INSTRUCTION_EDIT}>" title="<{$smarty.const._MD_INSTRUCTION_EDIT}>" /></a><{/if}> 
       </td><{/if}>
     </tr>
   <{/foreach}>

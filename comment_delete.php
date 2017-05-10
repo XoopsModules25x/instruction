@@ -1,6 +1,4 @@
 <?php
 
-include '../../mainfile.php';
-include $GLOBALS['xoops']->path('include/comment_delete.php');
-
-?>
+include __DIR__ . '/../../mainfile.php';
+include XOOPS_ROOT_PATH . '/include/comment_delete.php';

@@ -1,6 +1,6 @@
 <?php
 //
-include 'admin_header.php';
+include __DIR__ . '/admin_header.php';
 // Функции модуля
 include '../include/functions.php';
 
@@ -8,7 +8,7 @@ include '../include/functions.php';
 $indexAdmin = new ModuleAdmin();
 
 // Подключаем форму прав
-include_once $GLOBALS['xoops']->path( 'class/xoopsform/grouppermform.php' );
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
 // Заголовок админки
 xoops_cp_header();
@@ -66,7 +66,7 @@ unset ( $permissionsForm );
 // Выводим шаблон
 $GLOBALS['xoopsTpl']->display( "db:instruction_admin_perm.tpl" );
 // Текст внизу админки
-include 'admin_footer.php';
+include __DIR__ . '/admin_footer.php';
 // Подвал админки
 xoops_cp_footer();
 

@@ -2,7 +2,7 @@
 
 function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
 	// Подключаем функции
-	include_once $GLOBALS['xoops']->path('modules/instruction/include/functions.php');
+	include_once XOOPS_ROOT_PATH . '/modules/instruction/include/functions.php';
 	
 	$sql = "SELECT p.pageid, p.title, p.uid, p.datecreated, i.title FROM " . $GLOBALS['xoopsDB']->prefix('instruction_page') . " p, " . $GLOBALS['xoopsDB']->prefix('instruction_instr') . " i WHERE i.instrid = p.instrid AND i.status > 0 AND p.status > 0 AND p.type > 0";
 	if ( $userid != 0 ) {
@@ -43,5 +43,3 @@ function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
 	}
 	return $ret;
 }
-
-?>

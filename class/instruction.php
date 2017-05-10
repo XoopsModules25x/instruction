@@ -10,7 +10,7 @@ class InstructionInstruction extends XoopsObject
 	// constructor
 	function __construct()
 	{
-		$this->XoopsObject();
+//		$this->XoopsObject();
 		$this->initVar( "instrid", XOBJ_DTYPE_INT, NULL, false, 11 );
 		$this->initVar( "cid", XOBJ_DTYPE_INT, 0, false, 5 );
 		$this->initVar( "uid", XOBJ_DTYPE_INT, 0, false, 11 );
@@ -48,7 +48,7 @@ class InstructionInstruction extends XoopsObject
 			$action = xoops_getenv('REQUEST_URI');
 		}
 		// Подключаем формы
-		include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
+		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 		
 		// Название формы       
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDINSTR ) : sprintf( _AM_INSTRUCTION_FORMEDITINSTR );
@@ -66,7 +66,7 @@ class InstructionInstruction extends XoopsObject
 		$instructioncat_arr = $instructioncat_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once $GLOBALS['xoops']->path('class/tree.php');
+		include_once XOOPS_ROOT_PATH . '/class/tree.php';
 		$mytree = new XoopsObjectTree( $instructioncat_arr, 'cid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_CATC, $mytree->makeSelBox( 'cid', 'title', '--', $this->getVar('cid'), true ) ) );
 		// Описание
@@ -141,5 +141,3 @@ class InstructionInstructionHandler extends XoopsPersistableObjectHandler
 	}
 	
 }
-
-?>
