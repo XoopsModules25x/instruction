@@ -40,7 +40,7 @@ function instruction_tag_synchronization( $mid )
 	$link_handler =& xoops_getmodulehandler( "link", "tag" );
 	
 	/* clear tag-item links */
-	if ( version_compare( mysql_get_server_info(), "4.1.0", "ge" ) ):
+	if ( version_compare( mysqli_get_server_info(), "4.1.0", "ge" ) ):
     $sql =  "    DELETE FROM {$link_handler->table}" .
             "    WHERE " .
             "        tag_modid = {$mid}" .
