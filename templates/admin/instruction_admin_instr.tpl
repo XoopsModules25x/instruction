@@ -14,8 +14,8 @@
   <{if $insListInstr}>
   <{foreach from=$insListInstr item=insInstr}>
     <tr class="<{$insInstr.class}>">
-      <td><a href="<{$xoops_url}>/modules/instruction/instr.php?id=<{$insInstr.instrid}>"><{$insInstr.title}></a></td>
-      <td><a href="<{$xoops_url}>/modules/instruction/index.php?cid=<{$insInstr.cid}>"><{$insInstr.ctitle}></a></td>
+      <td><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/instr.php?id=<{$insInstr.instrid}>"><{$insInstr.title}></a></td>
+      <td><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?cid=<{$insInstr.cid}>"><{$insInstr.ctitle}></a></td>
       <td style="text-align:center; width:50px;"><{$insInstr.pages}></td>
       <td style="text-align:center; width:180px;">
         <a href="instr.php?op=viewinstr&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/view_mini.png" alt="<{$lang_display}>" title="<{$lang_display}>"></a>&nbsp;<a href="instr.php?op=editpage&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/add_mini.png" alt="<{$lang_addpage}>" title="<{$lang_addpage}>"></a>&nbsp;<{if $insInstr.status}><img src="../assets/icons/lock_mini.png" alt="<{$lang_lock}>" title="<{$lang_lock}>"><{else}><img src="../assets/icons/unlock_mini.png" alt="<{$lang_unlock}>" title="<{$lang_unlock}>"><{/if}>&nbsp;<a href="instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/edit_mini.png" alt="<{$lang_edit}>" title="<{$lang_edit}>"></a>&nbsp;<a href="instr.php?op=delinstr&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/delete_mini.png" alt="<{$lang_del}>" title="<{$lang_del}>"></a>

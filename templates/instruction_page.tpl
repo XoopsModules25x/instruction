@@ -33,9 +33,9 @@
   <div class="itemFoot">
     <span class="itemAdminLink">
       <{$insPage.adminlink}>
-      <{if $insPrevpages}><a href="<{$xoops_url}>/modules/instruction/page.php?id=<{$insPrevpages.pageid}>#pagetext" title="<{$insPrevpages.title}> <{$smarty.const._MD_INSTR_PREVPAGE}>"><{$smarty.const._MD_INSTR_PREVPAGE_HTML}></a><{/if}>
+      <{if $insPrevpages}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/page.php?id=<{$insPrevpages.pageid}>#pagetext" title="<{$insPrevpages.title}> <{$smarty.const._MD_INSTR_PREVPAGE}>"><{$smarty.const._MD_INSTR_PREVPAGE_HTML}></a><{/if}>
       <a href="#instrmenu"><{$lang_menu}></a>
-      <{if $insNextpages}><a href="<{$xoops_url}>/modules/instruction/page.php?id=<{$insNextpages.pageid}>#pagetext" title="<{$smarty.const._MD_INSTR_NEXTPAGE}> <{$insNextpages.title}>"><{$smarty.const._MD_INSTR_NEXTPAGE_HTML}></a><{/if}>
+      <{if $insNextpages}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/page.php?id=<{$insNextpages.pageid}>#pagetext" title="<{$smarty.const._MD_INSTR_NEXTPAGE}> <{$insNextpages.title}>"><{$smarty.const._MD_INSTR_NEXTPAGE_HTML}></a><{/if}>
     </span>
   </div>
 </div>

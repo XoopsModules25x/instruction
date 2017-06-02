@@ -57,5 +57,7 @@ define("_MD_INSTRUCTION_ERR_INSTR", 'Error: You have not chosen a category to su
 define("_MD_INSTRUCTION_ERR_WEIGHT", 'Error: Weight not specified!');
 define("_MD_INSTRUCTION_ERR_PPAGE", 'Error: Parent category is specified wrong!');
 
-
-?>
+// Mail
+define('_MD_INSTRUCTION_MAIL', 'Mail');
+define('_MD_INSTRUCTION_MAIL_INTART', 'Found an interesting article.');
+define('_MD_INSTRUCTION_MAIL_INTARTFOUND', 'Here is an interesting article I have found at ');

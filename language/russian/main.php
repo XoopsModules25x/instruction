@@ -68,5 +68,7 @@ define("_MD_INSTRUCTION_ERR_INSTR", 'Ошибка: Вы не выбрали в �
 define("_MD_INSTRUCTION_ERR_WEIGHT", 'Ошибка: Вы не указали вес!');
 define("_MD_INSTRUCTION_ERR_PPAGE", 'Ошибка: Вы не верно указали родительскую страницу!');
 
-
-?>
+// Mail
+define('_MD_INSTRUCTION_MAIL', 'Mail');
+define('_MD_INSTRUCTION_MAIL_INTART', 'Нашли интересную статью.');
+define('_MD_INSTRUCTION_MAIL_INTARTFOUND', 'Вот интересная статья, которую я нашел на ');
