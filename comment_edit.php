@@ -1,4 +1,4 @@
 <?php
 
-include __DIR__ . '/../../mainfile.php';
-include XOOPS_ROOT_PATH . '/include/comment_edit.php';
+include dirname(dirname(__DIR__)) . '/mainfile.php';
+include_once $GLOBALS['xoops']->path('include/comment_edit.php');

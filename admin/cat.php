@@ -1,5 +1,4 @@
 <?php
-
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
@@ -115,26 +114,7 @@ switch ( $op ) {
 		
 		$err = false;
 		$message_err = '';
-        // Récupération des variables:
-        // Pour l'image
-		/*
-	    include_once XOOPS_ROOT_PATH.'/class/uploader.php';	    
-        $uploader = new XoopsMediaUploader($uploaddir, array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'), $xoopsModuleConfig['maxuploadsize'], null, null);
-        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-			$uploader->setPrefix('downloads_') ;
-			$uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-			if (!$uploader->upload()) {
-				$errors = $uploader->getErrors();
-				redirect_header("javascript:history.go(-1)",3, $errors);
-			} else {
-				$obj->setVar('imgurl', $uploader->getSavedFileName());
-			}
-		} else {
-			$obj->setVar('imgurl', $_REQUEST['downloadscat_img']);
-        }
-		*/
-        // Pour les autres variables
-		
+
 		// Дата обновления
 		$objInstructioncat->setVar( 'dateupdated', $time );
 		$objInstructioncat->setVar( 'pid', $pid );
@@ -246,50 +226,6 @@ switch ( $op ) {
 		
 		break;
 		
-	// Просмотр категории
-	/*
-	case 'viewcat':
-		
-		// Заголовок админки
-		xoops_cp_header();
-		// Меню
-		echo $indexAdmin->addNavigation('cat.php');
-		
-		//
-		$objInstructioncat =& $instructioncat_Handler->get( $cid );
-		// Массив данных
-		$ins_cat = array();
-		// ID категории
-		$ins_cat['cid'] = $cid;
-		// Название
-		$ins_cat['title'] = $objInstructioncat->getVar('title');
-		// Описание
-		$ins_cat['dsc'] = $objInstructioncat->getVar('description');
-		// Вес
-		$ins_cat['weight'] = $objInstructioncat->getVar('weight');
-		// Выводим в шаблон
-		$GLOBALS['xoopsTpl']->assign( 'insCat', $ins_cat );
-		
-		// Языковые константы
-		$GLOBALS['xoopsTpl']->assign( 'lang_title', _AM_INSTRUCTION_TITLE );
-		$GLOBALS['xoopsTpl']->assign( 'lang_weight', _AM_INSTRUCTION_WEIGHT );
-		$GLOBALS['xoopsTpl']->assign( 'lang_action', _AM_INSTRUCTION_ACTION );
-		//$GLOBALS['xoopsTpl']->assign( 'lang_display', _AM_INSTRUCTION_DISPLAY );
-		$GLOBALS['xoopsTpl']->assign( 'lang_edit', _AM_INSTRUCTION_EDIT );
-		$GLOBALS['xoopsTpl']->assign( 'lang_del', _AM_INSTRUCTION_DEL );
-		$GLOBALS['xoopsTpl']->assign( 'lang_dsc', _AM_INSTRUCTION_DSC );
-		
-		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_viewcat.tpl");
-		
-		// Текст внизу админки
-		include 'admin_footer.php';
-		// Подвал админки
-		xoops_cp_footer();
-		
-		break;
-	*/
-	
 	// Удаление категории
 	case 'delcat':
 		

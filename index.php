@@ -1,10 +1,10 @@
 <?php
+use Xmf\Request;
 
-include __DIR__ . '/header.php';
-// Подключаем трей
-include_once XOOPS_ROOT_PATH . '/class/tree.php';
+require_once __DIR__ . '/header.php';
+
 // Пагинатор
-include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+include_once $GLOBALS['xoops']->path('class/pagenav.php');
 
 // Объявляем объекты
 $insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
@@ -14,9 +14,9 @@ $inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name();
 // Шаблон
-$GLOBALS['xoopsOption']['template_main']  = 'instruction_index.tpl';
+$xoopsOption['template_main'] = $moduleDirName . '_index.tpl';
 // Заголовок
-include XOOPS_ROOT_PATH . '/header.php';
+include_once $GLOBALS['xoops']->path('header.php');
 //
 $cid = isset( $_GET['cid'] ) ? intval( $_GET['cid'] ) : 0;
 //
@@ -26,9 +26,9 @@ $limit = xoops_getModuleOption( 'perpagemain', 'instruction');
 // Права на просмотр
 $categories = instr_MygetItemIds();
 // Права на добавление
-$cat_submit = instr_MygetItemIds( 'instruction_submit' );
+$cat_submit = instr_MygetItemIds( $moduleDirName . '_submit' );
 // Права на редактирование
-$cat_edit = instr_MygetItemIds( 'instruction_edit' );
+$cat_edit = instr_MygetItemIds( $moduleDirName . '_edit' );
 
 // Находим список категорий
 $criteria = new CriteriaCompo();
@@ -117,19 +117,13 @@ if ( $numrows > 0 ) {
 		
 		// Выводим в шаблон
 		$GLOBALS['xoopsTpl']->append( 'insListInstr', array( 'instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar( 'title' ), 'cid' => $insinstr_cid, 'permsubmit' => $perm_submit, 'permedit' => $perm_edit, 'class' => $class ) );
-		
-		
 	}
-	
 	// Языковые константы
-
-	
 }
 
 // Если есть мета-теги
 if( count( $index_metakeywords ) ) $xoTheme->addMeta( 'meta', 'keywords', implode( ', ', $index_metakeywords ) );
 if( count( $index_metadescript ) ) $xoTheme->addMeta( 'meta', 'description', implode( ', ', $index_metadescript ) );
 
-
 // Подвал
-include XOOPS_ROOT_PATH . '/footer.php';
+include_once $GLOBALS['xoops']->path('footer.php');

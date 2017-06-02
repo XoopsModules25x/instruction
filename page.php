@@ -1,15 +1,9 @@
 <?php
+use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 // Подключаем трей
 include_once __DIR__ . '/class/tree.php';
-
-// Права на просмотр
-//$cat_view = instr_MygetItemIds();
-// Права на добавление
-//$cat_submit = instr_MygetItemIds( 'instruction_submit' );
-// Права на редактирование
-//$cat_edit = instr_MygetItemIds( 'instruction_edit' );
 
 $groups = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
 $gperm_handler = xoops_gethandler('groupperm');
@@ -39,7 +33,7 @@ if ( $inspage_Handler->getCount( $criteria ) == 0 ) {
 //
 unset( $criteria );
 
-// Находим данные о страницы
+// Находим данные о странице
 $objInspage = $inspage_Handler->get( $pageid );
 // Находим данные об инструкции
 $objInsinstr = $insinstr_Handler->get( $objInspage->getVar( 'instrid' ) );
@@ -53,18 +47,18 @@ if( is_object( $GLOBALS['xoopsUser'] ) && $GLOBALS['xoopsUser']->isAdmin() && $n
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name() . ' - ' . $objInsinstr->getVar('title') . ' - ' . $objInspage->getVar( 'title' );
 // Шаблон
-$GLOBALS['xoopsOption']['template_main'] = 'instruction_page.tpl';
+$xoopsOption['template_main'] = $moduleDirName . '_page.tpl';
 // Заголовок
-include XOOPS_ROOT_PATH . '/header.php';
+include_once $GLOBALS['xoops']->path('header.php');
 // Стили
-$xoTheme->addStylesheet( XOOPS_URL . '/modules/instruction/assets/css/style.css' );
+$xoTheme->addStylesheet( XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/style.css' );
 // Скрипты
-$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/tree.js' );
+$xoTheme->addScript( XOOPS_URL . '/modules/' . $moduleDirName . '/assets/js/tree.js' );
 
 // Права на просмотр инструкции
 $categories = instr_MygetItemIds();
 if( ! in_array( $objInsinstr->getVar('cid'), $categories ) ) {
-	redirect_header( XOOPS_URL . '/modules/instruction/', 3, _NOPERM );
+	redirect_header( XOOPS_URL . '/modules/' . $moduleDirName . '/', 3, _NOPERM );
 	exit();
 }
 
@@ -93,11 +87,11 @@ $pages['description'] = $objInspage->getVar( 'description' );
 //
 // Если админ, рисуем админлинк
 if ( is_object( $GLOBALS['xoopsUser'] ) && $GLOBALS['xoopsUser']->isAdmin( $GLOBALS['xoopsModule']->mid() ) ) {
-	$pages['adminlink'] = '[&nbsp;<a href="' . XOOPS_URL . '/modules/instruction/admin/instr.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>&nbsp;|&nbsp;<a href="' . XOOPS_URL . '/modules/instruction/admin/instr.php?op=delpage&pageid=' . $pages['pageid'] . '">' . _DELETE . '</a>&nbsp;]';
+	$pages['adminlink'] = '[&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>&nbsp;|&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=delpage&pageid=' . $pages['pageid'] . '">' . _DELETE . '</a>&nbsp;]';
 } else {
 	$pages['adminlink'] = '[&nbsp;';
 	// Если можно редактировать
-	if( $gperm_handler->checkRight( 'instruction_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid') ) ) $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/instruction/submit.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>';
+	if( $gperm_handler->checkRight( $moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid') ) ) $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>';
 	
 	$pages['adminlink'] .= '&nbsp;]';
 	// Если нет админлика
@@ -118,12 +112,12 @@ $mytree = new XoopsObjectTree( $inscat_arr, 'cid', 'pid' );
 $nav_parent_id = $mytree->getAllParent( $objInsinstr->getVar( 'cid' ) );
 $titre_page = $nav_parent_id;
 $nav_parent_id = array_reverse( $nav_parent_id );
-$navigation = '<a href="' . XOOPS_URL . '/modules/instruction/">' . $GLOBALS['xoopsModule']->name() . '</a>&nbsp;:&nbsp;';
+$navigation = '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/">' . $GLOBALS['xoopsModule']->name() . '</a>&nbsp;:&nbsp;';
 foreach ( array_keys( $nav_parent_id ) as $i ) {
-	$navigation .= '<a href="' . XOOPS_URL . '/modules/instruction/index.php?cid=' . $nav_parent_id[$i]->getVar( 'cid' ) . '">' . $nav_parent_id[$i]->getVar( 'title' ) . '</a>&nbsp;:&nbsp;';
+	$navigation .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/index.php?cid=' . $nav_parent_id[$i]->getVar( 'cid' ) . '">' . $nav_parent_id[$i]->getVar( 'title' ) . '</a>&nbsp;:&nbsp;';
 }
-$navigation .= '<a href="' . XOOPS_URL . '/modules/instruction/index.php?cid=' . $objInscat->getVar('cid') . '">' . $objInscat->getVar('title') . '</a>&nbsp;:&nbsp;';
-$navigation .= '<a href="' . XOOPS_URL . '/modules/instruction/instr.php?id=' . $pages['instrid'] . '">' . $objInsinstr->getVar('title') . '</a>';
+$navigation .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/index.php?cid=' . $objInscat->getVar('cid') . '">' . $objInscat->getVar('title') . '</a>&nbsp;:&nbsp;';
+$navigation .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/instr.php?id=' . $pages['instrid'] . '">' . $objInsinstr->getVar('title') . '</a>';
 $xoopsTpl->assign( 'insNav', $navigation );
 
 unset( $criteria );
@@ -162,6 +156,6 @@ $xoTheme->addMeta( 'meta', 'keywords', $objInspage->getVar( 'keywords' ) );
 $xoTheme->addMeta( 'meta', 'description', $objInspage->getVar( 'description' ) );
 
 // Комментарии
-include XOOPS_ROOT_PATH . '/include/comment_view.php';
+include_once $GLOBALS['xoops']->path('/include/comment_view.php');
 // Подвал
-include XOOPS_ROOT_PATH . '/footer.php';
+include_once $GLOBALS['xoops']->path('footer.php');

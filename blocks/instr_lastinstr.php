@@ -6,11 +6,12 @@
 function b_instr_lastinstr_show( $options = array() ) {
 	
 	// Подключаем функции
-	include_once XOOPS_ROOT_PATH . '/modules/instruction/include/functions.php';
+  $moduleDirName = dirname(__DIR__);
+  include_once $moduleDirName . '/include/functions.php';
 	//
-	$myts =& MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	//
-	$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
+	$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
 	
 	// Добавляем стили
 	//global $xoTheme;

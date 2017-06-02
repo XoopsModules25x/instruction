@@ -38,4 +38,15 @@ define("_MI_INSTR_BLOCK_LASTPAGE_DESC", "Recent pages block");
 define("_MI_INSTR_BLOCK_LASTINSTR", "Recent instructions");
 define("_MI_INSTR_BLOCK_LASTINSTR_DESC", "Recent instructions block");
 
-?>
+// The name of this module
+define('_MI_INSTRUCTION_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_INSTRUCTION_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_INSTRUCTION_BACK_2_ADMIN', 'Back to Administration of ');
+
+//help
+define('_MI_INSTRUCTION_HELP_OVERVIEW', 'Overview');
+
+//help multi-page
+define('_MI_INSTRUCTION_DISCLAIMER', 'Disclaimer');
+define('_MI_INSTRUCTION_LICENSE', 'License');
+define('_MI_INSTRUCTION_SUPPORT', 'Support');

@@ -10,10 +10,10 @@ function instr_MygetItemIds( $permtype = 'instruction_view' )
 		return $permissions[$permtype];
 	}
 	// Находим из базы
-	$module_handler =& xoops_gethandler('module');
-	$instrModule =& $module_handler->getByDirname('instruction');
+	$module_handler = xoops_gethandler('module');
+	$instrModule = $module_handler->getByDirname('instruction');
 	$groups = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-	$gperm_handler =& xoops_gethandler('groupperm');
+	$gperm_handler = xoops_gethandler('groupperm');
 	$categories = $gperm_handler->getItemIds( $permtype, $groups, $instrModule->getVar('mid') );
 	$permissions[$permtype] = $categories;
 	return $categories;

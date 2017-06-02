@@ -1,14 +1,16 @@
 <?php
 // ааа
 
-if (!defined("XOOPS_ROOT_PATH")) {
-	die("XOOPS root path not defined");
-}
+//if (!defined("XOOPS_ROOT_PATH")) {
+//	die("XOOPS root path not defined");
+//}
+
+include_once $GLOBALS['xoops']->path('/include/common.php');
 
 class InstructionCategory extends XoopsObject
 {
 	// constructor
-	function __construct()
+	public function __construct()
 	{
 //		$this->XoopsObject();
 		$this->initVar( "cid", XOBJ_DTYPE_INT, NULL, false, 5 );
@@ -23,19 +25,19 @@ class InstructionCategory extends XoopsObject
 		$this->initVar( "metadescription", XOBJ_DTYPE_TXTBOX, '', false );
 	}
 	
-	function InstructionCategory()
+	public function InstructionCategory()
     {
 		$this->__construct();
 	}
 	
-	function get_new_enreg()
+	public function get_new_enreg()
 	{
 		$new_enreg = $GLOBALS['xoopsDB']->getInsertId();
 		return $new_enreg;
     }
 	
 	// Получаем форму
-	function getForm( $action = false )
+	public function getForm( $action = false )
 	{
 		//global $xoopsDB, $xoopsModule, $xoopsModuleConfig;
 		// Если нет $action
@@ -43,7 +45,7 @@ class InstructionCategory extends XoopsObject
 			$action = xoops_getenv('REQUEST_URI');
 		}
 		// Подключаем формы
-		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+		include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
 		
 		// Название формы       
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDCAT ) : sprintf( _AM_INSTRUCTION_FORMEDITCAT );
@@ -85,7 +87,7 @@ class InstructionCategory extends XoopsObject
 		$instructioncat_arr = $instructioncat_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once XOOPS_ROOT_PATH . '/class/tree.php';
+		include_once $GLOBALS['xoops']->path('/class/tree.php');
 		$mytree = new XoopsObjectTree( $instructioncat_arr, 'cid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_PCATC, $mytree->makeSelBox( 'pid', 'title', '--', $this->getVar('pid'), true ) ) );
 		// Вес
@@ -168,13 +170,13 @@ class InstructionCategory extends XoopsObject
 
 class InstructionCategoryHandler extends XoopsPersistableObjectHandler 
 {
-	function __construct(&$db) 
+	public function __construct(&$db) 
 	{
 		parent::__construct( $db, 'instruction_cat', 'InstructionCategory', 'cid', 'title' );
 	}
 	
 	// Обновление даты обновления категории
-	function updateDateupdated( $cid = 0, $time = NULL ) {
+	public function updateDateupdated( $cid = 0, $time = NULL ) {
 		// Если не передали время
 		$time = $time === NULL ? time() : intval( $time );
 		//

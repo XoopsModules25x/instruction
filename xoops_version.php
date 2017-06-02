@@ -1,129 +1,154 @@
 <?php
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+use Xmf\Request;
+
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 $moduleDirName = basename(__DIR__);
+xoops_load('xoopseditorhandler');
+$editorHandler = XoopsEditorHandler::getInstance();
+$xoops_url     = parse_url(XOOPS_URL);
 
-$modversion['name'] = _MI_INSTRUCTION_NAME;
-$modversion['version'] = 1.06;
-$modversion['description'] = _MI_INSTRUCTION_DESC;
-$modversion['credits'] = "radio-hobby.org, www.shmel.org";
-$modversion['author'] = 'andrey3761, aerograf';
-$modversion['nickname'] = '';
-//$modversion['help'] = 'page=help';
-$modversion['license'] = 'GNU GPL 2.0';
-$modversion['license_url'] = "www.gnu.org/licenses/gpl-2.0.html/";
-$modversion['official'] = 0;
-//$modversion['image'] = _MI_INSTRUCTION_IMAGE;
-$modversion['image'] = 'assets/images/slogo.png';
-$modversion['dirname'] = "instruction";
-$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
-$modversion['icons16'] = 'Frameworks/moduleclasses/icons/16';
-$modversion['icons32'] = 'Frameworks/moduleclasses/icons/32';
-
-// О модуле
-$modversion["module_website_url"] = "radio-hobby.org";
-$modversion["module_website_name"] = "radio-hobby.org";
-$modversion["release_date"] = "2017/05/11";
-$modversion["module_status"] = "Beta 1";
-$modversion["author_website_url"] = "radio-hobby.org";
-$modversion["author_website_name"] = "andrey3761";
-$modversion['min_php']='5.2';
-$modversion['min_xoops']="2.5";
-
-// Файл базы данных
-$modversion['sqlfile']['mysql'] = "sql/mysql.sql";
-//$modversion['sqlfile']['postgresql'] = "sql/pgsql.sql";
-
-// Таблицы
-$i = 0;
-$modversion['tables'][$i] = "instruction_cat";
-$i++;
-$modversion['tables'][$i] = "instruction_instr";
-$i++;
-$modversion['tables'][$i] = "instruction_page";
-$i++;
-
-// Имеет админку
-$modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = "admin/index.php";
-$modversion['adminmenu'] = "admin/menu.php";
-$modversion['system_menu'] = 1;
-
-// Меню
-$modversion['hasMain'] = 1;
+$modversion = array(
+        'name'            =>    _MI_INSTRUCTION_NAME,
+        'version'         =>    1.06,
+        'description'     =>    _MI_INSTRUCTION_DESC,
+        'credits'         =>    'radio-hobby.org, www.shmel.org',
+        'author'          =>    'andrey3761, aerograf',
+        'nickname'        =>    '',
+        'help'            =>    'page=help',
+        'license'         =>    'GNU GPL 2.0',
+        'license_url'     =>    'www.gnu.org/licenses/gpl-2.0.html/',
+        'official'        =>    0,
+        'image'           =>    'assets/images/slogo.png',
+        'dirname'         =>    $moduleDirName,
+        'dirmoduleadmin'  =>    'Frameworks/moduleclasses',
+        'icons16'         =>    'Frameworks/moduleclasses/icons/16',
+        'icons32'         =>    'Frameworks/moduleclasses/icons/32',
+      // О модуле
+        'module_website_url'    =>    'radio-hobby.org',
+        'module_website_name'   =>    'radio-hobby.org',
+        'release_date'          =>    '2017/05/11',
+        'module_status'         =>    'Beta 2',
+        'author_website_url'    =>    'radio-hobby.org',
+        'author_website_name'   =>    'andrey3761',
+        'module_website_url'    =>    'www.xoops.org',
+        'module_website_name'   =>    'Support site',
+        'min_php'               =>    '5.2',
+        'min_xoops'             =>    '2.5',
+      // Файл базы данных
+        'sqlfile'               =>    array('mysql' => 'sql/mysql.sql'),
+      // Таблицы
+        'tables'                =>    array(
+                $moduleDirName . '_cat',
+                $moduleDirName . '_instr',
+                $moduleDirName . '_page'
+        ),      
+      // Имеет админку
+        'hasAdmin'              =>    1,
+        'adminindex'            =>    'admin/index.php',
+        'adminmenu'             =>    'admin/menu.php',
+        'system_menu'           =>    1,
+      // Меню
+        'hasMain'               =>    1        
+);
 
 // Search
 $modversion['hasSearch'] = 1;
-$modversion['search']['file'] = "include/search.inc.php";
-$modversion['search']['func'] = "instruction_search";
+$modversion['search']['file'] = 'include/search.inc.php';
+$modversion['search']['func'] = $moduleDirName . '_search';
+
+//  Help files 
+$modversion['helpsection'] = array(
+    array('name' => _MI_INSTRUCTION_HELP_OVERVIEW, 'link' => 'page=help'),
+    array('name' => _MI_INSTRUCTION_DISCLAIMER, 'link' => 'page=disclaimer'),
+    array('name' => _MI_INSTRUCTION_LICENSE, 'link' => 'page=license'),
+    array('name' => _MI_INSTRUCTION_SUPPORT, 'link' => 'page=support'),
+);
 
 // Comments
 $modversion['hasComments'] = 1;
 $modversion['comments']['itemName'] = 'id';
 $modversion['comments']['pageName'] = 'page.php';
-//$modversion['comments']['extraParams'] = array('cid');
 $modversion['comments']['callbackFile'] = 'include/comment_functions.php';
-$modversion['comments']['callback']['approve'] = 'instruction_com_approve';
-$modversion['comments']['callback']['update'] = 'instruction_com_update';
+$modversion['comments']['callback']['approve'] = $moduleDirName . '_com_approve';
+$modversion['comments']['callback']['update'] = $moduleDirName . '_com_update';
 
 // Templates
-$i = 1;
-$modversion['templates'][$i]['file'] = 'instruction_admin_index.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_cat.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_editcat.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_savecat.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_viewcat.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_instr.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_editinstr.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_saveinstr.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_viewinstr.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_editpage.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_savepage.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_page.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_instr.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_index.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_editpage.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_savepage.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_perm.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-$modversion['templates'][$i]['file'] = 'instruction_admin_about.tpl';
-$modversion['templates'][$i]['description'] = '';
-$i++;
-
+$modversion['templates'] = array(
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_index.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_cat.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_editcat.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_savecat.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_viewcat.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_instr.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_editinstr.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_saveinstr.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_viewinstr.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_editpage.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_savepage.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_perm.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    'admin/'. $moduleDirName .'_admin_about.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    $moduleDirName .'_page.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    $moduleDirName .'_instr.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    $moduleDirName .'_index.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    $moduleDirName .'_editpage.tpl',
+          'description' =>    ''
+    ),
+    array(
+          'file'        =>    $moduleDirName .'_savepage.tpl',
+          'description' =>    ''
+    ),
+);
 // Конфигурация
 $i = 1;
 
@@ -171,25 +196,26 @@ $modversion['config'][$i]['default'] = 0;
 $i++;
 
 // Блоки
-$i = 1;
 // Блок последних страниц
-$modversion['blocks'][$i]['file'] = "instr_lastpage.php";
-$modversion['blocks'][$i]['name'] = _MI_INSTR_BLOCK_LASTPAGE;
-$modversion['blocks'][$i]['description'] = _MI_INSTR_BLOCK_LASTPAGE_DESC;
-$modversion['blocks'][$i]['show_func'] = "b_instr_lastpage_show";
-$modversion['blocks'][$i]['edit_func']   = 'b_instr_lastpage_edit';
-$modversion['blocks'][$i]['options']     = '10|20';
-$modversion['blocks'][$i]['template'] = 'instruction_block_lastpage.tpl';
-$i ++;
+$modversion['blocks'][] = array(
+        'file'        =>     'instr_lastpage.php',
+        'name'        =>     _MI_INSTR_BLOCK_LASTPAGE,
+        'description' =>     _MI_INSTR_BLOCK_LASTPAGE_DESC,
+        'show_func'   =>     'b_instr_lastpage_show',
+        'edit_func'   =>     'b_instr_lastpage_edit',
+        'options'     =>     '10|20',
+        'template'    =>     $moduleDirName .'_block_lastpage.tpl'
+);
 // Блок последних инструкций
-$modversion['blocks'][$i]['file'] = "instr_lastinstr.php";
-$modversion['blocks'][$i]['name'] = _MI_INSTR_BLOCK_LASTINSTR;
-$modversion['blocks'][$i]['description'] = _MI_INSTR_BLOCK_LASTINSTR_DESC;
-$modversion['blocks'][$i]['show_func'] = "b_instr_lastinstr_show";
-$modversion['blocks'][$i]['edit_func']   = 'b_instr_lastinstr_edit';
-$modversion['blocks'][$i]['options']     = '10|20';
-$modversion['blocks'][$i]['template'] = 'instruction_block_lastinstr.tpl';
-$i ++;
+$modversion['blocks'][] = array(
+        'file'        =>     'instr_lastinstr.php',
+        'name'        =>     _MI_INSTR_BLOCK_LASTINSTR,
+        'description' =>     _MI_INSTR_BLOCK_LASTINSTR_DESC,
+        'show_func'   =>     'b_instr_lastinstr_show',
+        'edit_func'   =>     'b_instr_lastinstr_edit',
+        'options'     =>     '10|20',
+        'template'    =>     $moduleDirName .'_block_lastinstr.tpl'
+);
 
 // Notification
 $modversion['hasNotification'] = 0;

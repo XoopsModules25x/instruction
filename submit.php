@@ -1,6 +1,7 @@
 <?php
+use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 
 // Объявляем объекты
 $insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
@@ -25,9 +26,9 @@ $weight = isset( $_POST['weight'] ) ? intval( $_POST['weight'] ) : 0;
 $pid = isset( $_POST['pid'] ) ? intval( $_POST['pid'] ) : 0;
 
 // Права на добавление
-$cat_submit = instr_MygetItemIds( 'instruction_submit' );
+$cat_submit = instr_MygetItemIds( $moduleDirName . '_submit' );
 // Права на редактирование
-$cat_edit = instr_MygetItemIds( 'instruction_edit' );
+$cat_edit = instr_MygetItemIds( $moduleDirName . '_edit' );
 
 $op = isset($_GET['op']) ? $_GET['op'] : '';
 $op = isset($_POST['op']) ? $_POST['op'] : $op;
@@ -39,9 +40,9 @@ switch ( $op ) {
 		// Задание тайтла
 		$xoopsOption['xoops_pagetitle'] = '';
 		// Шаблон
-		$GLOBALS['xoopsOption']['template_main'] = 'instruction_editpage.tpl';
+    $xoopsOption['template_main'] = $moduleDirName . '_editpage.tpl';
 		// Заголовок
-		include XOOPS_ROOT_PATH . '/header.php';
+		include_once $GLOBALS['xoops']->path('header.php');
 		
 		// Если мы редактируем страницу
 		if( $pageid ) {
@@ -90,7 +91,7 @@ switch ( $op ) {
 		
 		
 		// Подвал
-		include XOOPS_ROOT_PATH . '/footer.php';
+		include_once $GLOBALS['xoops']->path('footer.php');
 		
 		break;
 	// Сохранение страницы
@@ -106,7 +107,7 @@ switch ( $op ) {
 		
 		// Если мы редактируем
 		if ( $pageid ) {
-			$objInspage =& $inspage_Handler->get( $pageid );
+			$objInspage = $inspage_Handler->get( $pageid );
 			// Объект инструкции
 			$objInsinstr = $insinstr_Handler->get( $objInspage->getVar( 'instrid' ) );
 			// Можно ли редактировать инструкцию в данной категории
@@ -162,9 +163,9 @@ switch ( $op ) {
 			// Задание тайтла
 			$xoopsOption['xoops_pagetitle'] = '';
 			// Шаблон
-			$GLOBALS['xoopsOption']['template_main'] = 'instruction_savepage.tpl';
+			$xoopsOption['template_main'] = $moduleDirName . '_savepage.tpl';
 			// Заголовок
-			include XOOPS_ROOT_PATH . '/header.php';
+			include_once $GLOBALS['xoops']->path('header.php');
 			// Сообщение об ошибке
 			$message_err = '<div class="errorMsg" style="text-align: left;">' . $message_err . '</div>';
 			// Выводим ошибки в шаблон
@@ -176,11 +177,11 @@ switch ( $op ) {
 				// Если мы редактируем
 				if ( $pageid ) {
 					// Обновление даты
-					$sql = sprintf( "UPDATE %s SET `dateupdated` = %u WHERE `instrid` = %u", $GLOBALS['xoopsDB']->prefix("instruction_instr"), $time, $instrid );
+					$sql = sprintf( "UPDATE %s SET `dateupdated` = %u WHERE `instrid` = %u", $GLOBALS['xoopsDB']->prefix( $moduleDirName . '_instr' ), $time, $instrid );
 					$GLOBALS['xoopsDB']->query($sql);
 					// Запись в лог
 					xoops_loadLanguage( 'main', 'userslog' );
-					userslog_insert( $objInsinstr->getVar('title') . ': ' . $objInspage->getVar('title'), _MD_USERSLOG_MODIFY_PAGE );
+					//userslog_insert( $objInsinstr->getVar('title') . ': ' . $objInspage->getVar('title'), _MD_USERSLOG_MODIFY_PAGE );
 					//
 					redirect_header( 'index.php', 3, _MD_INSTRUCTION_PAGEMODIFY );
 				// Если мы добавляем
@@ -188,11 +189,11 @@ switch ( $op ) {
 					// Инкримент комментов
 					$inspage_Handler->updateposts( $uid, $_POST['status'], 'add' );
 					// Инкремент страниц и обновление даты
-					$sql = sprintf( "UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u", $GLOBALS['xoopsDB']->prefix("instruction_instr"), $time, $instrid );
+					$sql = sprintf( "UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u", $GLOBALS['xoopsDB']->prefix( $moduleDirName . '_instr'), $time, $instrid );
 					$GLOBALS['xoopsDB']->query($sql);
 					// Запись в лог
 					xoops_loadLanguage( 'main', 'userslog' );
-					userslog_insert( $objInsinstr->getVar('title') . ': ' . $objInspage->getVar('title'), _MD_USERSLOG_SUBMIT_PAGE );
+					//userslog_insert( $objInsinstr->getVar('title') . ': ' . $objInspage->getVar('title'), _MD_USERSLOG_SUBMIT_PAGE );
 					//
 					redirect_header( 'index.php', 3, _MD_INSTRUCTION_PAGEADDED );
 				}
@@ -201,9 +202,9 @@ switch ( $op ) {
 			// Задание тайтла
 			$xoopsOption['xoops_pagetitle'] = '';
 			// Шаблон
-			$GLOBALS['xoopsOption']['template_main'] = 'instruction_savepage.tpl';
+			$xoopsOption['template_main'] = $moduleDirName . '_savepage.tpl';
 			// Заголовок
-			include XOOPS_ROOT_PATH . '/header.php';
+			include_once $GLOBALS['xoops']->path('header.php');
 			
 			// Выводим ошибки в шаблон
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInspage->getHtmlErrors() );
@@ -215,8 +216,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->assign( 'insFormPage', $form->render() );
 		
 		// Подвал
-		include XOOPS_ROOT_PATH . '/footer.php';
+		include_once $GLOBALS['xoops']->path('footer.php');
 		
 		break;
-	
 }

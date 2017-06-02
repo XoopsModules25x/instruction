@@ -1,14 +1,15 @@
 <?php
-// ааа
 
-if (!defined("XOOPS_ROOT_PATH")) {
-	die("XOOPS root path not defined");
-}
+//if (!defined("XOOPS_ROOT_PATH")) {
+//	die("XOOPS root path not defined");
+//}
+
+include_once $GLOBALS['xoops']->path('/include/common.php');
 
 class InstructionPage extends XoopsObject
 {
 	// constructor
-	function __construct()
+	public function __construct()
 	{
 	//	$this->XoopsObject();
 		$this->initVar( "pageid", XOBJ_DTYPE_INT, NULL, false, 11 );
@@ -32,19 +33,19 @@ class InstructionPage extends XoopsObject
 		$this->initVar( "dobr", XOBJ_DTYPE_INT, 0, false, 1);
 	}
 	
-	function InstructionPage()
+	public function InstructionPage()
     {
 		$this->__construct();
 	}
 	
-	function get_new_enreg()
+	public function get_new_enreg()
 	{
 		$new_enreg = $GLOBALS['xoopsDB']->getInsertId();
 		return $new_enreg;
     }
 	
 	// Получаем форму
-	function getForm( $action = false, $instrid = 0 )
+	public function getForm( $action = false, $instrid = 0 )
 	{
 		// Если нет $action
 		if ( $action === false ) {
@@ -52,9 +53,9 @@ class InstructionPage extends XoopsObject
 		}
 		
 		// Подключаем формы
-		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+		include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
 		// Подключаем типы страниц
-		$pagetypes = include $GLOBALS['xoops']->path('modules/instruction/include/pagetypes.inc.php');
+		$pagetypes = include $GLOBALS['xoops']->path('/modules/' . INST_DIRNAME . '/include/pagetypes.inc.php');
 		
 		// Название формы
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDPAGE ) : sprintf( _AM_INSTRUCTION_FORMEDITPAGE );
@@ -78,7 +79,7 @@ class InstructionPage extends XoopsObject
 		$inspage_arr = $inspage_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once XOOPS_ROOT_PATH . '/class/tree.php';
+		include_once $GLOBALS['xoops']->path('/class/tree.php');
 		$mytree = new XoopsObjectTree( $inspage_arr, 'pageid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox( 'pid', 'title', '--', $this->getVar('pid'), true ) ) );
 		
@@ -163,7 +164,7 @@ class InstructionPage extends XoopsObject
 
 class InstructionPageHandler extends XoopsPersistableObjectHandler
 {
-	function __construct(&$db)
+	public function __construct(&$db)
 	{
 		parent::__construct( $db, 'instruction_page', 'InstructionPage', 'pageid', 'title' );
 	}
@@ -175,7 +176,7 @@ class InstructionPageHandler extends XoopsPersistableObjectHandler
 	 * @ Update user post count after change status content
 	 * @ Update user post count after delete content
 	 */
-	function updateposts( $uid, $status, $action ) {
+	public function updateposts( $uid, $status, $action ) {
 		//
 		switch ( $action ) {
 			// Добавление страницы

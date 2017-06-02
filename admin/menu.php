@@ -18,29 +18,35 @@ $moduleHelper->loadLanguage('modinfo');
 $adminmenu = array();
 
 // Административное меню
-$i = 1;
-$adminmenu[$i]['title'] = _MI_INSTRUCTION_ADMIN_HOME;
-$adminmenu[$i]['link'] = "admin/index.php";
-$adminmenu[$i]['desc'] = _MI_INSTRUCTION_ADMIN_HOME_DESC;
-$adminmenu[$i]["icon"] =  $pathIcon32 . '/home.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_INSTRUCTION_ADMIN_CAT;
-$adminmenu[$i]['link'] = "admin/cat.php";
-$adminmenu[$i]['desc'] = _MI_INSTRUCTION_ADMIN_CAT_DESC;
-$adminmenu[$i]['icon'] = $pathIcon32 . '/category.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_INSTRUCTION_ADMIN_INSTR;
-$adminmenu[$i]['link'] = "admin/instr.php";
-$adminmenu[$i]['desc'] = _MI_INSTRUCTION_ADMIN_INSTR_DESC;
-$adminmenu[$i]['icon'] = 'assets/icons/nav_book.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_INSTRUCTION_ADMIN_PERM;
-$adminmenu[$i]['link'] = "admin/perm.php";
-$adminmenu[$i]['desc'] = _MI_INSTRUCTION_ADMIN_PERM_DESC;
-$adminmenu[$i]['icon'] = $pathIcon32 . '/permissions.png';
-$i++;
-$adminmenu[$i]['title'] = _MI_INSTRUCTION_ADMIN_ABOUT;
-$adminmenu[$i]['link']  = "admin/about.php";
-$adminmenu[$i]['desc'] = _MI_INSTRUCTION_ADMIN_ABOUT_DESC;
-$adminmenu[$i]['icon'] =  $pathIcon32 . '/about.png';
-$i++;
+$adminmenu = array(
+    array(
+          'title'   =>    _MI_INSTRUCTION_ADMIN_HOME,
+          'link'    =>    'admin/index.php',
+          'desc'    =>    _MI_INSTRUCTION_ADMIN_HOME_DESC,
+          'icon'    =>    $pathIcon32 . '/home.png'
+          ),
+    array(
+          'title'   =>    _MI_INSTRUCTION_ADMIN_CAT,
+          'link'    =>   'admin/cat.php',
+          'desc'    =>    _MI_INSTRUCTION_ADMIN_CAT_DESC,
+          'icon'    =>    $pathIcon32 . '/category.png'
+          ),
+    array(
+          'title'   =>    _MI_INSTRUCTION_ADMIN_INSTR,
+          'link'    =>    'admin/instr.php',
+          'desc'    =>    _MI_INSTRUCTION_ADMIN_INSTR_DESC,
+          'icon'    =>    'assets/icons/nav_book.png'
+          ),
+    array(
+          'title'   =>    _MI_INSTRUCTION_ADMIN_PERM,
+          'link'    =>    'admin/perm.php',
+          'desc'    =>    _MI_INSTRUCTION_ADMIN_PERM_DESC,
+          'icon'    =>    $pathIcon32 . '/permissions.png'
+          ),
+    array(
+          'title'   =>    _MI_INSTRUCTION_ADMIN_ABOUT,
+          'link'    =>    'admin/about.php',
+          'desc'    =>    _MI_INSTRUCTION_ADMIN_ABOUT_DESC,
+          'icon'    =>    $pathIcon32 . '/about.png'
+          )
+);

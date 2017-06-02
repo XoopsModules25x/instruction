@@ -1,14 +1,15 @@
 <?php
-// ааа
 
-if (!defined("XOOPS_ROOT_PATH")) {
-	die("XOOPS root path not defined");
-}
+//if (!defined("XOOPS_ROOT_PATH")) {
+//	die("XOOPS root path not defined");
+//}
+
+include_once $GLOBALS['xoops']->path('/include/common.php');
 
 class InstructionInstruction extends XoopsObject
 {
 	// constructor
-	function __construct()
+	public function __construct()
 	{
 //		$this->XoopsObject();
 		$this->initVar( "instrid", XOBJ_DTYPE_INT, NULL, false, 11 );
@@ -28,19 +29,19 @@ class InstructionInstruction extends XoopsObject
 		$this->initVar('dobr', XOBJ_DTYPE_INT, 0, false);
 	}
 	
-	function InstructionInstruction()
+	public function InstructionInstruction()
     {
 		$this->__construct();
 	}
 	
-	function get_new_enreg()
+	public function get_new_enreg()
 	{
 		$new_enreg = $GLOBALS['xoopsDB']->getInsertId();
 		return $new_enreg;
     }
 	
 	// Получаем форму
-	function getForm( $action = false )
+	public function getForm( $action = false )
 	{
 		global $xoopsDB, $xoopsModule, $xoopsModuleConfig;
 		// Если нет $action
@@ -48,7 +49,7 @@ class InstructionInstruction extends XoopsObject
 			$action = xoops_getenv('REQUEST_URI');
 		}
 		// Подключаем формы
-		include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+		include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
 		
 		// Название формы       
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDINSTR ) : sprintf( _AM_INSTRUCTION_FORMEDITINSTR );
@@ -66,7 +67,7 @@ class InstructionInstruction extends XoopsObject
 		$instructioncat_arr = $instructioncat_Handler->getall( $criteria );
 		unset( $criteria );
 		// Подключаем трей
-		include_once XOOPS_ROOT_PATH . '/class/tree.php';
+		include_once $GLOBALS['xoops']->path('/class/tree.php');
 		$mytree = new XoopsObjectTree( $instructioncat_arr, 'cid', 'pid' );
 		$form->addElement( new XoopsFormLabel( _AM_INSTRUCTION_CATC, $mytree->makeSelBox( 'cid', 'title', '--', $this->getVar('cid'), true ) ) );
 		// Описание
@@ -84,7 +85,7 @@ class InstructionInstruction extends XoopsObject
 		if ( xoops_getModuleOption( 'usetag', 'instruction') && $dir_tag_ok ){
 			$itemIdForTag = $this->isNew() ? 0 : $this->getVar( 'instrid' );
 			// Подключаем форму тегов
-			require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
+			include_once $GLOBALS['xoops']->path('/modules/tag/include/formtag.php');
 			// Добавляем элемент в форму
             $form->addElement( new XoopsFormTag( 'tag', 60, 255, $itemIdForTag, 0 ) );
         }
@@ -108,13 +109,13 @@ class InstructionInstruction extends XoopsObject
 
 class InstructionInstructionHandler extends XoopsPersistableObjectHandler
 {
-	function __construct(&$db) 
+	public function __construct(&$db) 
 	{
 		parent::__construct( $db, 'instruction_instr', 'InstructionInstruction', 'instrid', 'title' );
 	}
 	
 	// Обновление даты обновления инструкций
-	function updateDateupdated( $instrid = 0, $time = NULL ) {
+	public function updateDateupdated( $instrid = 0, $time = NULL ) {
 		// Если не передали время
 		$time = $time === NULL ? time() : intval( $time );
 		//

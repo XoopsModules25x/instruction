@@ -5,12 +5,13 @@
 function b_instr_lastpage_show( $options = array() ) {
 	
 	// Подключаем функции
-	include_once XOOPS_ROOT_PATH . '/modules/instruction/include/functions.php';
+$moduleDirName = dirname(__DIR__);
+include_once $moduleDirName . '/include/functions.php';
 	//
-	$myts =& MyTextSanitizer::getInstance();
+	$myts = MyTextSanitizer::getInstance();
 	//
-	$insinstr_Handler =& xoops_getModuleHandler( 'instruction', 'instruction' );
-	$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+	$insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
+	$inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
 	
 	// Добавляем стили
 	//global $xoTheme;

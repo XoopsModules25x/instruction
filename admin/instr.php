@@ -63,8 +63,6 @@ switch ( $op ) {
 			if( ! is_object( $objInscat ) ) redirect_header( 'cat.php', 3, _AM_INSTRUCTION_ERR_CATNOTSELECT );
 		}
 		
-		
-		
 		// Число инструкций, удовлетворяющих данному условию
 		$numrows = $insinstr_Handler->getCount( $criteria );
 		
@@ -110,7 +108,6 @@ switch ( $op ) {
 				// Выводим в шаблон
 				$GLOBALS['xoopsTpl']->append( 'insListInstr', array( 'instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar( 'title' ), 'cid' => $insinstr_cat->getVar( 'cid' ), 'class' => $class ) );
 				
-				
 			}
 			
 			//
@@ -130,15 +127,7 @@ switch ( $op ) {
 			$GLOBALS['xoopsTpl']->assign( 'lang_addinstr', _AM_INSTRUCTION_ADDINSTR );
 			
 		}
-		
-		//
-		// Создание новой категории
-		/*
-		$objInsinstr =& $insinstr_Handler->create();
-		$form = $objInsinstr->getForm( 'instr.php' );
-		// Форма
-		$GLOBALS['xoopsTpl']->assign( 'insFormInstr', $form->render() );
-		*/
+
 		// Выводим шаблон
 		$GLOBALS['xoopsTpl']->display("db:instruction_admin_instr.tpl");
 		

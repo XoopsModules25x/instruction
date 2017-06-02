@@ -2,10 +2,12 @@
 // Автор: andrey3761
 // Вывод древообразного списка страниц в панели администрирования
 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+//defined('XOOPS_ROOT_PATH') or die('Restricted access');
+define('INST_DIRNAME', basename(dirname(__DIR__)));
 
+include_once $GLOBALS['xoops']->path('/include/common.php');
 // Подключаем трей
-include_once XOOPS_ROOT_PATH . '/class/tree.php';
+include_once $GLOBALS['xoops']->path('/class/tree.php');
 
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree {
@@ -42,7 +44,7 @@ class InstructionTree extends XoopsObjectTree {
 			// Действие - удаление
 			$act_del = ( $num_childs > 0 ) ? '<img src="../assets/icons/no_delete_mini.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" />' : '<a href="instr.php?op=delpage&pageid=' . $pageid . '"><img src="../assets/icons/delete_mini.png" alt="' . _AM_INSTRUCTION_DEL . '" title="' . _AM_INSTRUCTION_DEL . '"></a>';
 			//
-			$page_link = '<a name="pageid_' . $pageid . '" ' . ( $pagetype ? 'href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '#pagetext"' : '' ) . '>' . $pagetitle . '</a>';
+			$page_link = '<a name="pageid_' . $pageid . '" ' . ( $pagetype ? 'href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/page.php?id=' . $pageid . '#pagetext"' : '' ) . '>' . $pagetitle . '</a>';
 			
 			$ret .= '<tr class="' . $class . '">
       <td>' . $prefix_curr . ' ' . $page_link . '</td>
@@ -52,7 +54,7 @@ class InstructionTree extends XoopsObjectTree {
       </td>
       <td align="center" width="180">';
 			// Просмотре без кэша
-			$ret .= ' <a href="' . XOOPS_URL . '/modules/instruction/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../assets/icons/no_cache.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" /></a> ';
+			$ret .= ' <a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../assets/icons/no_cache.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" /></a> ';
 			// Добавить подстраницу
 			$ret .= ' <a href="instr.php?op=editpage&instrid=' . $instrid . '&pid=' . $pageid . '"><img src="../assets/icons/add_mini.png" alt="' . _AM_INSTRUCTION_ADDSUBPAGE . '" title="' . _AM_INSTRUCTION_ADDSUBPAGE . '" /></a> ';
 			
@@ -139,7 +141,7 @@ class InstructionTree extends XoopsObjectTree {
 			
 			
 			$ret .= '<tr class="' . $class . '">
-      <td>' . $prefix_curr . ' <a href="' . XOOPS_URL . '/modules/instruction/index.php?cid=' . $catid . '">' . $cattitle . '</a></td>
+      <td>' . $prefix_curr . ' <a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/index.php?cid=' . $catid . '">' . $cattitle . '</a></td>
       <td align="center" width="50">' . $catweight . '</td>
       <td align="center" width="100">' . $num_instrs . '</td>
       <td align="center" width="150">
@@ -253,7 +255,7 @@ class InstructionTree extends XoopsObjectTree {
 				$ret .= $pagetitle;
 			//
 			} else {
-				$ret .= '<a href="' . XOOPS_URL . '/modules/instruction/page.php?id='. $pageid .'#pagetext">'. $pagetitle .'</a>';
+				$ret .= '<a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/page.php?id='. $pageid .'#pagetext">'. $pagetitle .'</a>';
 			}
 			
 			$ret .= '</div>';

@@ -1,9 +1,11 @@
 <?php
+include_once dirname(__DIR__) . '/include/common.php';
+require_once __DIR__ . '../../header.php';
 
 function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
 	// Подключаем функции
-	include_once XOOPS_ROOT_PATH . '/modules/instruction/include/functions.php';
-	
+  include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/include/functions.php');
+  
 	$sql = "SELECT p.pageid, p.title, p.uid, p.datecreated, i.title FROM " . $GLOBALS['xoopsDB']->prefix('instruction_page') . " p, " . $GLOBALS['xoopsDB']->prefix('instruction_instr') . " i WHERE i.instrid = p.instrid AND i.status > 0 AND p.status > 0 AND p.type > 0";
 	if ( $userid != 0 ) {
 		$sql .= " AND p.uid = " . intval( $userid ) . ' ';
@@ -34,7 +36,7 @@ function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
 	$i = 0;
 	// Перебираем все результаты
  	while( list( $pageid, $ptitle, $puid, $pdatecreated, $ititle ) = $GLOBALS['xoopsDB']->fetchRow($result) ){
-		$ret[$i]['image'] = "images/size2.gif";
+		$ret[$i]['image'] = "assets/images/size2.gif";
 		$ret[$i]['link'] = "page.php?id=" . $pageid;
 		$ret[$i]['title'] = $ititle . ': ' . $ptitle;
 		$ret[$i]['time'] = $pdatecreated;

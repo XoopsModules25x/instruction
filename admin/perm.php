@@ -13,11 +13,9 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 // Заголовок админки
 xoops_cp_header();
 // Меню
-//loadModuleAdminMenu( 3, _AM_INSTRUCTION_BC_PERM );
 $xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('perm.php') );
 
 $permission = instr_CleanVars( $_REQUEST, 'permission', 1, 'int');
-//$permission = isset( $_POST['permission'] ) ? intval( $_POST['permission'] ) : 1;
 $selected = array( '', '', '' );
 $selected[$permission - 1]= ' selected';
 

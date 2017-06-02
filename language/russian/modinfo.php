@@ -38,4 +38,15 @@ define("_MI_INSTR_BLOCK_LASTPAGE_DESC", "Блок последних стран�
 define("_MI_INSTR_BLOCK_LASTINSTR", "Последние инструкции");
 define("_MI_INSTR_BLOCK_LASTINSTR_DESC", "Блок последних инструкций");
 
-?>
+// The name of this module
+define('_MI_INSTRUCTION_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_INSTRUCTION_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_INSTRUCTION_BACK_2_ADMIN', 'Вернуться к настройкам ');
+
+//help
+define('_MI_INSTRUCTION_HELP_OVERVIEW', 'Обзор');
+
+//help multi-page
+define('_MI_INSTRUCTION_DISCLAIMER', 'Disclaimer');
+define('_MI_INSTRUCTION_LICENSE', 'Лицензия');
+define('_MI_INSTRUCTION_SUPPORT', 'Поддержка');
