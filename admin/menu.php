@@ -12,10 +12,10 @@ if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
 $adminObject = \Xmf\Module\Admin::getInstance();
 
 $pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
+$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 $moduleHelper->loadLanguage('modinfo');
-
-$adminmenu = array();
+$moduleHelper->loadLanguage('admin');
 
 // Административное меню
 $adminmenu = array(

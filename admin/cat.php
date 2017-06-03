@@ -1,11 +1,13 @@
 <?php
+use Xmf\Request;
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
 include '../include/functions.php';
 
 // Admin Gui
-$indexAdmin = new ModuleAdmin();
+$adminObject  = \Xmf\Module\Admin::getInstance();
+
 
 // Объявляем объекты
 $instructioncat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
@@ -27,13 +29,16 @@ switch ( $op ) {
 	case 'main':
 		
 		// Подключаем трей
-		include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
+    $moduleDirName = dirname(__DIR__);
+    include_once $moduleDirName . '/class/tree.php';
+		//include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
 		
 		// Заголовок админки
 		xoops_cp_header();
 		// Навигация
 		//echo $indexAdmin->addNavigation('cat.php');
-		$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('cat.php') );
+		$adminObject->displayNavigation(basename(__FILE__));
+    //$adminObject->displayButton('left', '');
 		
 		// Находим ID-категории => Число страниц
 		$cidinstrids = array();
@@ -59,14 +64,14 @@ switch ( $op ) {
 		// Создание новой категории
 		$objInstructioncat =& $instructioncat_Handler->create();
 		$form = $objInstructioncat->getForm( 'cat.php' );
-		// Форма
-		$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
-		
+    // Форма
+		//$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
+		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_cat.tpl");
+		//$GLOBALS['xoopsTpl']->display("db:instruction_admin_cat.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -79,18 +84,18 @@ switch ( $op ) {
 		xoops_cp_header();
 		// Навигация
 		//echo $indexAdmin->addNavigation('cat.php');
-		$GLOBALS['xoopsTpl']->assign( 'insNavigation', $indexAdmin->addNavigation('cat.php') );
+		$adminObject->displayNavigation(basename(__FILE__));
 		
 		$objInstructioncat =& $instructioncat_Handler->get( $cid );
     	$form = $objInstructioncat->getForm( 'cat.php' );
     	// Форма
-		$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
-		
+		//$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
+		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_editcat.tpl");
+		//$GLOBALS['xoopsTpl']->display("db:instruction_admin_editcat.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -139,7 +144,7 @@ switch ( $op ) {
 			xoops_cp_header();
 			// Навигация
 			//echo $indexAdmin->addNavigation('cat.php');
-			$GLOBALS['xoopsTpl']->assign( 'insNavigation', $indexAdmin->addNavigation('cat.php') );
+			$adminObject->displayNavigation(basename(__FILE__));
 			
 			$message_err = '<div class="errorMsg" style="text-align: left;">' . $message_err . '</div>';
 			// Выводим ошибки в шаблон
@@ -207,20 +212,20 @@ switch ( $op ) {
 			xoops_cp_header();
 			// Навигация
 			//echo $indexAdmin->addNavigation('cat.php');
-			$GLOBALS['xoopsTpl']->assign( 'insNavigation', $indexAdmin->addNavigation('cat.php') );
+			$adminObject->displayNavigation(basename(__FILE__));
 			// Выводим ошибки в шаблон
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInstructioncat->getHtmlErrors() );
 		}
 		// Выводим форму
 		$form =& $objInstructioncat->getForm();
 		// Форма
-		$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
-		
+		//$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
+		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_savecat.tpl");
+		//$GLOBALS['xoopsTpl']->display("db:instruction_admin_savecat.tpl");
 		
 		// Текст внизу админки
-		include 'admin_footer.php';
+		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();
 		
@@ -282,12 +287,12 @@ switch ( $op ) {
 			xoops_cp_header();
 			// Навигация
 			//echo $indexAdmin->addNavigation('cat.php');
-			$GLOBALS['xoopsTpl']->assign( 'insNavigation', $indexAdmin->addNavigation('cat.php') );
+			$adminObject->displayNavigation(basename(__FILE__));
 			
 			xoops_confirm( array( 'ok' => 1, 'cid' => $cid, 'op' => 'delcat' ), 'cat.php', sprintf( _AM_INSTRUCTION_FORMDELCAT, $objInscat->getVar('title') ) );
 			
 			// Текст внизу админки
-			include 'admin_footer.php';
+			include __DIR__ . '/admin_footer.php';
 			// Подвал админки
 			xoops_cp_footer();
 			

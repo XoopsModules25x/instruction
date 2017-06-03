@@ -4,27 +4,38 @@ include __DIR__ . '/admin_header.php';
 // Функции модуля
 include '../include/functions.php';
 
-// Admin Gui
-$indexAdmin = new ModuleAdmin();
-
 // Подключаем форму прав
-include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
+include_once $GLOBALS['xoops']->path('class/xoopsform/grouppermform.php');
 
-// Заголовок админки
-xoops_cp_header();
+$adminObject = \Xmf\Module\Admin::getInstance();
 // Меню
-$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('perm.php') );
+xoops_cp_header();
+$adminObject->displayNavigation(basename(__FILE__));
 
 $permission = instr_CleanVars( $_REQUEST, 'permission', 1, 'int');
 $selected = array( '', '', '' );
 $selected[$permission - 1]= ' selected';
 
-//
-$xoopsTpl->assign( 'insSelected', $selected );
+echo "
+<form method='get' name='fselperm' action='perm.php'>
+    <table border=0>
+        <tr>
+            <td>
+                <select name='permission' onChange='document.fselperm.submit()'>
+                    <option value='1'" . $selected[0] . '>' . _AM_INSTRUCTION_PERM_VIEW . "</option>
+                    <option value='2'" . $selected[1] . '>' . _AM_INSTRUCTION_PERM_SUBMIT . "</option>
+                    <option value='3'" . $selected[2] . '>' . _AM_INSTRUCTION_PERM_EDIT . "</option>
+                </select>
+            </td>
+        </tr>
+       <tr>
+    </tr>
+    </table>
+</form>";
 
-$moduleId = $xoopsModule->getVar( 'mid' );
+$moduleId = $GLOBALS['xoopsModule']->getVar('mid');
 
-switch( $permission ) {
+switch ($permission) {
 	// Права на просмотр
 	case 1:
 		$formTitle = _AM_INSTRUCTION_PERM_VIEW;
@@ -56,16 +67,10 @@ if( $result ) {
 	}
 }
 
-//echo $permissionsForm->render();
-$xoopsTpl->assign( 'insFormPerm', $permissionsForm->render() );
-//
+echo $permissionsForm->render();
 unset ( $permissionsForm );
 
-// Выводим шаблон
-$GLOBALS['xoopsTpl']->display( "db:instruction_admin_perm.tpl" );
 // Текст внизу админки
 include __DIR__ . '/admin_footer.php';
 // Подвал админки
 xoops_cp_footer();
-
-?>
