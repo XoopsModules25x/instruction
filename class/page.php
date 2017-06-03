@@ -55,7 +55,7 @@ class InstructionPage extends XoopsObject
 		// Подключаем формы
 		include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
 		// Подключаем типы страниц
-		$pagetypes = include $GLOBALS['xoops']->path('/modules/' . INST_DIRNAME . '/include/pagetypes.inc.php');
+		$pagetypes = include $GLOBALS['xoops']->path('/modules/instruction/include/pagetypes.inc.php');
 		
 		// Название формы
 		$title = $this->isNew() ? sprintf( _AM_INSTRUCTION_FORMADDPAGE ) : sprintf( _AM_INSTRUCTION_FORMEDITPAGE );

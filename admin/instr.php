@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
@@ -8,12 +9,10 @@ include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 // Admin Gui
 $adminObject  = \Xmf\Module\Admin::getInstance();
-
 // Объявляем объекты
 $insinstr_Handler = xoops_getModuleHandler( 'instruction', 'instruction' );
 $inscat_Handler = xoops_getModuleHandler( 'category', 'instruction' );
 $inspage_Handler = xoops_getModuleHandler( 'page', 'instruction' );
-
 //
 $uid = is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 $time = time();
@@ -44,13 +43,9 @@ switch ( $op ) {
 		// Заголовок админки
 		xoops_cp_header();            
 		// Меню
-		//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_LISTINSTR );
 		$adminObject->displayNavigation(basename(__FILE__));
-		// Кнопки
-		$adminObject->addItemButton( _AM_INSTRUCTION_ADDINSTR, 'instr.php?op=editinstr', 'add' );
-		//$xoopsTpl->assign( 'insButton', $adminObject->renderButton() );
-    $adminObject->displayButton('left', '');
-		
+		$adminObject->addItemButton(_AM_INSTRUCTION_ADDINSTR, 'instr.php?op=editinstr', 'add');
+		$adminObject->displayButton('left', '');		
 		
 		//
 		$criteria = new CriteriaCompo();
@@ -111,7 +106,7 @@ switch ( $op ) {
 				$GLOBALS['xoopsTpl']->append( 'insListInstr', array( 'instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar( 'title' ), 'cid' => $insinstr_cat->getVar( 'cid' ), 'class' => $class ) );
 				
 			}
-			
+			 
 			//
 			$inshead = isset( $objInscat ) && is_object( $objInscat ) ? sprintf( _AM_INSTR_LISTINSTRINCAT, $objInscat->getVar('title') ) : _AM_INSTR_LISTINSTRALL;
 			$GLOBALS['xoopsTpl']->assign( 'insHead', $inshead );
@@ -129,9 +124,9 @@ switch ( $op ) {
 			$GLOBALS['xoopsTpl']->assign( 'lang_addinstr', _AM_INSTRUCTION_ADDINSTR );
 			
 		}
-
+    
 		// Выводим шаблон
-		//$GLOBALS['xoopsTpl']->display("db:instruction_admin_instr.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_instr.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -146,8 +141,6 @@ switch ( $op ) {
 		// Заголовок админки
 		xoops_cp_header();
 		// Меню
-		//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITINSTR );
-		//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
     $adminObject->displayNavigation(basename(__FILE__));
 		
 		// Если мы редактируем инструкцию
@@ -160,10 +153,9 @@ switch ( $op ) {
 		
     	$form = $objInsinstr->getForm( 'instr.php' );
     	// Форма
-		//$GLOBALS['xoopsTpl']->assign( 'insFormInstr', $form->render() );
 		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_editinstr.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_editinstr.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -226,8 +218,6 @@ switch ( $op ) {
 		if ( $err == true ) {
 			xoops_cp_header();
 			// Меню страницы
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITINSTR );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
       $adminObject->displayNavigation(basename(__FILE__));
 			
 			$message_err = '<div class="errorMsg" style="text-align: left;">' . $message_err . '</div>';
@@ -256,8 +246,6 @@ switch ( $op ) {
 			}
 			xoops_cp_header();
 			// Меню страницы
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITINSTR );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
       $adminObject->displayNavigation(basename(__FILE__));
 			
 			// Выводим ошибки в шаблон
@@ -266,10 +254,9 @@ switch ( $op ) {
 		// Выводим форму
 		$form =& $objInsinstr->getForm();
 		// Форма
-		//$GLOBALS['xoopsTpl']->assign( 'insFormInstr', $form->render() );
 		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_saveinstr.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_saveinstr.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -287,12 +274,10 @@ switch ( $op ) {
 		// Заголовок админки
 		xoops_cp_header();
 		// Меню
-		//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_LISTPAGE );
-		//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
     $adminObject->displayNavigation(basename(__FILE__));
 		// Кнопки
-		$indexAdmin->addItemButton( _AM_INSTRUCTION_ADDPAGE, 'instr.php?op=editpage&instrid=' . $instrid, 'add' );
-		$xoopsTpl->assign( 'insButton', $indexAdmin->renderButton() );
+		$adminObject->addItemButton(_AM_INSTRUCTION_ADDPAGE, 'instr.php?op=editpage&instrid=' . $instrid, 'add');
+		$adminObject->displayButton('left', '');		
 		
 		//
 		$objInsinstr =& $insinstr_Handler->get( $instrid );
@@ -312,7 +297,7 @@ switch ( $op ) {
 		$GLOBALS['xoopsTpl']->assign( 'insListPage', $instree->makePagesAdmin( $objInsinstr, '--' ) );
 		
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_viewinstr.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_viewinstr.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -348,7 +333,6 @@ switch ( $op ) {
 			foreach ( array_keys( $ins_page ) as $i ) {
 				// Декримент комментов
 				// Делает дикримент одного коммента, а не всех в цикле...
-				//$inspage_Handler->updateposts( $ins_page[$i]->getVar( 'uid' ), $ins_page[$i]->getVar( 'status' ), 'delete' );
 				// Удаляем комментарии
 				xoops_comment_delete( $GLOBALS['xoopsModule']->getVar('mid'), $ins_page[$i]->getVar( 'pageid' ) );
 				// Декримент страниц (Опционально)
@@ -374,8 +358,7 @@ switch ( $op ) {
 		} else {
 			
 			xoops_cp_header();
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_DELINSTR );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
+
       $adminObject->displayNavigation(basename(__FILE__));
 			// Форма
 			xoops_confirm( array( 'ok' => 1, 'instrid' => $instrid, 'op' => 'delinstr' ), 'instr.php', sprintf( _AM_INSTRUCTION_FORMDELINSTR, $objInsinstr->getVar('title') ) );
@@ -396,8 +379,6 @@ switch ( $op ) {
 		// Скрипты
 		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/admin.js' );
 		// Меню
-		//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITPAGE );
-		//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
     $adminObject->displayNavigation(basename(__FILE__));
 		
 		// Если мы редактируем страницу
@@ -418,10 +399,9 @@ switch ( $op ) {
 		// Форма
 		$form =& $objInspage->getForm( 'instr.php', $instrid );
 		// Форма
-		//$GLOBALS['xoopsTpl']->assign( 'insFormPage', $form->render() );
 		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_editpage.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_editpage.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -524,8 +504,6 @@ switch ( $op ) {
 		if ( $err == true ) {
 			xoops_cp_header();
 			// Меню страницы
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITPAGE );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
       $adminObject->displayNavigation(basename(__FILE__));
 			
 			$message_err = '<div class="errorMsg" style="text-align: left;">' . $message_err . '</div>';
@@ -555,8 +533,6 @@ switch ( $op ) {
 			}
 			xoops_cp_header();
 			// Меню страницы
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_EDITPAGE );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
       $adminObject->displayNavigation(basename(__FILE__));
 			
 			// Выводим ошибки в шаблон
@@ -567,10 +543,9 @@ switch ( $op ) {
 		// Выводим форму
 		$form =& $objInspage->getForm( 'instr.php', $instrid );
 		// Форма
-		//$GLOBALS['xoopsTpl']->assign( 'insFormPage', $form->render() );
 		echo $form->render();
 		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:instruction_admin_savepage.tpl");
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_savepage.tpl");
 		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
@@ -619,8 +594,6 @@ switch ( $op ) {
 			// Заголовок админки
 			xoops_cp_header();
 			// Меню
-			//loadModuleAdminMenu( 2, _AM_INSTRUCTION_BC_DELPAGE );
-			//$xoopsTpl->assign( 'insNavigation', $indexAdmin->addNavigation('instr.php') );
       $adminObject->displayNavigation(basename(__FILE__));
 			// Форма
 			xoops_confirm( array( 'ok' => 1, 'pageid' => $pageid, 'op' => 'delpage' ), 'instr.php', sprintf( _AM_INSTRUCTION_FORMDELPAGE, $objInspage->getVar('title') ) );
@@ -642,7 +615,6 @@ switch ( $op ) {
 		// Перебираем все значения
 		foreach( $pageids as $key => $pageid ){
 			
-			//echo $pageid . ' -> ' . $weights[$key] . '<br />';
 			// Объявляем объект
 			$objInspage =& $inspage_Handler->get( $pageid );
 			// Устанавливаем вес

@@ -119,5 +119,11 @@ define("_AM_INSTRUCTION_ERR_CATNOTSELECT", 'Ошибка: Вы не выбрал
 define("_AM_INSTRUCTION_ERR_CATCHILDREN", 'Ошибка: У даннай категории существуют дочернии категории!');
 
 define("_AM_INSTRUCTION_BADREQUEST", 'Не правильный запрос...');
-
+define('_AM_MODULEADMIN_ABOUT_BY', 'by ');
+define('_AM_MODULEADMIN_ABOUT_AMOUNT', 'Amount');
+define('_AM_MODULEADMIN_ABOUT_AMOUNT_TTL', 'Please enter USD amount e.g. $25.00');
+define('_AM_MODULEADMIN_ABOUT_AMOUNT_CURRENCY', 'USD');
+define('_AM_MODULEADMIN_ABOUT_AMOUNT_SUGGESTED', '25.00');
+define('_AM_MODULEADMIN_ABOUT_AMOUNT_PATTERN', '\\$?[0-9]+(,[0-9]{3})*(\\.[0-9]{0,2})?$');
+define('_AM_MODULEADMIN_ABOUT_DONATE_IMG_ALT', 'Donate using PayPal or a major credit card online!');
 ?>

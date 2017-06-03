@@ -6,6 +6,7 @@
 //}
 
 include_once $GLOBALS['xoops']->path('/include/common.php');
+//include_once dirname(__DIR__) . '/include/common.php';
 
 class InstructionCategory extends XoopsObject
 {

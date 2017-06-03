@@ -1,5 +1,4 @@
 <?php
-// Автор: andrey3761
 
 if (!isset($moduleDirName)) {
     $moduleDirName = basename(dirname(__DIR__));
