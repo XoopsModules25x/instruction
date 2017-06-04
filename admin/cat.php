@@ -210,14 +210,13 @@ switch ( $op ) {
 			// Выводим ошибки в шаблон
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInstructioncat->getHtmlErrors() );
 		}
+		// Выводим шаблон
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_savecat.tpl");
 		// Выводим форму
 		$form =& $objInstructioncat->getForm();
 		// Форма
 		echo $form->render();
-		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_savecat.tpl");
-		
-		// Текст внизу админки
+  	// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
 		xoops_cp_footer();

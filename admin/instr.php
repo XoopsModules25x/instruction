@@ -251,13 +251,12 @@ switch ( $op ) {
 			// Выводим ошибки в шаблон
 			$GLOBALS['xoopsTpl']->assign( 'insErrorMsg', $objInstructioncat->getHtmlErrors() );
 		}
+		// Выводим шаблон
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_saveinstr.tpl");
 		// Выводим форму
 		$form =& $objInsinstr->getForm();
 		// Форма
 		echo $form->render();
-		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_saveinstr.tpl");
-		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
@@ -427,7 +426,7 @@ switch ( $op ) {
 		if ( $pageid ) {
 			$objInspage =& $inspage_Handler->get( $pageid );
 		} elseif( $instrid ) {
-			$objInspage =& $inspage_Handler->create();
+			$objInspage = $inspage_Handler->create();
 			// Если мы создаём страницу необходимо указать к какой инструкции
 			$objInspage->setVar( 'instrid', $instrid );
 			// Указываем дату создания
@@ -540,13 +539,12 @@ switch ( $op ) {
 		}
 		// Скрипты
 		$xoTheme->addScript( XOOPS_URL . '/modules/instruction/assets/js/admin.js' );
+		// Выводим шаблон
+		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_savepage.tpl");    
 		// Выводим форму
 		$form =& $objInspage->getForm( 'instr.php', $instrid );
 		// Форма
 		echo $form->render();
-		// Выводим шаблон
-		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_savepage.tpl");
-		
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
 		// Подвал админки
