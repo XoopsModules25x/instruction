@@ -1,5 +1,9 @@
 <{* Форма выбора категории *}>
-<div style="font: bold italic 1.6em serif; text-align: center; vertical-align:middle; line-height: 1.4;"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/assets/images/open.png" style="width:36px; height:24px;" alt="open" />&nbsp;<{$smarty.const._MD_INSTRUCTION_MODULE_NAME}>&nbsp;<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/assets/images/close.png" style="width:36px; height:24px;" alt="close" /></div>
+<div class="InstrNavIndex">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/assets/images/open.png" style="width:36px;" alt="open" />
+  &nbsp;<{$smarty.const._MD_INSTRUCTION_MODULE_NAME}>&nbsp;
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/assets/images/close.png" style="width:36px;" alt="close" />
+</div>
 <div style="text-align: center;">
   <form name="insformselcat" action="<{$xoops_url}>/modules/<{$xoops_dirname}>/" method="get">
     <{$smarty.const._MD_INSTRUCTION_SELCAT}>

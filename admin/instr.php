@@ -151,12 +151,12 @@ switch ( $op ) {
 			$objInsinstr =& $insinstr_Handler->create();
 		}
 		
-    	$form = $objInsinstr->getForm( 'instr.php' );
-    	// Форма
-		echo $form->render();
 		// Выводим шаблон
 		$GLOBALS['xoopsTpl']->display("db:admin/instruction_admin_editinstr.tpl");
-		
+    $form = $objInsinstr->getForm( 'instr.php' );
+    	// Форма
+		echo $form->render();
+	
 		// Текст внизу админки
 		include __DIR__ . '/admin_footer.php';
 		// Подвал админки

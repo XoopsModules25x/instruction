@@ -17,6 +17,8 @@ $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name();
 $xoopsOption['template_main'] = $moduleDirName . '_index.tpl';
 // Заголовок
 include_once $GLOBALS['xoops']->path('header.php');
+// Стили
+$xoTheme->addStylesheet( XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/style.css' );
 //
 $cid = isset( $_GET['cid'] ) ? intval( $_GET['cid'] ) : 0;
 //

@@ -98,3 +98,17 @@
 	color: #000000;
 	cursor: pointer;
 }
+
+.InstrNavIndex {
+  font: bold italic 1.6em serif; 
+  text-align: center; 
+  vertical-align:middle; 
+  line-height: 1.4;
+}
+
+.InstrNavIndexP {
+  font: bold italic 1.3em serif; 
+  text-align: left; 
+  vertical-align:middle; 
+  line-height: 1.4;
+}

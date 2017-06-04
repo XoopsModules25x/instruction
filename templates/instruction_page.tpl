@@ -1,4 +1,4 @@
-<div style="font: bold italic 1.2em serif; text-align: left; vertical-align:middle; line-height: 1.4;"><{$insNav}></div>
+<div class="InstrNavIndexP"><{$insNav}></div>
 <br />
 <{* Список страниц *}>
 <a name="instrmenu"></a>
