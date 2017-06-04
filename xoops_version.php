@@ -34,8 +34,10 @@ $modversion = array(
         'author_website_name'   =>    'andrey3761',
         'module_website_url'    =>    'www.xoops.org',
         'module_website_name'   =>    'Support site',
-        'min_php'               =>    '5.2',
-        'min_xoops'             =>    '2.5',
+        'min_php'               =>    '5.5',
+        'min_xoops'             =>    '2.5.8',
+        'min_admin'             =>    '1.1',
+        'min_db'                =>    array('mysql' => '5.5'),
       // Файл базы данных
         'sqlfile'               =>    array('mysql' => 'sql/mysql.sql'),
       // Таблицы

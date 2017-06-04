@@ -126,4 +126,8 @@ define('_AM_MODULEADMIN_ABOUT_AMOUNT_CURRENCY', 'USD');
 define('_AM_MODULEADMIN_ABOUT_AMOUNT_SUGGESTED', '25.00');
 define('_AM_MODULEADMIN_ABOUT_AMOUNT_PATTERN', '\\$?[0-9]+(,[0-9]{3})*(\\.[0-9]{0,2})?$');
 define('_AM_MODULEADMIN_ABOUT_DONATE_IMG_ALT', 'Donate using PayPal or a major credit card online!');
-?>
+
+define('_AM_INSTRUCTION_TOTAL', 'Всего в модуле');
+define('_AM_INSTRUCTION_TOTAL_CAT', 'Всего категорий');
+define('_AM_INSTRUCTION_TOTAL_INSTR', 'Всего инструкций');
+define('_AM_INSTRUCTION_TOTAL_PAGE', 'Всего страниц');
