@@ -87,13 +87,13 @@ $pages['description'] = $objInspage->getVar( 'description' );
 //
 // Если админ, рисуем админлинк
 if ( is_object( $GLOBALS['xoopsUser'] ) && $GLOBALS['xoopsUser']->isAdmin( $GLOBALS['xoopsModule']->mid() ) ) {
-	$pages['adminlink'] = '[&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>&nbsp;|&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=delpage&pageid=' . $pages['pageid'] . '">' . _DELETE . '</a>&nbsp;]';
+	$pages['adminlink'] = '&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=editpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=delpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="./assets/icons/delete_mini.png" alt=' . _DELETE . ' title=' . _DELETE . '></a>&nbsp;';
 } else {
-	$pages['adminlink'] = '[&nbsp;';
+	$pages['adminlink'] = '&nbsp;';
 	// Если можно редактировать
-	if( $gperm_handler->checkRight( $moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid') ) ) $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '">' . _EDIT . '</a>';
+	if( $gperm_handler->checkRight( $moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid') ) ) $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>';
 	
-	$pages['adminlink'] .= '&nbsp;]';
+	$pages['adminlink'] .= '&nbsp;';
 	// Если нет админлика
 	if( $pages['adminlink'] == '[&nbsp;&nbsp;]' ) $pages['adminlink'] = '';
 }

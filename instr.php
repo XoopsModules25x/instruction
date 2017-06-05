@@ -55,7 +55,7 @@ $instrs['title'] = $objInsinstr->getVar( 'title' );
 $instrs['description'] = $objInsinstr->getVar( 'description' );
 // Если админ, рисуем админлинк
 if ( is_object( $GLOBALS['xoopsUser'] ) && $GLOBALS['xoopsUser']->isAdmin( $GLOBALS['xoopsModule']->mid() ) ) {
-	$instrs['adminlink'] = '[&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=editinstr&instrid=' . $instrid . '">' . _EDIT . '</a>&nbsp;|&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=delinstr&instrid=' . $instrid . '">' . _DELETE . '</a>&nbsp;]';
+	$instrs['adminlink'] = '&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=editinstr&instrid=' . $instrid . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>&nbsp;<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/admin/instr.php?op=delinstr&instrid=' . $instrid . '"><img style="width:16px;" src="./assets/icons/delete_mini.png" alt=' . _DELETE . ' title=' . _DELETE . '></a>&nbsp;';
 } else {
 	$instrs['adminlink'] = '';
 }
