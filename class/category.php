@@ -84,8 +84,9 @@ class InstructionCategory extends XoopsObject
 		unset($criteria);
 		// Подключаем трей
 		include_once $GLOBALS['xoops']->path('/class/tree.php');
-		$mytree = new XoopsObjectTree( $instructioncat_arr, 'cid', 'pid' );
-		$form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+		$mytree        = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
+    $mytree_select = $mytree->makeSelectElement('pid', 'title', '--', $this->getVar('pid'), true, 0, '', _AM_INSTRUCTION_PCATC);
+		$form->addElement($mytree_select);
 		// Вес
 		$form->addElement(new XoopsFormText(_AM_INSTRUCTION_WEIGHTC, 'weight', 5, 5, $this->getVar('weight')), true);
 		// Мета-теги ключевых слов
