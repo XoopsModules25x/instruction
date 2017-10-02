@@ -9,4 +9,3 @@ $xfHelper = Xmf\Module\Helper::getHelper($moduleDirName);
 include_once __DIR__ . '/include/functions.php';
 // Трей
 include_once $GLOBALS['xoops']->path('class/tree.php');
-

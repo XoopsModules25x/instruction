@@ -1,5 +1,5 @@
 <div class="InstrNavIndexP"><{$insNav}></div>
-<br />
+<br>
 <{* Список страниц *}>
 <a name="instrmenu"></a>
 <div>
@@ -8,7 +8,7 @@
 <{/if}>
 </div>
 
-<br />
+<br>
 <a name="text"></a>
 <div class="item">
   <div class="itemHead">

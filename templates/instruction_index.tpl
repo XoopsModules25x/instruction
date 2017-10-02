@@ -11,7 +11,7 @@
     <input type="submit" value="<{$smarty.const._MD_INSTRUCTION_GO}>" class="formButton" />
   </form>
 </div>
-<br />
+<br>
 
 <{* Описание категории *}>
 

@@ -9,6 +9,6 @@
     <span class="itemAdminLink">&nbsp;</span>
   </div>
 </div>
-<br />
+<br>
 
 <{$insFormPage}>
