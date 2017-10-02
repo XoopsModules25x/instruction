@@ -1,46 +1,47 @@
 <?php
 // Плагин для модуля "tag"
 // Информация об теге
-function instruction_tag_iteminfo( &$items )
+function instruction_tag_iteminfo(&$items)
 {
-	if( empty( $items ) || ! is_array( $items ) ){
+	if(empty($items) || ! is_array($items)){
 		return false;
 	}
-	
-	$items_id = array();
-	foreach( array_keys( $items ) as $cat_id ){
-		foreach( array_keys( $items[ $cat_id ] ) as $item_id ){
-			$items_id[] = intval( $item_id );
+
+	$items_id = [];
+	foreach(array_keys($items) as $cat_id){
+		foreach(array_keys($items[$cat_id]) as $item_id){
+			$items_id[] = intval($item_id);
 		}
 	}
+
+	$item_handler = xoops_getmodulehandler('instruction', 'instruction');
+	$items_obj    = $item_handler->getObjects(new Criteria("instrid", "(" . implode(", ", $items_id) . ")", "IN"), true);
 	
-	$item_handler =& xoops_getmodulehandler( 'instruction', 'instruction' );
-	$items_obj = $item_handler->getObjects( new Criteria( "instrid", "(" . implode(", ", $items_id) . ")", "IN"), true );
-	
-	foreach( array_keys( $items ) as $cat_id ) {
-		foreach( array_keys( $items[ $cat_id ] ) as $item_id ) {
-			if( isset( $items_obj[ $item_id ] ) ) {
-				$item_obj =& $items_obj[ $item_id ];
-				$items[ $cat_id ][ $item_id ] = array( 'title' => $item_obj->getVar("title"),
-                                                  'uid' => $item_obj->getVar("uid"),
-                                                  'link' => "instr.php?id={$item_id}",
-                                                  'time' => $item_obj->getVar("datecreated"),
-                                                  'tags' => '',
-                                                  'content' => '',
-				);
+	foreach(array_keys($items) as $cat_id) {
+		foreach(array_keys($items[$cat_id]) as $item_id) {
+			if( isset($items_obj[$item_id])) {
+				$item_obj = $items_obj[$item_id];
+				$items[$cat_id][$item_id] = [
+                                    'title' => $item_obj->getVar("title"),
+                                    'uid' => $item_obj->getVar("uid"),
+                                    'link' => "instr.php?id={$item_id}",
+                                    'time' => $item_obj->getVar("datecreated"),
+                                    'tags' => '',
+                                    'content' => '',
+                                    ];
 			}
 		}
 	}
 	unset( $items_obj );
 }
 // Синхронизация тегов
-function instruction_tag_synchronization( $mid )
+function instruction_tag_synchronization($mid)
 {
-	$item_handler =& xoops_getmodulehandler( 'instruction', 'instruction' );
-	$link_handler =& xoops_getmodulehandler( "link", "tag" );
-	
+	$item_handler = xoops_getmodulehandler('instruction', 'instruction');
+	$link_handler = xoops_getmodulehandler("link", "tag");
+
 	/* clear tag-item links */
-	if ( version_compare( mysqli_get_server_info(), "4.1.0", "ge" ) ):
+	if (version_compare(mysqli_get_server_info(), "4.1.0", "ge")):
     $sql =  "    DELETE FROM {$link_handler->table}" .
             "    WHERE " .
             "        tag_modid = {$mid}" .
@@ -62,6 +63,6 @@ function instruction_tag_synchronization( $mid )
             "        )";
 	endif;
 	if ( ! $result = $link_handler->db->queryF( $sql ) ) {
-		//xoops_error($link_handler->db->error());
+  //
 	}
 }

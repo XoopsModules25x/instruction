@@ -1,28 +1,36 @@
 <?php
+//Search
+
 include_once dirname(__DIR__) . '/include/common.php';
 require_once __DIR__ . '../../header.php';
 
-function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
+function instruction_search($queryarray, $andor, $limit, $offset, $userid){
 	// Подключаем функции
   include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/include/functions.php');
-  
-	$sql = "SELECT p.pageid, p.title, p.uid, p.datecreated, i.title FROM " . $GLOBALS['xoopsDB']->prefix('instruction_page') . " p, " . $GLOBALS['xoopsDB']->prefix('instruction_instr') . " i WHERE i.instrid = p.instrid AND i.status > 0 AND p.status > 0 AND p.type > 0";
-	if ( $userid != 0 ) {
-		$sql .= " AND p.uid = " . intval( $userid ) . ' ';
+
+	$sql = "SELECT p.pageid, p.title, p.uid, p.datecreated, i.title FROM "
+          . $GLOBALS['xoopsDB']->prefix('instruction_page')
+          . " p, "
+          . $GLOBALS['xoopsDB']->prefix('instruction_instr')
+          . " i WHERE i.instrid = p.instrid AND i.status > 0 AND p.status > 0 AND p.type > 0";
+	if ($userid != 0) {
+		$sql .= " AND p.uid = "
+            . intval( $userid )
+            . ' ';
 		//return NULL;
 	}
-	
+
 	// Права на просмотр
 	$categories = instr_MygetItemIds();
-	if( is_array( $categories ) && count( $categories ) > 0 ) {
-		$sql .= ' AND i.cid IN ( ' . implode( ', ', $categories ) . ' ) ';
+	if( is_array($categories) && count($categories) > 0 ) {
+		$sql .= ' AND i.cid IN (' . implode(', ', $categories) . ') ';
 	// Если пользователь не имеет прав просмотра ни одной категории
 	} else {
 		return NULL;
 	}
 
 	// Добавляем в условие ключевые слова поиска
-	if ( is_array( $queryarray ) && $count = count( $queryarray ) ) {
+	if (is_array($queryarray) && $count = count($queryarray)) {
 		$sql .= " AND ( ( p.title LIKE '%$queryarray[0]%' OR p.hometext LIKE '%$queryarray[0]%' )";
 		for($i=1;$i<$count;$i++){
 			$sql .= " $andor ";
@@ -31,16 +39,16 @@ function instruction_search( $queryarray, $andor, $limit, $offset, $userid ){
 		$sql .= " ) ";
 	}
 	//$sql .= "ORDER BY date DESC";
-	$result = $GLOBALS['xoopsDB']->query( $sql, $limit, $offset );
-	$ret = array();
+	$result = $GLOBALS['xoopsDB']->query($sql, $limit, $offset);
+	$ret = [];
 	$i = 0;
 	// Перебираем все результаты
- 	while( list( $pageid, $ptitle, $puid, $pdatecreated, $ititle ) = $GLOBALS['xoopsDB']->fetchRow($result) ){
+ 	while(list($pageid, $ptitle, $puid, $pdatecreated, $ititle) = $GLOBALS['xoopsDB']->fetchRow($result)){
 		$ret[$i]['image'] = "assets/images/size2.gif";
-		$ret[$i]['link'] = "page.php?id=" . $pageid;
+		$ret[$i]['link']  = "page.php?id=" . $pageid;
 		$ret[$i]['title'] = $ititle . ': ' . $ptitle;
-		$ret[$i]['time'] = $pdatecreated;
-		$ret[$i]['uid'] = $puid;
+		$ret[$i]['time']  = $pdatecreated;
+		$ret[$i]['uid']   = $puid;
 		$i++;
 	}
 	return $ret;
