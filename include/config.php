@@ -65,7 +65,7 @@ return (object)[
 
     ],
     'oldFiles'        => [
-        '/sql/mysql.sql',
+//        '/sql/mysql.sql',
     ],
     'oldFolders'      => [
         '/images',
