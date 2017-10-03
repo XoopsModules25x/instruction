@@ -47,15 +47,15 @@ return (object)[
     ],
     'uploadFolders' => [
         constant($capsDirName . '_UPLOAD_PATH'),
-        constant($capsDirName . '_UPLOAD_PATH') . '/category',
-        constant($capsDirName . '_UPLOAD_PATH') . '/screenshots',
-        XOOPS_UPLOAD_PATH . '/flags'
+        //constant($capsDirName . '_UPLOAD_PATH') . '/category',
+        //constant($capsDirName . '_UPLOAD_PATH') . '/screenshots',
+        //XOOPS_UPLOAD_PATH . '/flags'
     ],
     'blankFiles'    => [
         constant($capsDirName . '_UPLOAD_PATH'),
-        constant($capsDirName . '_UPLOAD_PATH') . '/category',
-        constant($capsDirName . '_UPLOAD_PATH') . '/screenshots',
-        XOOPS_UPLOAD_PATH . '/flags'
+        //constant($capsDirName . '_UPLOAD_PATH') . '/category',
+        //constant($capsDirName . '_UPLOAD_PATH') . '/screenshots',
+        //XOOPS_UPLOAD_PATH . '/flags'
     ],
 
     'templateFolders' => [
@@ -65,18 +65,16 @@ return (object)[
 
     ],
     'oldFiles'        => [
-        '/sql/wflinks.sql',
-        '/class/wfl_lists.php',
-        '/class/class_thumbnail.php',
-        '/vcard.php',
+        '/sql/mysql.sql',
     ],
     'oldFolders'      => [
         '/images',
         '/css',
         '/js',
-        '/tcpdf',
-        '/images',
+        '/tree',
+        '/images/icons/16',
+        '/images/icons/32',
     ],
     'modCopyright'    => "<a href='https://xoops.org' title='XOOPS Project' target='_blank'>
-                     <img src='" . constant($capsDirName . '_AUTHOR_LOGOIMG') . '\' alt=\'XOOPS Project\' /></a>',
+                     <img src='" . $capsDirName . '_AUTHOR_LOGOIMG' . '\' alt=\'XOOPS Project\' /></a>',
 ];

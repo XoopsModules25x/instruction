@@ -22,17 +22,17 @@ $time = time();
 // ID инструкции
 $instrid = InstructionUtility::cleanVars($_REQUEST, 'instrid', 0, 'int');
 // ID страницы
-$pageid = InstructionUtility::cleanVars($_REQUEST, 'pageid', 0, 'int');
+$pageid  = InstructionUtility::cleanVars($_REQUEST, 'pageid', 0, 'int');
 // ID категории
-$cid = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
+$cid     = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
 // Вес
-$weight = InstructionUtility::cleanVars($_POST, 'weight', 0, 'int');
+$weight  = InstructionUtility::cleanVars($_POST, 'weight', 0, 'int');
 //
-$pid = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
+$pid     = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
 //
-$start = InstructionUtility::cleanVars($_GET, 'start', 0, 'int');
+$start   = InstructionUtility::cleanVars($_GET, 'start', 0, 'int');
 //
-$limit = xoops_getModuleOption('perpageadmin', 'instruction');
+$limit   = xoops_getModuleOption('perpageadmin', 'instruction');
 
 $op = isset($_GET['op']) ? $_GET['op'] : 'main';
 $op = isset($_POST['op']) ? $_POST['op'] : $op;
@@ -97,13 +97,13 @@ switch ($op) {
                 // ID
                 $insinstr_instrid = $instr_arr[$i]->getVar('instrid');
                 // Название
-                $insinstr_title = $instr_arr[$i]->getVar('title');
+                $insinstr_title   = $instr_arr[$i]->getVar('title');
                 // Статус
-                $insinstr_status = $instr_arr[$i]->getVar('status');
+                $insinstr_status  = $instr_arr[$i]->getVar('status');
                 // Количество страниц
-                $insinstr_pages = $instr_arr[$i]->getVar('pages');
+                $insinstr_pages   = $instr_arr[$i]->getVar('pages');
                 // Категория
-                $insinstr_cat = $inscatHandler->get($instr_arr[$i]->getVar('cid'));
+                $insinstr_cat     = $inscatHandler->get($instr_arr[$i]->getVar('cid'));
 
                 // Выводим в шаблон
                 $GLOBALS['xoopsTpl']->append('insListInstr', ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cat->getVar('cid'), 'class' => $class]);
@@ -131,8 +131,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -160,8 +158,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -260,8 +256,6 @@ switch ($op) {
         echo $form->render();
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -301,8 +295,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -359,8 +351,6 @@ switch ($op) {
             xoops_confirm(['ok' => 1, 'instrid' => $instrid, 'op' => 'delinstr'], 'instr.php', sprintf(_AM_INSTRUCTION_FORMDELINSTR, $objInsinstr->getVar('title')));
             // Текст внизу админки
             include __DIR__ . '/admin_footer.php';
-            // Подвал админки
-            xoops_cp_footer();
         }
 
         break;
@@ -399,8 +389,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -542,8 +530,6 @@ switch ($op) {
         echo $form->render();
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -589,8 +575,6 @@ switch ($op) {
             xoops_confirm(['ok' => 1, 'pageid' => $pageid, 'op' => 'delpage'], 'instr.php', sprintf(_AM_INSTRUCTION_FORMDELPAGE, $objInspage->getVar('title')));
             // Текст внизу админки
             include __DIR__ . '/admin_footer.php';
-            // Подвал админки
-            xoops_cp_footer();
         }
 
         break;

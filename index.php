@@ -43,7 +43,12 @@ unset($criteria);
 $mytree = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
 // Выводим в шаблон
 //$GLOBALS['xoopsTpl']->assign('insFormSelCat', $mytree->makeSelBox('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'"));
-
+$moduleDirName = basename(__DIR__);
+if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+} else {
+  $moduleHelper = Xmf\Module\Helper::getHelper('system');
+}
+$module = $moduleHelper->getModule();
 
 if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
     $cat_select = $mytree->makeSelectElement('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'", '');
@@ -52,8 +57,6 @@ if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
     $cat_select = $mytree->makeSelBox('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'");
     $GLOBALS['xoopsTpl']->assign('insFormSelCat', $cat_select);
 }
-
-
 
 // Находим список всех инструкций
 // Критерий выборки

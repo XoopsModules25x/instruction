@@ -66,11 +66,11 @@ if (!in_array($objInsinstr->getVar('cid'), $categories)) {
 // Массив данных о странице
 $pages = [];
 // Название страницы
-$pages['title'] = $objInspage->getVar('title');
+$pages['title']    = $objInspage->getVar('title');
 // ID страницы
-$pages['pageid'] = $objInspage->getVar('pageid');
+$pages['pageid']   = $objInspage->getVar('pageid');
 // ID инструкции
-$pages['instrid'] = $objInspage->getVar('instrid');
+$pages['instrid']  = $objInspage->getVar('instrid');
 // Основной текст
 $pages['hometext'] = $objInspage->getVar('hometext');
 // Сноска - массив строк

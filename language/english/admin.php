@@ -4,8 +4,8 @@ define('_AM_INSTRUCTION_FORMADDCAT', 'Category submission form');
 define('_AM_INSTRUCTION_FORMEDITCAT', 'Category edit form');
 define('_AM_INSTRUCTION_FORMADDINSTR', 'Instruction submission form');
 define('_AM_INSTRUCTION_FORMEDITINSTR', 'Instruction edit form');
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Page submission form');
-define('_AM_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
+//define('_AM_INSTRUCTION_FORMADDPAGE', 'Page submission form');
+//define('_AM_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
 define('_AM_INSTRUCTION_FORMDELPAGE', 'Do you really want to delete the page: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELCAT', 'Do you really want to delete the category: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELINSTR', 'Do you really want to delete the instruction "%s" , and all its pages  ?');
@@ -20,21 +20,21 @@ define('_AM_INSTR_TRY_AGAIN', 'Please, try again');
 define('_AM_INSTRUCTION_TITLEC', 'Title:');
 define('_AM_INSTRUCTION_DSCC', 'Description:');
 define('_AM_INSTRUCTION_PCATC', 'Parent category:');
-define('_AM_INSTRUCTION_PPAGEC', 'Parent page:');
-define('_AM_INSTRUCTION_WEIGHTC', 'Weight:');
+//define('_AM_INSTRUCTION_PPAGEC', 'Parent page:');
+//define('_AM_INSTRUCTION_WEIGHTC', 'Weight:');
 define('_AM_INSTRUCTION_CATC', 'Category:');
-define('_AM_INSTRUCTION_ACTIVEC', 'Active:');
-define('_AM_INSTRUCTION_HOMETEXTC', 'Main text:');
-define('_AM_INSTRUCTION_FOOTNOTEC', 'Reference:');
+//define('_AM_INSTRUCTION_ACTIVEC', 'Active:');
+//define('_AM_INSTRUCTION_HOMETEXTC', 'Main text:');
+//define('_AM_INSTRUCTION_FOOTNOTEC', 'Reference:');
 define('_AM_INSTRUCTION_DESCRIPTIONC', 'Description:');
-define('_AM_INSTRUCTION_METAKEYWORDSC', 'Meta keywords:');
-define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Meta description:');
-define('_AM_INSTR_DOSMILEY', 'Allow smileys');
-define('_AM_INSTR_DOHTML', 'Allow HTML tags');
-define('_AM_INSTR_DOAUTOWRAP', 'Move lines automatically');
-define('_AM_INSTR_DOXCODE', 'Allow BB-codes');
-define('_AM_INSTR_PAGETYPEC', 'Page type:');
-define('_AM_INSTR_PAGETYPEC_DESC', 'Tree leaf - a Page is displayed like a leaf of a instruction tree  with no link to it. <br>This is a general page.');
+//define('_AM_INSTRUCTION_METAKEYWORDSC', 'Meta keywords:');
+//define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Meta description:');
+//define('_AM_INSTR_DOSMILEY', 'Allow smileys');
+//define('_AM_INSTR_DOHTML', 'Allow HTML tags');
+//define('_AM_INSTR_DOAUTOWRAP', 'Move lines automatically');
+//define('_AM_INSTR_DOXCODE', 'Allow BB-codes');
+//define('_AM_INSTR_PAGETYPEC', 'Page type:');
+//define('_AM_INSTR_PAGETYPEC_DESC', 'Tree leaf - a Page is displayed like a leaf of a instruction tree  with no link to it. <br>This is a general page.');
 
 // Описание элементов форм
 define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Reference is in the bottom of a page. <br>Should be divided with "|".');
@@ -87,8 +87,8 @@ define('_AM_INSTRUCTION_PERM_EDIT', 'Permissions to edit');
 define('_AM_INSTRUCTION_PERM_EDIT_DSC', 'Groups allowed to edit instructions from categories.');
 
 // Типы страницы
-define('_AM_INSTR_PT_0', 'Tree leaf');
-define('_AM_INSTR_PT_1', 'Page');
+//define('_AM_INSTR_PT_0', 'Tree leaf');
+//define('_AM_INSTR_PT_1', 'Page');
 
 // Редиректы
 define('_AM_INSTRUCTION_NEWCATADDED', 'New category is saved successfully.');

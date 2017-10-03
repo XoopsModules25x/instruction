@@ -17,13 +17,13 @@ $insinstrHandler       = xoops_getModuleHandler('instruction', 'instruction');
 $time = time();
 
 // ID категории
-$cid = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
+$cid    = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
 // ID родителя
-$pid = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
+$pid    = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
 // Вес
 $weight = InstructionUtility::cleanVars($_REQUEST, 'weight', 0, 'int');
 // Опция
-$op = InstructionUtility::cleanVars($_REQUEST, 'op', 'main', 'string');
+$op     = InstructionUtility::cleanVars($_REQUEST, 'op', 'main', 'string');
 // Выбор
 switch ($op) {
 
@@ -52,7 +52,7 @@ switch ($op) {
         $criteria = new CriteriaCompo();
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
-        $ins_cat = $instructioncatHandler->getall($criteria);
+        $ins_cat  = $instructioncatHandler->getall($criteria);
         unset($criteria);
 
         // Инициализируем
@@ -70,8 +70,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -93,8 +91,6 @@ switch ($op) {
 
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -218,8 +214,6 @@ switch ($op) {
         echo $form->render();
         // Текст внизу админки
         include __DIR__ . '/admin_footer.php';
-        // Подвал админки
-        xoops_cp_footer();
 
         break;
 
@@ -289,8 +283,6 @@ switch ($op) {
 
             // Текст внизу админки
             include __DIR__ . '/admin_footer.php';
-            // Подвал админки
-            xoops_cp_footer();
         }
 
         break;

@@ -94,7 +94,7 @@ class InstructionCategory extends XoopsObject
         include_once $GLOBALS['xoops']->path('class/tree.php');
         $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
 
-        //        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+        // $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
         $moduleDirName = basename(__DIR__);
         if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
         } else {

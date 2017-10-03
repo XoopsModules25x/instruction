@@ -4,40 +4,40 @@ define('_AM_INSTRUCTION_FORMADDCAT', 'Форма добавления катег
 define('_AM_INSTRUCTION_FORMEDITCAT', 'Форма редактирования категории');
 define('_AM_INSTRUCTION_FORMADDINSTR', 'Форма добавления инструкции');
 define('_AM_INSTRUCTION_FORMEDITINSTR', 'Форма редактирования инструкции');
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
-define('_AM_INSTRUCTION_FORMEDITPAGE', 'Форма редактирования страницы');
+//define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
+//define('_AM_INSTRUCTION_FORMEDITPAGE', 'Форма редактирования страницы');
 define('_AM_INSTRUCTION_FORMDELPAGE', 'Вы действительно хотите удалить страницу: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELCAT', 'Вы действительно хотите удалить категорию: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELINSTR', 'Вы действительно хотите удалить инструкцию "%s" , и все её страницы  ?');
 
 // Кнопки формы
-define('_AM_INSTR_SAVEFORM', 'Сохранить');
+//define('_AM_INSTR_SAVEFORM', 'Сохранить');
 //
 //Try again
 define('_AM_INSTR_TRY_AGAIN', 'Попробуйте ещё раз');
 
 // Элементы форм
-define('_AM_INSTRUCTION_TITLEC', 'Название:');
+//define('_AM_INSTRUCTION_TITLEC', 'Название:');
 define('_AM_INSTRUCTION_DSCC', 'Описание:');
 define('_AM_INSTRUCTION_PCATC', 'Родительская категория:');
-define('_AM_INSTRUCTION_PPAGEC', 'Родительская страница:');
-define('_AM_INSTRUCTION_WEIGHTC', 'Вес:');
+//define('_AM_INSTRUCTION_PPAGEC', 'Родительская страница:');
+//define('_AM_INSTRUCTION_WEIGHTC', 'Вес:');
 define('_AM_INSTRUCTION_CATC', 'Категория:');
-define('_AM_INSTRUCTION_ACTIVEC', 'Активен:');
-define('_AM_INSTRUCTION_HOMETEXTC', 'Основной текст:');
-define('_AM_INSTRUCTION_FOOTNOTEC', 'Сноска:');
+//define('_AM_INSTRUCTION_ACTIVEC', 'Активен:');
+//define('_AM_INSTRUCTION_HOMETEXTC', 'Основной текст:');
+//define('_AM_INSTRUCTION_FOOTNOTEC', 'Сноска:');
 define('_AM_INSTRUCTION_DESCRIPTIONC', 'Описание:');
-define('_AM_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
-define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
-define('_AM_INSTR_DOSMILEY', 'Разрешить смайлики');
-define('_AM_INSTR_DOHTML', 'Разрешить HTML тэги');
-define('_AM_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
-define('_AM_INSTR_DOXCODE', 'Разрешить BB-коды');
-define('_AM_INSTR_PAGETYPEC', 'Тип страницы:');
-define('_AM_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
+//define('_AM_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
+//define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
+//define('_AM_INSTR_DOSMILEY', 'Разрешить смайлики');
+//define('_AM_INSTR_DOHTML', 'Разрешить HTML тэги');
+//define('_AM_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
+//define('_AM_INSTR_DOXCODE', 'Разрешить BB-коды');
+//define('_AM_INSTR_PAGETYPEC', 'Тип страницы:');
+//define('_AM_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
 
 // Описание элементов форм
-define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
+//define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
 
 define('_AM_INSTRUCTION_TITLE', 'Название');
 define('_AM_INSTRUCTION_WEIGHT', 'Вес');
@@ -87,8 +87,8 @@ define('_AM_INSTRUCTION_PERM_EDIT', 'Права на редактировани�
 define('_AM_INSTRUCTION_PERM_EDIT_DSC', 'Выберите группы, которые могут редактировать инструкции из категорий.');
 
 // Типы страницы
-define('_AM_INSTR_PT_0', 'Лист дерева');
-define('_AM_INSTR_PT_1', 'Страница');
+//define('_AM_INSTR_PT_0', 'Лист дерева');
+//define('_AM_INSTR_PT_1', 'Страница');
 
 // Редиректы
 define('_AM_INSTRUCTION_NEWCATADDED', 'Новая категория успешно сохранена.');
