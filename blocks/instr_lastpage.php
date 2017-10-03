@@ -6,8 +6,8 @@ function b_instr_lastpage_show($options = [])
 {
 
     // Подключаем функции
-    $moduleDirName = dirname(__DIR__);
-    include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/class/utility.php');
+    $moduleDirName = basename(dirname(__DIR__));
+    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //

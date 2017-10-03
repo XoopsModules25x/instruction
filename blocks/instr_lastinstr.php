@@ -7,8 +7,9 @@ function b_instr_lastinstr_show($options = [])
 {
 
     // Подключаем функции
-    $moduleDirName = dirname(__DIR__);
-    include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/class/utility.php');
+//    $moduleDirName = dirname(__DIR__);
+    $moduleDirName = basename(dirname(__DIR__));
+    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //

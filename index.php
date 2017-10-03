@@ -42,7 +42,18 @@ $inscat_arr = $inscatHandler->getall($criteria);
 unset($criteria);
 $mytree = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
 // Выводим в шаблон
-$GLOBALS['xoopsTpl']->assign('insFormSelCat', $mytree->makeSelBox('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'"));
+//$GLOBALS['xoopsTpl']->assign('insFormSelCat', $mytree->makeSelBox('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'"));
+
+
+if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+    $cat_select = $mytree->makeSelectElement('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'", '');
+    $GLOBALS['xoopsTpl']->assign('insFormSelCat', $cat_select->render());
+} else {
+    $cat_select = $mytree->makeSelBox('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'");
+    $GLOBALS['xoopsTpl']->assign('insFormSelCat', $cat_select);
+}
+
+
 
 // Находим список всех инструкций
 // Критерий выборки
@@ -123,11 +134,9 @@ if ($numrows > 0) {
         }
 
         // Выводим в шаблон
-        $GLOBALS['xoopsTpl']->append(
-            'insListInstr',
-                                     ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cid, 'permsubmit' => $perm_submit, 'permedit' => $perm_edit, 'class' => $class]
-        );
+        $GLOBALS['xoopsTpl']->append('insListInstr', ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cid, 'permsubmit' => $perm_submit, 'permedit' => $perm_edit, 'class' => $class]);
     }
+
     // Языковые константы
 }
 

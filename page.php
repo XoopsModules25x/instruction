@@ -181,6 +181,6 @@ $xoTheme->addMeta('meta', 'keywords', $objInspage->getVar('keywords'));
 $xoTheme->addMeta('meta', 'description', $objInspage->getVar('description'));
 
 // Комментарии
-include_once $GLOBALS['xoops']->path('/include/comment_view.php');
+include_once $GLOBALS['xoops']->path('include/comment_view.php');
 // Подвал
 include_once $GLOBALS['xoops']->path('footer.php');
