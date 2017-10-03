@@ -4,7 +4,7 @@
 //	die("XOOPS root path not defined");
 //}
 
-include_once $GLOBALS['xoops']->path('/include/common.php');
+include_once $GLOBALS['xoops']->path('include/common.php');
 
 class InstructionPage extends XoopsObject
 {
@@ -53,9 +53,9 @@ class InstructionPage extends XoopsObject
         }
 
         // Подключаем формы
-        include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
+        include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
         // Подключаем типы страниц
-        $pagetypes = include $GLOBALS['xoops']->path('/modules/instruction/include/pagetypes.inc.php');
+        $pagetypes = include $GLOBALS['xoops']->path('modules/instruction/include/pagetypes.inc.php');
 
         // Название формы
         $title = $this->isNew() ? sprintf(_AM_INSTRUCTION_FORMADDPAGE) : sprintf(_AM_INSTRUCTION_FORMEDITPAGE);
@@ -81,7 +81,7 @@ class InstructionPage extends XoopsObject
         $inspage_arr = $inspageHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
-        include_once $GLOBALS['xoops']->path('/class/tree.php');
+        include_once $GLOBALS['xoops']->path('class/tree.php');
         $mytree = new XoopsObjectTree($inspage_arr, 'pageid', 'pid');
         $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
 

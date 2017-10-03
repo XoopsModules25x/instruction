@@ -5,7 +5,7 @@
 //	die("XOOPS root path not defined");
 //}
 
-include_once $GLOBALS['xoops']->path('/include/common.php');
+include_once $GLOBALS['xoops']->path('include/common.php');
 
 include_once __DIR__ . '/../class/utility.php';
 
@@ -47,7 +47,7 @@ class InstructionCategory extends XoopsObject
             $action = xoops_getenv('REQUEST_URI');
         }
         // Подключаем формы
-        include_once $GLOBALS['xoops']->path('/class/xoopsformloader.php');
+        include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
 
         // Название формы
         $title = $this->isNew() ? sprintf(_AM_INSTRUCTION_FORMADDCAT) : sprintf(_AM_INSTRUCTION_FORMEDITCAT);
@@ -91,7 +91,7 @@ class InstructionCategory extends XoopsObject
         $instructioncat_arr = $instructioncatHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
-        include_once $GLOBALS['xoops']->path('/class/tree.php');
+        include_once $GLOBALS['xoops']->path('class/tree.php');
         $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
 
         //        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
