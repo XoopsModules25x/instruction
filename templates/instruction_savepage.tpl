@@ -1,4 +1,4 @@
 <{if $insErrorMsg}>
-  <{$insErrorMsg}>
+    <{$insErrorMsg}>
 <{/if}>
 <{$insFormPage}>

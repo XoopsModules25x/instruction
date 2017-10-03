@@ -6,28 +6,28 @@ require_once __DIR__ . '/header.php';
 // Подключаем трей
 include_once __DIR__ . '/class/tree.php';
 
-$groups        = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-$gperm_handler = xoops_gethandler('groupperm');
+$groups       = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+$gpermHandler = xoops_getHandler('groupperm');
 
 // Права на просмотр страницы
 // ==========================
 
 // Объявляем объекты
-$insinstr_Handler = xoops_getModuleHandler('instruction', 'instruction');
-$inscat_Handler   = xoops_getModuleHandler('category', 'instruction');
-$inspage_Handler  = xoops_getModuleHandler('page', 'instruction');
+$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
+$inscatHandler   = xoops_getModuleHandler('category', 'instruction');
+$inspageHandler  = xoops_getModuleHandler('page', 'instruction');
 
 // Получаем данные
 // ID страницы
 $pageid = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 // Без кэша
-$nocache = instr_CleanVars($_GET, 'nocache', 0, 'int');
+$nocache = InstructionUtility::cleanVars($_GET, 'nocache', 0, 'int');
 
 // Существует ли такая страница
 $criteria = new CriteriaCompo();
 $criteria->add(new Criteria('pageid ', $pageid));
 $criteria->add(new Criteria('status ', '0', '>'));
-if (0 == $inspage_Handler->getCount($criteria)) {
+if (0 == $inspageHandler->getCount($criteria)) {
     redirect_header('index.php', 3, _MD_INSTRUCTION_PAGENOTEXIST);
     exit();
 }
@@ -35,9 +35,9 @@ if (0 == $inspage_Handler->getCount($criteria)) {
 unset($criteria);
 
 // Находим данные о странице
-$objInspage = $inspage_Handler->get($pageid);
+$objInspage = $inspageHandler->get($pageid);
 // Находим данные об инструкции
-$objInsinstr = $insinstr_Handler->get($objInspage->getVar('instrid'));
+$objInsinstr = $insinstrHandler->get($objInspage->getVar('instrid'));
 
 // Если админ и ссылка на отключение кэша
 if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin() && $nocache) {
@@ -48,7 +48,7 @@ if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin() && $noc
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name() . ' - ' . $objInsinstr->getVar('title') . ' - ' . $objInspage->getVar('title');
 // Шаблон
-$xoopsOption['template_main'] = $moduleDirName . '_page.tpl';
+$GLOBALS['xoopsOption']['template_main'] = $moduleDirName . '_page.tpl';
 // Заголовок
 include_once $GLOBALS['xoops']->path('header.php');
 // Стили
@@ -57,7 +57,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/
 $xoTheme->addScript(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/js/tree.js');
 
 // Права на просмотр инструкции
-$categories = instr_MygetItemIds();
+$categories = InstructionUtility::getItemIds();
 if (!in_array($objInsinstr->getVar('cid'), $categories)) {
     redirect_header(XOOPS_URL . '/modules/' . $moduleDirName . '/', 3, _NOPERM);
     exit();
@@ -112,7 +112,7 @@ if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS[
 } else {
     $pages['adminlink'] = '&nbsp;';
     // Если можно редактировать
-    if ($gperm_handler->checkRight($moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid'))) {
+    if ($gpermHandler->checkRight($moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid'))) {
         $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>';
     }
 
@@ -126,13 +126,13 @@ if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS[
 $GLOBALS['xoopsTpl']->assign('insPage', $pages);
 
 // Находим данные об категории
-$objInscat = $inscat_Handler->get($objInsinstr->getVar('cid'));
+$objInscat = $inscatHandler->get($objInsinstr->getVar('cid'));
 
 // Навигация
 $criteria = new CriteriaCompo();
 $criteria->setSort('weight ASC, title');
 $criteria->setOrder('ASC');
-$inscat_arr    = $inscat_Handler->getall($criteria);
+$inscat_arr    = $inscatHandler->getall($criteria);
 $mytree        = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
 $nav_parent_id = $mytree->getAllParent($objInsinstr->getVar('cid'));
 $titre_page    = $nav_parent_id;
@@ -153,7 +153,7 @@ $criteria->add(new Criteria('instrid', $pages['instrid'], '='));
 $criteria->add(new Criteria('status ', '0', '>'));
 $criteria->setSort('weight');
 $criteria->setOrder('ASC');
-$ins_page = $inspage_Handler->getall($criteria);
+$ins_page = $inspageHandler->getall($criteria);
 unset($criteria);
 // Предыдущая и следующая страницы
 $prevpages = [];

@@ -5,25 +5,25 @@ use Xmf\Request;
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
-include '../include/functions.php';
+//include __DIR__ . '/../class/utility.php';
 
 // Admin Gui
 $adminObject = \Xmf\Module\Admin::getInstance();
 
 // Объявляем объекты
-$instructioncat_Handler = xoops_getModuleHandler('category', 'instruction');
-$insinstr_Handler       = xoops_getModuleHandler('instruction', 'instruction');
+$instructioncatHandler = xoops_getModuleHandler('category', 'instruction');
+$insinstrHandler       = xoops_getModuleHandler('instruction', 'instruction');
 
 $time = time();
 
 // ID категории
-$cid = instr_CleanVars($_REQUEST, 'cid', 0, 'int');
+$cid = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
 // ID родителя
-$pid = instr_CleanVars($_REQUEST, 'pid', 0, 'int');
+$pid = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
 // Вес
-$weight = instr_CleanVars($_REQUEST, 'weight', 0, 'int');
+$weight = InstructionUtility::cleanVars($_REQUEST, 'weight', 0, 'int');
 // Опция
-$op = instr_CleanVars($_REQUEST, 'op', 'main', 'string');
+$op = InstructionUtility::cleanVars($_REQUEST, 'op', 'main', 'string');
 // Выбор
 switch ($op) {
 
@@ -41,7 +41,7 @@ switch ($op) {
 
         // Находим ID-категории => Число страниц
         $cidinstrids = [];
-        $sql         = "SELECT `cid`, COUNT( `instrid` ) FROM {$insinstr_Handler->table} GROUP BY `cid`";
+        $sql         = "SELECT `cid`, COUNT( `instrid` ) FROM {$insinstrHandler->table} GROUP BY `cid`";
         $result      = $GLOBALS['xoopsDB']->query($sql);
         while (list($cid, $count) = $GLOBALS['xoopsDB']->fetchRow($result)) {
             // Заполняем массив
@@ -52,7 +52,7 @@ switch ($op) {
         $criteria = new CriteriaCompo();
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
-        $ins_cat = $instructioncat_Handler->getall($criteria);
+        $ins_cat = $instructioncatHandler->getall($criteria);
         unset($criteria);
 
         // Инициализируем
@@ -61,7 +61,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('insListCat', $cattree->makeCatsAdmin('--', $cidinstrids));
 
         // Создание новой категории
-        $objInstructioncat =& $instructioncat_Handler->create();
+        $objInstructioncat = $instructioncatHandler->create();
         $form              = $objInstructioncat->getForm('cat.php');
         // Форма
         $GLOBALS['xoopsTpl']->assign('insFormCat', $form->render());
@@ -83,7 +83,7 @@ switch ($op) {
         // Навигация
         $adminObject->displayNavigation(basename(__FILE__));
 
-        $objInstructioncat =& $instructioncat_Handler->get($cid);
+        $objInstructioncat = $instructioncatHandler->get($cid);
         $form              = $objInstructioncat->getForm('cat.php');
         // Форма
         //$GLOBALS['xoopsTpl']->assign( 'insFormCat', $form->render() );
@@ -107,9 +107,9 @@ switch ($op) {
         }
         // Если мы редактируем
         if ($cid) {
-            $objInstructioncat =& $instructioncat_Handler->get($cid);
+            $objInstructioncat = $instructioncatHandler->get($cid);
         } else {
-            $objInstructioncat =& $instructioncat_Handler->create();
+            $objInstructioncat = $instructioncatHandler->create();
             // Указываем дату создания
             $objInstructioncat->setVar('datecreated', $time);
         }
@@ -137,7 +137,7 @@ switch ($op) {
             $message_err .= _AM_INSTRUCTION_ERR_PCAT . '<br>';
         }
         // Если были ошибки
-        if (true == $err) {
+        if (true === $err) {
             xoops_cp_header();
             // Навигация
             $adminObject->displayNavigation(basename(__FILE__));
@@ -148,7 +148,7 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($instructioncat_Handler->insert($objInstructioncat)) {
+            if ($instructioncatHandler->insert($objInstructioncat)) {
 
                 // ID категории. Если редактируем - то не изменяется. Если создаём новую - то получаем ID созданной записи.
                 $new_cid = $cid ?: $objInstructioncat->get_new_enreg();
@@ -157,7 +157,7 @@ switch ($op) {
                 // ==== Права ====
                 // ===============
 
-                $gperm_handler = &xoops_gethandler('groupperm');
+                $gpermHandler = xoops_getHandler('groupperm');
 
                 // Если мы редактируем категорию, то старые права нужно удалить
                 if ($cid) {
@@ -166,38 +166,38 @@ switch ($op) {
                     $criteria->add(new Criteria('gperm_itemid', $new_cid, '='));
                     $criteria->add(new Criteria('gperm_modid', $GLOBALS['xoopsModule']->getVar('mid'), '='));
                     $criteria->add(new Criteria('gperm_name', 'instruction_view', '='));
-                    $gperm_handler->deleteAll($criteria);
+                    $gpermHandler->deleteAll($criteria);
                     // Права на добавление
                     $criteria = new CriteriaCompo();
                     $criteria->add(new Criteria('gperm_itemid', $new_cid, '='));
                     $criteria->add(new Criteria('gperm_modid', $GLOBALS['xoopsModule']->getVar('mid'), '='));
                     $criteria->add(new Criteria('gperm_name', 'instruction_submit', '='));
-                    $gperm_handler->deleteAll($criteria);
+                    $gpermHandler->deleteAll($criteria);
                     // Права на редактирование
                     $criteria = new CriteriaCompo();
                     $criteria->add(new Criteria('gperm_itemid', $new_cid, '='));
                     $criteria->add(new Criteria('gperm_modid', $GLOBALS['xoopsModule']->getVar('mid'), '='));
                     $criteria->add(new Criteria('gperm_name', 'instruction_edit', '='));
-                    $gperm_handler->deleteAll($criteria);
+                    $gpermHandler->deleteAll($criteria);
                 }
 
                 // Добавляем права
                 // Права на просмотр
                 if (isset($_POST['groups_instr_view'])) {
                     foreach ($_POST['groups_instr_view'] as $onegroup_id) {
-                        $gperm_handler->addRight('instruction_view', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
+                        $gpermHandler->addRight('instruction_view', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на добавление
                 if (isset($_POST['groups_instr_submit'])) {
                     foreach ($_POST['groups_instr_submit'] as $onegroup_id) {
-                        $gperm_handler->addRight('instruction_submit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
+                        $gpermHandler->addRight('instruction_submit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на редактирование
                 if (isset($_POST['groups_instr_edit'])) {
                     foreach ($_POST['groups_instr_edit'] as $onegroup_id) {
-                        $gperm_handler->addRight('instruction_edit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
+                        $gpermHandler->addRight('instruction_edit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
 
@@ -213,7 +213,7 @@ switch ($op) {
         // Выводим шаблон
         $GLOBALS['xoopsTpl']->display('db:admin/instruction_admin_savecat.tpl');
         // Выводим форму
-        $form =& $objInstructioncat->getForm();
+        $form = $objInstructioncat->getForm();
         // Форма
         echo $form->render();
         // Текст внизу админки
@@ -231,7 +231,7 @@ switch ($op) {
         $criteria = new CriteriaCompo();
         // Все инструкции в данной категории
         $criteria->add(new Criteria('cid', $cid, '='));
-        $numrows = $insinstr_Handler->getCount($criteria);
+        $numrows = $insinstrHandler->getCount($criteria);
         //
         unset($criteria);
         // Если есть хоть одна инструкция
@@ -239,7 +239,7 @@ switch ($op) {
             redirect_header('cat.php', 3, _AM_INSTRUCTION_ERR_CATNOTEMPTY);
         }
 
-        $objInscat =& $instructioncat_Handler->get($cid);
+        $objInscat = $instructioncatHandler->get($cid);
         // Если нет такой категории
         if (!is_object($objInscat)) {
             redirect_header('cat.php', 3, _AM_INSTRUCTION_ERR_CATNOTSELECT);
@@ -248,7 +248,7 @@ switch ($op) {
         // Нельзя удалять пока есть доченрии категории
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('class/tree.php');
-        $inscat_arr   = $instructioncat_Handler->getall();
+        $inscat_arr   = $instructioncatHandler->getall();
         $mytree       = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
         $ins_childcat = $mytree->getAllChild($cid);
         // Если есть дочернии категории
@@ -266,7 +266,7 @@ switch ($op) {
                 redirect_header('cat.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             // Пытаемся удалить категорию
-            if ($instructioncat_Handler->delete($objInscat)) {
+            if ($instructioncatHandler->delete($objInscat)) {
 
                 // Удалить права доступа к категории
                 // =================================

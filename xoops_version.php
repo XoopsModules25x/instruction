@@ -4,14 +4,16 @@ use Xmf\Request;
 
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-$moduleDirName = basename(__DIR__);
-xoops_load('xoopseditorhandler');
+xoops_load('XoopsEditorHandler');
 $editorHandler = XoopsEditorHandler::getInstance();
+$moduleDirName = basename(__DIR__);
 $xoops_url     = parse_url(XOOPS_URL);
 
 $modversion = [
-    'name'                => _MI_INSTRUCTION_NAME,
     'version'             => 1.06,
+    'module_status'       => 'Beta 3',
+    'release_date'        => '2017/05/11',
+    'name'                => _MI_INSTRUCTION_NAME,
     'description'         => _MI_INSTRUCTION_DESC,
     'credits'             => 'radio-hobby.org, www.shmel.org',
     'author'              => 'andrey3761, aerograf',
@@ -22,14 +24,12 @@ $modversion = [
     'official'            => 0,
     'image'               => 'assets/images/slogo.png',
     'dirname'             => $moduleDirName,
-    'dirmoduleadmin'      => 'Frameworks/moduleclasses',
-    'icons16'             => 'Frameworks/moduleclasses/icons/16',
-    'icons32'             => 'Frameworks/moduleclasses/icons/32',
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
     // О модуле
     'module_website_url'  => 'radio-hobby.org',
     'module_website_name' => 'radio-hobby.org',
-    'release_date'        => '2017/05/11',
-    'module_status'       => 'Beta 2',
+
     'author_website_url'  => 'radio-hobby.org',
     'author_website_name' => 'andrey3761',
     'module_website_url'  => 'www.xoops.org',
@@ -52,14 +52,14 @@ $modversion = [
     'adminmenu'           => 'admin/menu.php',
     'system_menu'         => 1,
     // Меню
-    'hasMain'             => 1
+    'hasMain'             => 1,
+    // Search
+    'hasSearch'           => 1,
+    'search'              => [
+        'file' => 'include/search.inc.php',
+        'func' => $moduleDirName . '_search',
+    ],
 ];
-
-// Search
-$modversion['hasSearch']      = 1;
-$modversion['search']['file'] = 'include/search.inc.php';
-$modversion['search']['func'] = $moduleDirName . '_search';
-
 //  Help files
 $modversion['helpsection'] = [
     ['name' => _MI_INSTRUCTION_HELP_OVERVIEW, 'link' => 'page=help'],
@@ -152,50 +152,49 @@ $modversion['templates'] = [
     ],
 ];
 // Конфигурация
-$i = 1;
-
-$modversion['config'][$i]['name']        = 'form_options';
-$modversion['config'][$i]['title']       = '_MI_INSTRUCTION_FORM_OPTIONS';
-$modversion['config'][$i]['description'] = '_MI_INSTRUCTION_FORM_OPTIONS_DESC';
-$modversion['config'][$i]['formtype']    = 'select';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = 'dhtml';
-xoops_load('xoopseditorhandler');
-$editor_handler                      = XoopsEditorHandler::getInstance();
-$modversion['config'][$i]['options'] = array_flip($editor_handler->getList());
-$i++;
-//
-$modversion['config'][$i]['name']        = 'perpageadmin';
-$modversion['config'][$i]['title']       = '_MI_INSTRUCTION_PERPAGEADMIN';
-$modversion['config'][$i]['description'] = '_MI_INSTRUCTION_PERPAGEADMINDSC';
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = 20;
-$i++;
-//
-$modversion['config'][$i]['name']        = 'perpagemain';
-$modversion['config'][$i]['title']       = '_MI_INSTRUCTION_PERPAGEMAIN';
-$modversion['config'][$i]['description'] = '_MI_INSTRUCTION_PERPAGEMAINDSC';
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = 20;
-$i++;
+$modversion['config'][] = [
+    'name'        => 'form_options',
+    'title'       => '_MI_INSTRUCTION_FORM_OPTIONS',
+    'description' => '_MI_INSTRUCTION_FORM_OPTIONS_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'dhtml',
+    'options'     => array_flip($editorHandler->getList())
+];
+$modversion['config'][] = [
+    'name'        => 'perpageadmin',
+    'title'       => '_MI_INSTRUCTION_PERPAGEADMIN',
+    'description' => '_MI_INSTRUCTION_PERPAGEADMINDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 20
+];
+$modversion['config'][] = [
+    'name'        => 'perpagemain',
+    'title'       => '_MI_INSTRUCTION_PERPAGEMAIN',
+    'description' => '_MI_INSTRUCTION_PERPAGEMAINDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 20
+];
 // Теги
-$modversion['config'][$i]['name']        = 'usetag';
-$modversion['config'][$i]['title']       = '_MI_INSTRUCTION_USETAG';
-$modversion['config'][$i]['description'] = '_MI_INSTRUCTION_USETAGDSC';
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = 0;
-$i++;
+$modversion['config'][] = [
+    'name'        => 'usetag',
+    'title'       => '_MI_INSTRUCTION_USETAG',
+    'description' => '_MI_INSTRUCTION_USETAGDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
 // Оценки
-$modversion['config'][$i]['name']        = 'userat';
-$modversion['config'][$i]['title']       = '_MI_INSTRUCTION_USERAT';
-$modversion['config'][$i]['description'] = '_MI_INSTRUCTION_USERATDSC';
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = 0;
-$i++;
+$modversion['config'][] = [
+    'name'        => 'userat',
+    'title'       => '_MI_INSTRUCTION_USERAT',
+    'description' => '_MI_INSTRUCTION_USERATDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
 
 // Блоки
 // Блок последних страниц

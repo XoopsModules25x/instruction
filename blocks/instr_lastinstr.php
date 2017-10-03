@@ -8,11 +8,11 @@ function b_instr_lastinstr_show($options = [])
 
     // Подключаем функции
     $moduleDirName = dirname(__DIR__);
-    include_once $moduleDirName . '/include/functions.php';
+    include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/class/utility.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //
-    $insinstr_Handler = xoops_getModuleHandler('instruction', 'instruction');
+    $insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
 
     // Добавляем стили
     //global $xoTheme;
@@ -25,7 +25,7 @@ function b_instr_lastinstr_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = instr_MygetItemIds();
+    $cat_view = InstructionUtility::getItemIds();
     // Массив выходных данных
     $block = [];
 
@@ -33,7 +33,7 @@ function b_instr_lastinstr_show($options = [])
     if (is_array($cat_view) && count($cat_view) > 0) {
 
         // Находим последние инструкции
-        $sql = "SELECT `instrid`, `cid`, `title`, `pages`, `dateupdated` FROM {$insinstr_Handler->table} WHERE `cid` IN (" . implode(', ', $cat_view) . ') AND `status` > 0 ORDER BY `dateupdated` DESC';
+        $sql = "SELECT `instrid`, `cid`, `title`, `pages`, `dateupdated` FROM {$insinstrHandler->table} WHERE `cid` IN (" . implode(', ', $cat_view) . ') AND `status` > 0 ORDER BY `dateupdated` DESC';
         // Лимит запроса
         $result = $GLOBALS['xoopsDB']->query($sql, $limit);
         // Перебираем все значения

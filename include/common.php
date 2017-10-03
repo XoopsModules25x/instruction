@@ -14,7 +14,7 @@
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 if (!defined('INSTRUCTION_MODULE_PATH')) {
@@ -37,12 +37,10 @@ require_once INSTRUCTION_ROOT_PATH . '/class/utility.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/xoalbum.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/request.php';
 
-
 require_once INSTRUCTION_ROOT_PATH . '/class/helper.php';
 
 xoops_load('constants', INSTRUCTION_DIRNAME);
 xoops_load('utility', INSTRUCTION_DIRNAME);
-
 
 $instruction = Instruction::getInstance();
 $instruction->loadLanguage('common');
@@ -53,4 +51,4 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl))
 }
 
 $moduleDirName = basename(dirname(__DIR__));
-$xoopsTpl->assign('mod_url',  XOOPS_URL . '/modules/' . $moduleDirName);
+$xoopsTpl->assign('mod_url', XOOPS_URL . '/modules/' . $moduleDirName);

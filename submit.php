@@ -5,9 +5,9 @@ use Xmf\Request;
 require_once __DIR__ . '/header.php';
 
 // Объявляем объекты
-$insinstr_Handler = xoops_getModuleHandler('instruction', 'instruction');
-//$inscat_Handler =& xoops_getModuleHandler( 'category', 'instruction' );
-$inspage_Handler = xoops_getModuleHandler('page', 'instruction');
+$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$inscatHandler = xoops_getModuleHandler( 'category', 'instruction' );
+$inspageHandler = xoops_getModuleHandler('page', 'instruction');
 
 //
 $uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
@@ -27,9 +27,9 @@ $weight = isset($_POST['weight']) ? (int)$_POST['weight'] : 0;
 $pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
 
 // Права на добавление
-$cat_submit = instr_MygetItemIds($moduleDirName . '_submit');
+$cat_submit = InstructionUtility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
-$cat_edit = instr_MygetItemIds($moduleDirName . '_edit');
+$cat_edit = InstructionUtility::getItemIds($moduleDirName . '_edit');
 
 $op = isset($_GET['op']) ? $_GET['op'] : '';
 $op = isset($_POST['op']) ? $_POST['op'] : $op;
@@ -41,18 +41,18 @@ switch ($op) {
         // Задание тайтла
         $xoopsOption['xoops_pagetitle'] = '';
         // Шаблон
-        $xoopsOption['template_main'] = $moduleDirName . '_editpage.tpl';
+        $GLOBALS['xoopsOption']['template_main'] = $moduleDirName . '_editpage.tpl';
         // Заголовок
         include_once $GLOBALS['xoops']->path('header.php');
 
         // Если мы редактируем страницу
         if ($pageid) {
             // Получаем объект страницы
-            $objInspage =& $inspage_Handler->get($pageid);
+            $objInspage = $inspageHandler->get($pageid);
             // ID инструкции
             $instrid = $objInspage->getVar('instrid');
             // Объект инструкции
-            $objInsinstr = $insinstr_Handler->get($instrid);
+            $objInsinstr = $insinstrHandler->get($instrid);
             // Можно ли редактировать инструкцию в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_edit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_EDITPAGE);
@@ -63,9 +63,9 @@ switch ($op) {
             // Если нельзя добавлять не в одну категорию
             //if( ! count( $cat_submit ) ) redirect_header( 'index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMIT_PAGE );
             // Создаём объект страницы
-            $objInspage =& $inspage_Handler->create();
+            $objInspage = $inspageHandler->create();
             // Объект инструкции
-            $objInsinstr = $insinstr_Handler->get($instrid);
+            $objInsinstr = $insinstrHandler->get($instrid);
             // Можно ли добавлять инструкции в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_submit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMITPAGE);
@@ -90,7 +90,7 @@ switch ($op) {
 
         //
 
-        $form =& $objInspage->getForm('submit.php', $instrid);
+        $form = $objInspage->getForm('submit.php', $instrid);
         // Форма
         $GLOBALS['xoopsTpl']->assign('insFormPage', $form->render());
 
@@ -111,17 +111,17 @@ switch ($op) {
 
         // Если мы редактируем
         if ($pageid) {
-            $objInspage = $inspage_Handler->get($pageid);
+            $objInspage = $inspageHandler->get($pageid);
             // Объект инструкции
-            $objInsinstr = $insinstr_Handler->get($objInspage->getVar('instrid'));
+            $objInsinstr = $insinstrHandler->get($objInspage->getVar('instrid'));
             // Можно ли редактировать инструкцию в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_edit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_EDITPAGE);
             }
         } elseif ($instrid) {
-            $objInspage =& $inspage_Handler->create();
+            $objInspage = $inspageHandler->create();
             // Объект инструкции
-            $objInsinstr = $insinstr_Handler->get($instrid);
+            $objInsinstr = $insinstrHandler->get($instrid);
             // Можно ли добавлять инструкции в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_submit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMITPAGE);
@@ -167,11 +167,11 @@ switch ($op) {
             $message_err .= _MD_INSTRUCTION_ERR_PPAGE . '<br>';
         }
         // Если были ошибки
-        if (true == $err) {
+        if (true === $err) {
             // Задание тайтла
             $xoopsOption['xoops_pagetitle'] = '';
             // Шаблон
-            $xoopsOption['template_main'] = $moduleDirName . '_savepage.tpl';
+            $GLOBALS['xoopsOption']['template_main'] = $moduleDirName . '_savepage.tpl';
             // Заголовок
             include_once $GLOBALS['xoops']->path('header.php');
             // Сообщение об ошибке
@@ -181,7 +181,7 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($inspage_Handler->insert($objInspage)) {
+            if ($inspageHandler->insert($objInspage)) {
                 // Если мы редактируем
                 if ($pageid) {
                     // Обновление даты
@@ -195,7 +195,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $inspage_Handler->updateposts($uid, $_POST['status'], 'add');
+                    $inspageHandler->updateposts($uid, $_POST['status'], 'add');
                     // Инкремент страниц и обновление даты
                     $sql = sprintf('UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u', $GLOBALS['xoopsDB']->prefix($moduleDirName . '_instr'), $time, $instrid);
                     $GLOBALS['xoopsDB']->query($sql);
@@ -210,7 +210,7 @@ switch ($op) {
             // Задание тайтла
             $xoopsOption['xoops_pagetitle'] = '';
             // Шаблон
-            $xoopsOption['template_main'] = $moduleDirName . '_savepage.tpl';
+            $GLOBALS['xoopsOption']['template_main'] = $moduleDirName . '_savepage.tpl';
             // Заголовок
             include_once $GLOBALS['xoops']->path('header.php');
 
@@ -218,7 +218,7 @@ switch ($op) {
             $GLOBALS['xoopsTpl']->assign('insErrorMsg', $objInspage->getHtmlErrors());
         }
         // Получаем форму
-        $form =& $objInspage->getForm('submit.php', $instrid);
+        $form = $objInspage->getForm('submit.php', $instrid);
 
         // Форма
         $GLOBALS['xoopsTpl']->assign('insFormPage', $form->render());

@@ -33,7 +33,7 @@ $adminmenu = [
         'title' => _MI_INSTRUCTION_ADMIN_INSTR,
         'link'  => 'admin/instr.php',
         'desc'  => _MI_INSTRUCTION_ADMIN_INSTR_DESC,
-        'icon'  => 'assets/icons/nav_book.png'
+        'icon'  => $pathModIcon32 . '/nav_book.png'
     ],
     [
         'title' => _MI_INSTRUCTION_ADMIN_PERM,

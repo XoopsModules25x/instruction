@@ -7,7 +7,7 @@
 
 include_once $GLOBALS['xoops']->path('/include/common.php');
 
-//include_once dirname(__DIR__) . '/include/common.php';
+include_once __DIR__ . '/../class/utility.php';
 
 class InstructionCategory extends XoopsObject
 {
@@ -80,20 +80,35 @@ class InstructionCategory extends XoopsObject
         $form->addElement($imgtray);
         */
         // Родительская категория
-        $instructioncat_Handler =& xoops_getModuleHandler('category', 'instruction');
-        $criteria               = new CriteriaCompo();
+        $instructioncatHandler = xoops_getModuleHandler('category', 'instruction');
+        $criteria              = new CriteriaCompo();
         // Если мы редактируем, то убрать текущую категорию из списка выбора родительской
         if (!$this->isNew()) {
             $criteria->add(new Criteria('cid', $this->getVar('cid'), '<>'));
         }
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
-        $instructioncat_arr = $instructioncat_Handler->getall($criteria);
+        $instructioncat_arr = $instructioncatHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('/class/tree.php');
         $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
-        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+
+        //        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+        $moduleDirName = basename(__DIR__);
+        if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+        } else {
+            $moduleHelper = Xmf\Module\Helper::getHelper('system');
+        }
+        $module = $moduleHelper->getModule();
+
+        if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+            $mytree_select = $mytree->makeSelectElement('pid', 'title', '--', $this->getVar('pid'), true, 0, '', _AM_INSTRUCTION_PCATC);
+            $form->addElement($mytree_select);
+        } else {
+            $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+        }
+
         // Вес
         $form->addElement(new XoopsFormText(_AM_INSTRUCTION_WEIGHTC, 'weight', 5, 5, $this->getVar('weight')), true);
         // Мета-теги ключевых слов
@@ -105,16 +120,16 @@ class InstructionCategory extends XoopsObject
         // ==========================================================
 
         // Права
-        $member_handler = &xoops_gethandler('member');
-        $group_list     = &$member_handler->getGroupList();
-        $gperm_handler  = &xoops_gethandler('groupperm');
-        $full_list      = array_keys($group_list);
+        $memberHandler = xoops_getHandler('member');
+        $group_list    = $memberHandler->getGroupList();
+        $gpermHandler  = xoops_getHandler('groupperm');
+        $full_list     = array_keys($group_list);
 
         // Права на просмотр
         $groups_ids = [];
         // Если мы редактируем
         if (!$this->isNew()) {
-            $groups_ids        = $gperm_handler->getGroupIds('instruction_view', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
+            $groups_ids        = $gpermHandler->getGroupIds('instruction_view', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
             $groups_ids        = array_values($groups_ids);
             $groups_instr_view = new XoopsFormCheckBox(_AM_INSTRUCTION_PERM_VIEW, 'groups_instr_view', $groups_ids);
         } else {
@@ -126,7 +141,7 @@ class InstructionCategory extends XoopsObject
         // Права на отправку
         $groups_ids = [];
         if (!$this->isNew()) {
-            $groups_ids          = $gperm_handler->getGroupIds('instruction_submit', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
+            $groups_ids          = $gpermHandler->getGroupIds('instruction_submit', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
             $groups_ids          = array_values($groups_ids);
             $groups_instr_submit = new XoopsFormCheckBox(_AM_INSTRUCTION_PERM_SUBMIT, 'groups_instr_submit', $groups_ids);
         } else {
@@ -138,7 +153,7 @@ class InstructionCategory extends XoopsObject
         // Права на редактирование
         $groups_ids = [];
         if (!$this->isNew()) {
-            $groups_ids        = $gperm_handler->getGroupIds('instruction_edit', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
+            $groups_ids        = $gpermHandler->getGroupIds('instruction_edit', $this->getVar('cid'), $GLOBALS['xoopsModule']->getVar('mid'));
             $groups_ids        = array_values($groups_ids);
             $groups_instr_edit = new XoopsFormCheckBox(_AM_INSTRUCTION_PERM_EDIT, 'groups_instr_edit', $groups_ids);
         } else {
@@ -172,7 +187,7 @@ class InstructionCategory extends XoopsObject
 
 class InstructionCategoryHandler extends XoopsPersistableObjectHandler
 {
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'instruction_cat', 'InstructionCategory', 'cid', 'title');
     }

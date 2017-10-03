@@ -7,12 +7,12 @@ function b_instr_lastpage_show($options = [])
 
     // Подключаем функции
     $moduleDirName = dirname(__DIR__);
-    include_once $moduleDirName . '/include/functions.php';
+    include_once $GLOBALS['xoops']->path('/modules/' . $moduleDirName . '/class/utility.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //
-    $insinstr_Handler = xoops_getModuleHandler('instruction', 'instruction');
-    $inspage_Handler  = xoops_getModuleHandler('page', 'instruction');
+    $insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
+    $inspageHandler  = xoops_getModuleHandler('page', 'instruction');
 
     // Добавляем стили
     //global $xoTheme;
@@ -25,7 +25,7 @@ function b_instr_lastpage_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = instr_MygetItemIds();
+    $cat_view = InstructionUtility::getItemIds();
     // Массив выходных данных
     $block = [];
 
@@ -33,7 +33,7 @@ function b_instr_lastpage_show($options = [])
     if (is_array($cat_view) && count($cat_view) > 0) {
 
         // Находим последние страницы
-        $sql = "SELECT p.pageid, p.instrid, p.title, p.dateupdated, i.title, i.cid FROM {$inspage_Handler->table} p, {$insinstr_Handler->table} i WHERE p.instrid = i.instrid AND i.cid IN (" . implode(', ', $cat_view) . ') AND p.status > 0 AND i.status > 0 ORDER BY p.dateupdated DESC';
+        $sql = "SELECT p.pageid, p.instrid, p.title, p.dateupdated, i.title, i.cid FROM {$inspageHandler->table} p, {$insinstrHandler->table} i WHERE p.instrid = i.instrid AND i.cid IN (" . implode(', ', $cat_view) . ') AND p.status > 0 AND i.status > 0 ORDER BY p.dateupdated DESC';
         // Лимит запроса
         $result = $GLOBALS['xoopsDB']->query($sql, $limit);
         // Перебираем все значения

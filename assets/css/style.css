@@ -1,13 +1,13 @@
 /* Style INSTRUCTION */
 #instr-footnotes {
-	background: #F8F8F8;
-	border: 1px solid #999999;
-	margin: 3px 0 10px;
-	padding: 5px;
+    background: #F8F8F8;
+    border: 1px solid #999999;
+    margin: 3px 0 10px;
+    padding: 5px;
 }
 
 #instr-footnotes ul {
-	list-style : decimal inside none;
+    list-style: decimal inside none;
 }
 
 /* Дерево */
@@ -21,12 +21,11 @@
     list-style-type: none;
 }
 
-
 /* indent for all tree children excepts root */
 .InstrTreeNode {
-    background-image : url(../tree/i.gif);
-    background-position : top left;
-    background-repeat : repeat-y;
+    background-image: url(../tree/i.gif);
+    background-position: top left;
+    background-repeat: repeat-y;
     margin-left: 18px;
     zoom: 1;
 }
@@ -35,22 +34,21 @@
     margin-left: 0;
 }
 
-
 /* left vertical line (grid) for all nodes */
 .InstrTreeIsLast {
     background-image: url(../tree/i_half.gif);
-    background-repeat : no-repeat;
+    background-repeat: no-repeat;
 }
 
 .InstrTreeExpandOpen .InstrTreeExpand {
     background-image: url(../tree/expand_minus.gif);
-    background-repeat : no-repeat;
+    background-repeat: no-repeat;
 }
 
 /* closed is higher priority than open */
 .InstrTreeExpandClosed .InstrTreeExpand {
     background-image: url(../tree/expand_plus.gif);
-    background-repeat : no-repeat;
+    background-repeat: no-repeat;
 }
 
 /* highest priority */
@@ -59,11 +57,11 @@
 }
 
 .InstrTreeContent {
-	  padding-left: 9px;
+    padding-left: 9px;
     min-height: 18px;
-    margin-left:18px;
- /*   margin-top: -18px;
-    display: inline-block; */
+    margin-left: 18px;
+    /*   margin-top: -18px;
+       display: inline-block; */
 }
 
 * html .InstrTreeContent {
@@ -76,39 +74,39 @@
     float: left;
 }
 
-
 .InstrTreeExpandOpen .InstrTreeContainer {
-        display: block;
+    display: block;
 }
 
 .InstrTreeExpandClosed .InstrTreeContainer {
-        display: none;
+    display: none;
 }
 
 .InstrTreeExpandOpen .InstrTreeExpand, .InstrTreeExpandClosed .InstrTreeExpand {
-        cursor: pointer;
+    cursor: pointer;
 }
+
 .InstrTreeExpandLeaf .InstrTreeExpand {
-        cursor: auto;
+    cursor: auto;
 }
 
 /* Конец дерева*/
 
 .InstrTreeEmptyPage {
-	color: #000000;
-	cursor: pointer;
+    color: #000000;
+    cursor: pointer;
 }
 
 .InstrNavIndex {
-  font: bold italic 1.6em serif; 
-  text-align: center; 
-  vertical-align:middle; 
-  line-height: 1.4;
+    font: bold italic 1.6em serif;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.4;
 }
 
 .InstrNavIndexP {
-  font: bold italic 1.3em serif; 
-  text-align: left; 
-  vertical-align:middle; 
-  line-height: 1.4;
+    font: bold italic 1.3em serif;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.4;
 }

@@ -6,6 +6,6 @@ $moduleDirName = basename(__DIR__);
 xoops_load('instruction', $moduleDirName);
 $xfHelper = Xmf\Module\Helper::getHelper($moduleDirName);
 //
-include_once __DIR__ . '/include/functions.php';
+include_once __DIR__ . '/class/utility.php';
 // Трей
 include_once $GLOBALS['xoops']->path('class/tree.php');

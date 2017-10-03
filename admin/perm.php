@@ -2,7 +2,7 @@
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
-include '../include/functions.php';
+include __DIR__ . '/../class/utility.php';
 
 // Подключаем форму прав
 include_once $GLOBALS['xoops']->path('class/xoopsform/grouppermform.php');
@@ -12,7 +12,7 @@ $adminObject = \Xmf\Module\Admin::getInstance();
 xoops_cp_header();
 $adminObject->displayNavigation(basename(__FILE__));
 
-$permission                = instr_CleanVars($_REQUEST, 'permission', 1, 'int');
+$permission                = InstructionUtility::cleanVars($_REQUEST, 'permission', 1, 'int');
 $selected                  = ['', '', ''];
 $selected[$permission - 1] = ' selected';
 
@@ -72,5 +72,3 @@ unset($permissionsForm);
 
 // Текст внизу админки
 include __DIR__ . '/admin_footer.php';
-// Подвал админки
-xoops_cp_footer();

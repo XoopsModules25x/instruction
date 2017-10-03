@@ -16,9 +16,9 @@
 
     <h4 class="odd">ИНСТРУКЦИЯ ПО ЭКСПЛУАТАЦИИ</h4>
     <p class="even">
-    Этот модуль и работа с ним не составит особого труда.<br><br>
-    Подробные инструкции по настройке прав доступа для групп пользователей доступны в
-    <a target="_blank" href="https://www.gitbook.com/book/xoops/xoops-operations-guide/details">XOOPS Operations Manual</a><br><br>
+        Этот модуль и работа с ним не составит особого труда.<br><br>
+        Подробные инструкции по настройке прав доступа для групп пользователей доступны в
+        <a target="_blank" href="https://www.gitbook.com/book/xoops/xoops-operations-guide/details">XOOPS Operations Manual</a><br><br>
     </p>
 
     <h4 class="odd">ПЕРЕВОДЫ</h4>

@@ -66,8 +66,8 @@ class InstructionPage extends XoopsObject
         $form->addElement(new XoopsFormText(_AM_INSTRUCTION_TITLEC, 'title', 50, 255, $this->getVar('title')), true);
 
         // Родительская страница
-        $inspage_Handler =& xoops_getModuleHandler('page', 'instruction');
-        $criteria        = new CriteriaCompo();
+        $inspageHandler = xoops_getModuleHandler('page', 'instruction');
+        $criteria       = new CriteriaCompo();
         // ID инструкции в которой данная страница
         $instrid_page = $this->isNew() ? $instrid : $this->getVar('instrid');
         // Находим все страницы данной инструкции
@@ -78,7 +78,7 @@ class InstructionPage extends XoopsObject
         }
         $criteria->setSort('weight');
         $criteria->setOrder('ASC');
-        $inspage_arr = $inspage_Handler->getall($criteria);
+        $inspage_arr = $inspageHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('/class/tree.php');
@@ -88,7 +88,7 @@ class InstructionPage extends XoopsObject
         // Вес
         $form->addElement(new XoopsFormText(_AM_INSTRUCTION_WEIGHTC, 'weight', 5, 5, $this->getVar('weight')), true);
         // Основной текст
-        $form->addElement(instr_getWysiwygForm(_AM_INSTRUCTION_HOMETEXTC, 'hometext', $this->getVar('hometext', 'e')), true);
+        $form->addElement(InstructionUtility::getWysiwygForm(_AM_INSTRUCTION_HOMETEXTC, 'hometext', $this->getVar('hometext', 'e')), true);
         // Сноска
         $form_footnote = new XoopsFormTextArea(_AM_INSTRUCTION_FOOTNOTEC, 'footnote', $this->getVar('footnote', 'e'));
         $form_footnote->setDescription(_AM_INSTRUCTION_FOOTNOTE_DSC);
@@ -142,11 +142,8 @@ class InstructionPage extends XoopsObject
         //
         $form->addElement(new XoopsFormHidden('op', 'savepage'));
         // Кнопка
-
-        // Кнопка
         $button_tray = new XoopsFormElementTray('', '');
         $button_tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
-        //if ( ! $this->isNew() ) $button_tray->addElement( new XoopsFormButton( '', 'save', _AM_INSTR_SAVEFORM, 'submit' ) );
         $save_btn = new XoopsFormButton('', 'cancel', _AM_INSTR_SAVEFORM);
         $save_btn->setExtra('onclick="instrSavePage();"');
         $button_tray->addElement($save_btn);
@@ -165,7 +162,7 @@ class InstructionPage extends XoopsObject
 
 class InstructionPageHandler extends XoopsPersistableObjectHandler
 {
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'instruction_page', 'InstructionPage', 'pageid', 'title');
     }
@@ -184,32 +181,32 @@ class InstructionPageHandler extends XoopsPersistableObjectHandler
             // Добавление страницы
             case 'add':
                 if ($uid && $status) {
-                    $user           = new xoopsUser($uid);
-                    $member_handler = &xoops_gethandler('member');
+                    $user          = new xoopsUser($uid);
+                    $memberHandler = xoops_getHandler('member');
                     // Добавялем +1 к комментам
-                    $member_handler->updateUserByField($user, 'posts', $user->getVar('posts') + 1);
+                    $memberHandler->updateUserByField($user, 'posts', $user->getVar('posts') + 1);
                 }
                 break;
             // Удаление страницы
             case 'delete':
                 if ($uid && $status) {
-                    $user           = new xoopsUser($uid);
-                    $member_handler = &xoops_gethandler('member');
+                    $user          = new xoopsUser($uid);
+                    $memberHandler = xoops_getHandler('member');
                     // Декримент комментов
                     //$user->setVar( 'posts', $user->getVar( 'posts' ) - 1 );
                     // Сохраняем
-                    $member_handler->updateUserByField($user, 'posts', $user->getVar('posts') - 1);
+                    $memberHandler->updateUserByField($user, 'posts', $user->getVar('posts') - 1);
                 }
                 break;
 
             case 'status':
                 if ($uid) {
-                    $user           = new xoopsUser($uid);
-                    $member_handler = &xoops_gethandler('member');
+                    $user          = new xoopsUser($uid);
+                    $memberHandler = xoops_getHandler('member');
                     if ($status) {
-                        $member_handler->updateUserByField($user, 'posts', $user->getVar('posts') - 1);
+                        $memberHandler->updateUserByField($user, 'posts', $user->getVar('posts') - 1);
                     } else {
-                        $member_handler->updateUserByField($user, 'posts', $user->getVar('posts') + 1);
+                        $memberHandler->updateUserByField($user, 'posts', $user->getVar('posts') + 1);
                     }
                 }
                 break;

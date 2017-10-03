@@ -60,18 +60,18 @@ class InstructionInstruction extends XoopsObject
         // Название инструкции
         $form->addElement(new XoopsFormText(_AM_INSTRUCTION_TITLEC, 'title', 50, 255, $this->getVar('title')), true);
         // Категория
-        $instructioncat_Handler =& xoops_getModuleHandler('category', 'instruction');
-        $criteria               = new CriteriaCompo();
+        $instructioncatHandler = xoops_getModuleHandler('category', 'instruction');
+        $criteria              = new CriteriaCompo();
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
-        $instructioncat_arr = $instructioncat_Handler->getall($criteria);
+        $instructioncat_arr = $instructioncatHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('/class/tree.php');
         $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
         $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
         // Описание
-        $form->addElement(instr_getWysiwygForm(_AM_INSTRUCTION_DESCRIPTIONC, 'description', $this->getVar('description', 'e')), true);
+        $form->addElement(InstructionUtility::getWysiwygForm(_AM_INSTRUCTION_DESCRIPTIONC, 'description', $this->getVar('description', 'e')), true);
         // Статус
         $form->addElement(new XoopsFormRadioYN(_AM_INSTRUCTION_ACTIVEC, 'status', $this->getVar('status')), false);
 
@@ -109,7 +109,7 @@ class InstructionInstruction extends XoopsObject
 
 class InstructionInstructionHandler extends XoopsPersistableObjectHandler
 {
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'instruction_instr', 'InstructionInstruction', 'instrid', 'title');
     }
@@ -128,13 +128,13 @@ class InstructionInstructionHandler extends XoopsPersistableObjectHandler
     // Обновление числа страниц
     public function updatePages($instrid = 0)
     {
-        $inspage_Handler =& xoops_getModuleHandler('page', 'instruction');
+        $inspageHandler = xoops_getModuleHandler('page', 'instruction');
         // Находим число активных страниц
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('instrid', $instrid, '='));
         $criteria->add(new Criteria('status ', '0', '>'));
         // Число страниц
-        $pages = $inspage_Handler->getCount($criteria);
+        $pages = $inspageHandler->getCount($criteria);
         unset($criteria);
 
         // Сохраняем это число

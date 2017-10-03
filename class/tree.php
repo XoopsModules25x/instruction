@@ -2,7 +2,7 @@
 // Автор: andrey3761
 // Вывод древообразного списка страниц в панели администрирования
 
-//defined('XOOPS_ROOT_PATH') or die('Restricted access');
+//defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 define('INST_DIRNAME', basename(dirname(__DIR__)));
 
 include_once $GLOBALS['xoops']->path('/include/common.php');
@@ -26,18 +26,18 @@ class InstructionTree extends XoopsObjectTree
             $instrid = $objInsinstr->getVar('instrid');
 
             // ID страницы
-            $pageid = $this->_tree[$key]['obj']->getVar('pageid');
+            $pageid = $this->tree[$key]['obj']->getVar('pageid');
             // Название страницы
-            $pagetitle = $this->_tree[$key]['obj']->getVar('title');
+            $pagetitle = $this->tree[$key]['obj']->getVar('title');
             // Вес
-            $pageweight = $this->_tree[$key]['obj']->getVar('weight');
+            $pageweight = $this->tree[$key]['obj']->getVar('weight');
             // Статус
-            $pagestatus = $this->_tree[$key]['obj']->getVar('status');
+            $pagestatus = $this->tree[$key]['obj']->getVar('status');
             // Тип страницы
-            $pagetype = $this->_tree[$key]['obj']->getVar('type');
+            $pagetype = $this->tree[$key]['obj']->getVar('type');
 
             // Дочернии страницы
-            $page_childs =& $this->getAllChild($pageid);
+            $page_childs = $this->getAllChild($pageid);
             // Число дочерних страниц
             $num_childs = count($page_childs);
 
@@ -78,8 +78,8 @@ class InstructionTree extends XoopsObjectTree
             $prefix_curr .= $prefix_orig;
         }
 
-        if (isset($this->_tree[$key]['child']) && !empty($this->_tree[$key]['child'])) {
-            foreach ($this->_tree[$key]['child'] as $childkey) {
+        if (isset($this->tree[$key]['child']) && !empty($this->tree[$key]['child'])) {
+            foreach ($this->tree[$key]['child'] as $childkey) {
                 $this->_makePagesAdminOptions($childkey, $ret, $prefix_orig, $objInsinstr, $class, $prefix_curr);
             }
         }
@@ -127,16 +127,16 @@ class InstructionTree extends XoopsObjectTree
             $class = ('even' == $class) ? 'odd' : 'even';
 
             // ID категории
-            $catid = $this->_tree[$key]['obj']->getVar('cid');
+            $catid = $this->tree[$key]['obj']->getVar('cid');
             // Название категории
-            $cattitle = $this->_tree[$key]['obj']->getVar('title');
+            $cattitle = $this->tree[$key]['obj']->getVar('title');
             // Вес
-            $catweight = $this->_tree[$key]['obj']->getVar('weight');
+            $catweight = $this->tree[$key]['obj']->getVar('weight');
             // Статус
-            $pagestatus = $this->_tree[$key]['obj']->getVar('status');
+            $pagestatus = $this->tree[$key]['obj']->getVar('status');
 
             // Дочернии категории
-            $cat_childs =& $this->getAllChild($catid);
+            $cat_childs = $this->getAllChild($catid);
             // Число дочерних категорий
             $num_childs = count($cat_childs);
             // Число инструкций
@@ -172,8 +172,8 @@ class InstructionTree extends XoopsObjectTree
             $prefix_curr .= $prefix_orig;
         }
 
-        if (isset($this->_tree[$key]['child']) && !empty($this->_tree[$key]['child'])) {
-            foreach ($this->_tree[$key]['child'] as $childkey) {
+        if (isset($this->tree[$key]['child']) && !empty($this->tree[$key]['child'])) {
+            foreach ($this->tree[$key]['child'] as $childkey) {
                 $this->_makeCatsAdminOptions($childkey, $ret, $prefix_orig, $cidinstrids, $class, $prefix_curr);
             }
         }
@@ -213,14 +213,14 @@ class InstructionTree extends XoopsObjectTree
         if ($key > 0) {
 
             // ID страницы
-            $pageid = $this->_tree[$key]['obj']->getVar('pageid');
+            $pageid = $this->tree[$key]['obj']->getVar('pageid');
             // Название страницы
-            $pagetitle = $this->_tree[$key]['obj']->getVar('title');
+            $pagetitle = $this->tree[$key]['obj']->getVar('title');
             // Тип страницы
-            $pagetype = $this->_tree[$key]['obj']->getVar('type');
+            $pagetype = $this->tree[$key]['obj']->getVar('type');
 
             // Дочернии категории
-            $page_childs =& $this->getAllChild($pageid);
+            $page_childs = $this->getAllChild($pageid);
             // Число дочерних страниц
             $num_childs = count($page_childs);
 
@@ -289,8 +289,8 @@ class InstructionTree extends XoopsObjectTree
         }
 
         // Рекурсия
-        if (isset($this->_tree[$key]['child']) && !empty($this->_tree[$key]['child'])) {
-            foreach ($this->_tree[$key]['child'] as $childkey) {
+        if (isset($this->tree[$key]['child']) && !empty($this->tree[$key]['child'])) {
+            foreach ($this->tree[$key]['child'] as $childkey) {
                 $this->_makePagesUserTree($childkey, $ret, $currpageid, $lastpageids, $level);
             }
         }
@@ -316,11 +316,11 @@ class InstructionTree extends XoopsObjectTree
 
         if ($key > 0) {
             // ID страницы
-            $pageid = $this->_tree[$key]['obj']->getVar('pageid');
+            $pageid = $this->tree[$key]['obj']->getVar('pageid');
             // Название страницы
-            $pagetitle = $this->_tree[$key]['obj']->getVar('title');
+            $pagetitle = $this->tree[$key]['obj']->getVar('title');
             // Тип страницы
-            $pagetype = $this->_tree[$key]['obj']->getVar('type');
+            $pagetype = $this->tree[$key]['obj']->getVar('type');
 
             // Если мы передали ID текущей страницы, то находить предыдудую и следующую страницы
             // Не находить предыдущие и следующие для "Пустой страницы"
@@ -350,8 +350,8 @@ class InstructionTree extends XoopsObjectTree
         }
 
         // Рекурсия
-        if (isset($this->_tree[$key]['child']) && !empty($this->_tree[$key]['child'])) {
-            foreach ($this->_tree[$key]['child'] as $childkey) {
+        if (isset($this->tree[$key]['child']) && !empty($this->tree[$key]['child'])) {
+            foreach ($this->tree[$key]['child'] as $childkey) {
                 $this->_makePagesUserCalc($childkey, $currpageid, $prevpages, $nextpages, $lastpageids, $level);
             }
         }

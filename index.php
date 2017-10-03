@@ -8,14 +8,14 @@ require_once __DIR__ . '/header.php';
 include_once $GLOBALS['xoops']->path('class/pagenav.php');
 
 // Объявляем объекты
-$insinstr_Handler = xoops_getModuleHandler('instruction', 'instruction');
-$inscat_Handler   = xoops_getModuleHandler('category', 'instruction');
-//$inspage_Handler =& xoops_getModuleHandler( 'page', 'instruction' );
+$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
+$inscatHandler   = xoops_getModuleHandler('category', 'instruction');
+//$inspageHandler = xoops_getModuleHandler( 'page', 'instruction' );
 
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name();
 // Шаблон
-$xoopsOption['template_main'] = $moduleDirName . '_index.tpl';
+$GLOBALS['xoopsOption']['template_main'] = $moduleDirName . '_index.tpl';
 // Заголовок
 include_once $GLOBALS['xoops']->path('header.php');
 // Стили
@@ -27,18 +27,18 @@ $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 //
 $limit = xoops_getModuleOption('perpagemain', 'instruction');
 // Права на просмотр
-$categories = instr_MygetItemIds();
+$categories = InstructionUtility::getItemIds();
 // Права на добавление
-$cat_submit = instr_MygetItemIds($moduleDirName . '_submit');
+$cat_submit = InstructionUtility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
-$cat_edit = instr_MygetItemIds($moduleDirName . '_edit');
+$cat_edit = InstructionUtility::getItemIds($moduleDirName . '_edit');
 
 // Находим список категорий
 $criteria = new CriteriaCompo();
 $criteria->add(new Criteria('cid', '( ' . implode(', ', $categories) . ' )', 'IN'));
 $criteria->setSort('weight ASC, title');
 $criteria->setOrder('ASC');
-$inscat_arr = $inscat_Handler->getall($criteria);
+$inscat_arr = $inscatHandler->getall($criteria);
 unset($criteria);
 $mytree = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
 // Выводим в шаблон
@@ -62,7 +62,7 @@ if ($cid) {
 }
 
 // Число инструкций, удовлетворяющих данному условию
-$numrows = $insinstr_Handler->getCount($criteria);
+$numrows = $insinstrHandler->getCount($criteria);
 // Число выборки
 $criteria->setLimit($limit);
 // Начинасть с данного элемента
@@ -72,7 +72,7 @@ $criteria->setSort('instrid');
 // Порядок сортировки
 $criteria->setOrder('DESC');
 // Находим все инструкции
-$instr_arr = $insinstr_Handler->getall($criteria);
+$instr_arr = $insinstrHandler->getall($criteria);
 // Если записей больше чем $limit, то выводим пагинатор
 if ($numrows > $limit) {
     $pagenav = new XoopsPageNav($numrows, $limit, $start, 'start', 'cid=' . $cid);
@@ -104,7 +104,7 @@ if ($numrows > 0) {
         $insinstr_pages = $instr_arr[$i]->getVar('pages');
         // Категория
         $insinstr_cid = $instr_arr[$i]->getVar('cid');
-        $insinstr_cat =& $inscat_Handler->get($insinstr_cid);
+        $insinstr_cat = $inscatHandler->get($insinstr_cid);
         // Права на добавление
         $perm_submit = in_array($insinstr_cid, $cat_submit) ? true : false;
         // Права на редактирование

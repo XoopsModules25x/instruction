@@ -16,9 +16,9 @@
 
     <h4 class="odd">OPERATING INSTRUCTIONS</h4>
     <p class="even">
-    This module and its operations are very simple.<br><br>
-    Detailed instructions on configuring the access rights for user groups are available in the
-    <a target="_blank" href="https://www.gitbook.com/book/xoops/xoops-operations-guide/details">XOOPS Operations Manual</a><br><br>
+        This module and its operations are very simple.<br><br>
+        Detailed instructions on configuring the access rights for user groups are available in the
+        <a target="_blank" href="https://www.gitbook.com/book/xoops/xoops-operations-guide/details">XOOPS Operations Manual</a><br><br>
     </p>
 
 

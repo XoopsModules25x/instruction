@@ -14,7 +14,7 @@
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 //require_once  __DIR__ . '/../../../mainfile.php';
@@ -36,7 +36,7 @@ if (!defined($capsDirName . '_DIRNAME')) {
 
 //Configurator
 return (object)[
-    'name'          => strtoupper($moduleDirName) .' Module Configurator',
+    'name'          => strtoupper($moduleDirName) . ' Module Configurator',
     'paths'         => [
         'dirname'    => $moduleDirName,
         'admin'      => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',

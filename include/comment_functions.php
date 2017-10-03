@@ -5,7 +5,7 @@
 // Функция вызывается при добавлении комментария
 function instruction_com_update($pageid, $total_num)
 {
-    $db  =& XoopsDatabaseFactory::getDatabaseConnection();
+    $db  = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = 'UPDATE ' . $db->prefix('instruction_page') . ' SET comments = ' . $total_num . ' WHERE pageid  = ' . $pageid;
     $db->query($sql);
 }
