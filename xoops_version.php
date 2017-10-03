@@ -10,13 +10,13 @@ $moduleDirName = basename(__DIR__);
 $xoops_url     = parse_url(XOOPS_URL);
 
 $modversion = [
-    'version'             => 1.06,
-    'module_status'       => 'Beta 3',
-    'release_date'        => '2017/05/11',
+    'version'             => 1.07,
+    'module_status'       => 'RC1',
+    'release_date'        => '2017/10/04',
     'name'                => _MI_INSTRUCTION_NAME,
     'description'         => _MI_INSTRUCTION_DESC,
     'credits'             => 'radio-hobby.org, www.shmel.org',
-    'author'              => 'andrey3761, aerograf',
+    'author'              => 'andrey3761, Mamba, Aerograf',
     'nickname'            => '',
     'help'                => 'page=help',
     'license'             => 'GNU GPL 2.0',
