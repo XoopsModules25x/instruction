@@ -1,6 +1,6 @@
 <{$insNavigation}>
 
 <{if $insErrorMsg}>
-  <{$insErrorMsg}>
+    <{$insErrorMsg}>
 <{/if}>
 <{$insFormCat}>
