@@ -7,7 +7,7 @@ define('INST_DIRNAME', basename(dirname(__DIR__)));
 
 include_once $GLOBALS['xoops']->path('include/common.php');
 // Подключаем трей
-//include_once $GLOBALS['xoops']->path('modules/class/tree.php');
+include_once $GLOBALS['xoops']->path('class/tree.php');
 
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree
