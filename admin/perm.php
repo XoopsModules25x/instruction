@@ -2,7 +2,7 @@
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
-include __DIR__ . '/../class/utility.php';
+//include __DIR__ . '/../class/utility.php';
 
 // Подключаем форму прав
 include_once $GLOBALS['xoops']->path('class/xoopsform/grouppermform.php');

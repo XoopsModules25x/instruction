@@ -83,7 +83,18 @@ class InstructionPage extends XoopsObject
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('class/tree.php');
         $mytree = new XoopsObjectTree($inspage_arr, 'pageid', 'pid');
-        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+
+//        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+
+
+
+        if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+            $mytree_select = $mytree->makeSelectElement('pid', 'title', '--', $this->getVar('pid'), true, 0, '', _AM_INSTRUCTION_PPAGEC);
+            $form->addElement($mytree_select);
+        } else {
+            $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_PPAGEC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
+        }
+
 
         // Вес
         $form->addElement(new XoopsFormText(_AM_INSTRUCTION_WEIGHTC, 'weight', 5, 5, $this->getVar('weight')), true);

@@ -69,7 +69,19 @@ class InstructionInstruction extends XoopsObject
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('class/tree.php');
         $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
-        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
+
+//        $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
+
+
+
+        if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+            $mytree_select = $mytree->makeSelectElement('cid', 'title', '--', $this->getVar('cid'), true, 0, '', _AM_INSTRUCTION_CATC);
+            $form->addElement($mytree_select);
+        } else {
+            $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
+        }
+
+
         // Описание
         $form->addElement(InstructionUtility::getWysiwygForm(_AM_INSTRUCTION_DESCRIPTIONC, 'description', $this->getVar('description', 'e')), true);
         // Статус

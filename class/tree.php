@@ -12,9 +12,9 @@ include_once $GLOBALS['xoops']->path('class/tree.php');
 // Наследник класса XoopsObjectTree
 class InstructionTree extends XoopsObjectTree
 {
-    public function __construct()
-    {
-    }
+//    public function __construct()
+//    {
+//    }
 
     public function _makePagesAdminOptions($key, &$ret, $prefix_orig, $objInsinstr, $class = 'odd', $prefix_curr = '')
     {

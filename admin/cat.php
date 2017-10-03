@@ -30,8 +30,8 @@ switch ($op) {
     case 'main':
 
         // Подключаем трей
-        $moduleDirName = dirname(__DIR__);
-        include_once $moduleDirName . '/class/tree.php';
+
+        include_once __DIR__  . '/../class/tree.php';
         //include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
 
         // Заголовок админки
