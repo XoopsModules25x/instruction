@@ -131,3 +131,11 @@ define('_AM_INSTRUCTION_TOTAL', 'Всего в модуле');
 define('_AM_INSTRUCTION_TOTAL_CAT', 'Всего категорий');
 define('_AM_INSTRUCTION_TOTAL_INSTR', 'Всего инструкций');
 define('_AM_INSTRUCTION_TOTAL_PAGE', 'Всего страниц');
+
+define('_AM_INSTRUCTION_UPGRADEFAILED0', "Ошибка обновления - не удалось переименовать поле '%s'");
+define('_AM_INSTRUCTION_UPGRADEFAILED1', "Ошибка обновления - не удалось добавить новые поля");
+define('_AM_INSTRUCTION_UPGRADEFAILED2', "Ошибка обновления - не удалось переименовать таблицу '%s'");
+define('_AM_INSTRUCTION_ERROR_COLUMN', 'Не удалось создать столбец в базе данных : %s');
+define('_AM_INSTRUCTION_ERROR_BAD_XOOPS', 'Этот модуль требует XOOPS %s+ (%s установлено)');
+define('_AM_INSTRUCTION_ERROR_BAD_PHP', 'Для этого модуля требуется версия PHP %s+ (%s установлено)');
+define('_AM_INSTRUCTION_ERROR_TAG_REMOVAL', 'Не удалось удалить теги из модуля тегов');
