@@ -63,7 +63,7 @@ trait VersionChecks
         }
 
         return $success;
-    }
+    }   
 
     /**
      *
@@ -85,8 +85,8 @@ trait VersionChecks
                 $module->setErrors(sprintf(_AM_INSTRUCTION_ERROR_BAD_PHP, $reqVer, $verNum));
                 $success = false;
             }
-        }
+        } 
 
         return $success;
-    }
+    } 
 }
