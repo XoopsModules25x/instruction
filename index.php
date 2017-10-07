@@ -50,7 +50,11 @@ if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
 }
 $module = $moduleHelper->getModule();
 
-if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+//$instruction = Instruction::getInstance();
+$module1 = $instruction->getModule();
+
+
+if (InstructionUtility::checkVerXoops($module1, '2.5.9')) {
     $cat_select = $mytree->makeSelectElement('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'", '');
     $GLOBALS['xoopsTpl']->assign('insFormSelCat', $cat_select->render());
 } else {

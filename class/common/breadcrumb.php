@@ -1,4 +1,4 @@
-<?php
+<?php namespace Xoopsmodules\instruction\common;
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -9,7 +9,7 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 /**
- * PedigreeBreadcrumb Class
+ * Breadcrumb Class
  *
  * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
@@ -30,7 +30,7 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 /**
  * Class PedigreeBreadcrumb
  */
-class PedigreeBreadcrumb
+class Breadcrumb
 {
     public $dirname;
     private $bread = [];

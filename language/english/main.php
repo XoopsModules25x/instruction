@@ -37,20 +37,20 @@ define('_MD_INSTRUCTION_PAGEMODIFY', 'Page edited successfully.');
 define('_MD_INSTRUCTION_PAGEADDED', 'New page submitted successfully.');
 
 // Форма
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Page submission form');
-define('_AM_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
+define('_MD_INSTRUCTION_FORMADDPAGE', 'Page submission form');
+define('_MD_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
 
-define('_AM_INSTRUCTION_TITLEC', 'Title:');
-define('_AM_INSTRUCTION_PPAGEC', 'Parent page:');
-define('_AM_INSTRUCTION_WEIGHTC', 'Weight:');
-define('_AM_INSTRUCTION_HOMETEXTC', 'Main text:');
-define('_AM_INSTRUCTION_FOOTNOTEC', 'Reference:');
-define('_AM_INSTRUCTION_ACTIVEC', 'Active:');
-define('_AM_INSTRUCTION_METAKEYWORDSC', 'Meta keywords:');
-define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Meta description:');
+define('_MD_INSTRUCTION_TITLEC', 'Title:');
+define('_MD_INSTRUCTION_PPAGEC', 'Parent page:');
+define('_MD_INSTRUCTION_WEIGHTC', 'Weight:');
+define('_MD_INSTRUCTION_HOMETEXTC', 'Main text:');
+define('_MD_INSTRUCTION_FOOTNOTEC', 'Reference:');
+define('_MD_INSTRUCTION_ACTIVEC', 'Active:');
+define('_MD_INSTRUCTION_METAKEYWORDSC', 'Meta keywords:');
+define('_MD_INSTRUCTION_METADESCRIPTIONC', 'Meta description:');
 
 // Описание элементов форм
-define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Reference is in the bottom of a page.<br>Should be divided with "|".');
+define('_MD_INSTRUCTION_FOOTNOTE_DSC', 'Reference is in the bottom of a page.<br>Should be divided with "|".');
 
 // Ошибки
 define('_MD_INSTRUCTION_ERR_INSTR', 'Error: You have not chosen a category to submit to!');

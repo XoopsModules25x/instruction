@@ -17,24 +17,24 @@ define('_AM_INSTRUCTION_FORMDELINSTR', 'Вы действительно хоти
 define('_AM_INSTR_TRY_AGAIN', 'Попробуйте ещё раз');
 
 // Элементы форм
-//define('_AM_INSTRUCTION_TITLEC', 'Название:');
+define('_AM_INSTRUCTION_TITLEC', 'Название:');
 define('_AM_INSTRUCTION_DSCC', 'Описание:');
 define('_AM_INSTRUCTION_PCATC', 'Родительская категория:');
-//define('_AM_INSTRUCTION_PPAGEC', 'Родительская страница:');
-//define('_AM_INSTRUCTION_WEIGHTC', 'Вес:');
+define('_AM_INSTRUCTION_PPAGEC', 'Родительская страница:');
+define('_AM_INSTRUCTION_WEIGHTC', 'Вес:');
 define('_AM_INSTRUCTION_CATC', 'Категория:');
-//define('_AM_INSTRUCTION_ACTIVEC', 'Активен:');
-//define('_AM_INSTRUCTION_HOMETEXTC', 'Основной текст:');
-//define('_AM_INSTRUCTION_FOOTNOTEC', 'Сноска:');
+define('_AM_INSTRUCTION_ACTIVEC', 'Активен:');
+define('_AM_INSTRUCTION_HOMETEXTC', 'Основной текст:');
+define('_AM_INSTRUCTION_FOOTNOTEC', 'Сноска:');
 define('_AM_INSTRUCTION_DESCRIPTIONC', 'Описание:');
-//define('_AM_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
-//define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
-//define('_AM_INSTR_DOSMILEY', 'Разрешить смайлики');
-//define('_AM_INSTR_DOHTML', 'Разрешить HTML тэги');
-//define('_AM_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
-//define('_AM_INSTR_DOXCODE', 'Разрешить BB-коды');
-//define('_AM_INSTR_PAGETYPEC', 'Тип страницы:');
-//define('_AM_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
+define('_AM_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
+define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
+define('_AM_INSTR_DOSMILEY', 'Разрешить смайлики');
+define('_AM_INSTR_DOHTML', 'Разрешить HTML тэги');
+define('_AM_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
+define('_AM_INSTR_DOXCODE', 'Разрешить BB-коды');
+define('_AM_INSTR_PAGETYPEC', 'Тип страницы:');
+define('_AM_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
 
 // Описание элементов форм
 //define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
