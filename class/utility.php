@@ -1,6 +1,7 @@
 <?php
 
 use Xmf\Request;
+use Xoopsmodules\instruction\common;
 
 require_once __DIR__ . '/common/traitversionchecks.php';
 require_once __DIR__ . '/common/traitserverstats.php';
@@ -13,11 +14,11 @@ require_once __DIR__ . '/../include/common.php';
  */
 class InstructionUtility
 {
-    use VersionChecks; //checkVerXoops, checkVerPhp Traits
+    use common\VersionChecks; //checkVerXoops, checkVerPhp Traits
 
-    use ServerStats; // getServerStats Trait
+    use common\ServerStats; // getServerStats Trait
 
-    use FilesManagement; // Files Management Trait
+    use common\FilesManagement; // Files Management Trait
 
     // Права
     public static function getItemIds($permtype = 'instruction_view')

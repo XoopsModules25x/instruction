@@ -39,9 +39,10 @@ require_once INSTRUCTION_ROOT_PATH . '/class/utility.php';
 
 require_once INSTRUCTION_ROOT_PATH . '/class/helper.php';
 
-xoops_load('constants', INSTRUCTION_DIRNAME);
+//xoops_load('constants', INSTRUCTION_DIRNAME);
 xoops_load('utility', INSTRUCTION_DIRNAME);
 
+/** @var \Xmf\Module\Helper $instruction */
 $instruction = Instruction::getInstance();
 $instruction->loadLanguage('common');
 
