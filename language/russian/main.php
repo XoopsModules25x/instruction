@@ -37,31 +37,31 @@ define('_MD_INSTRUCTION_PAGEMODIFY', 'Страница успешно отред
 define('_MD_INSTRUCTION_PAGEADDED', 'Новая страница успешно добавленна.');
 
 // Форма
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
-define('_AM_INSTRUCTION_FORMEDITPAGE', 'Форма редактирования страницы');
+define('_MD_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
+define('_MD_INSTRUCTION_FORMEDITPAGE', 'Форма редактирования страницы');
 
-define('_AM_INSTRUCTION_TITLEC', 'Название:');
-define('_AM_INSTRUCTION_PPAGEC', 'Родительская страница:');
-define('_AM_INSTRUCTION_WEIGHTC', 'Вес:');
-define('_AM_INSTRUCTION_HOMETEXTC', 'Основной текст:');
-define('_AM_INSTRUCTION_FOOTNOTEC', 'Сноска:');
-define('_AM_INSTRUCTION_ACTIVEC', 'Активен:');
-define('_AM_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
-define('_AM_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
-define('_AM_INSTR_DOSMILEY', 'Разрешить смайлики');
-define('_AM_INSTR_DOHTML', 'Разрешить HTML тэги');
-define('_AM_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
-define('_AM_INSTR_DOXCODE', 'Разрешить BB-коды');
-define('_AM_INSTR_PAGETYPEC', 'Тип страницы:');
-define('_AM_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
-define('_AM_INSTR_SAVEFORM', 'Сохранить');
+define('_MD_INSTRUCTION_TITLEC', 'Название:');
+define('_MD_INSTRUCTION_PPAGEC', 'Родительская страница:');
+define('_MD_INSTRUCTION_WEIGHTC', 'Вес:');
+define('_MD_INSTRUCTION_HOMETEXTC', 'Основной текст:');
+define('_MD_INSTRUCTION_FOOTNOTEC', 'Сноска:');
+define('_MD_INSTRUCTION_ACTIVEC', 'Активен:');
+define('_MD_INSTRUCTION_METAKEYWORDSC', 'Мета-теги ключевых слов:');
+define('_MD_INSTRUCTION_METADESCRIPTIONC', 'Мета-теги описания:');
+define('_MD_INSTR_DOSMILEY', 'Разрешить смайлики');
+define('_MD_INSTR_DOHTML', 'Разрешить HTML тэги');
+define('_MD_INSTR_DOAUTOWRAP', 'Автоматически переносить строки');
+define('_MD_INSTR_DOXCODE', 'Разрешить BB-коды');
+define('_MD_INSTR_PAGETYPEC', 'Тип страницы:');
+define('_MD_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница просто отображается в дереве инструкции, но ссылки на неё нет.<br>Страница - Обычная страница.');
+define('_MD_INSTR_SAVEFORM', 'Сохранить');
 
 // Типы страницы
-define('_AM_INSTR_PT_0', 'Лист дерева');
-define('_AM_INSTR_PT_1', 'Страница');
+define('_MD_INSTR_PT_0', 'Лист дерева');
+define('_MD_INSTR_PT_1', 'Страница');
 
 // Описание элементов форм
-define('_AM_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
+define('_MD_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
 
 // Ошибки
 define('_MD_INSTRUCTION_ERR_INSTR', 'Ошибка: Вы не выбрали в какую инструкцию добавлять!');
