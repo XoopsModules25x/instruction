@@ -12,7 +12,7 @@ $adminObject = \Xmf\Module\Admin::getInstance();
 xoops_cp_header();
 $adminObject->displayNavigation(basename(__FILE__));
 
-$permission                = InstructionUtility::cleanVars($_REQUEST, 'permission', 1, 'int');
+$permission                = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'permission', 1, 'int');
 $selected                  = ['', '', ''];
 $selected[$permission - 1] = ' selected';
 
@@ -57,7 +57,7 @@ switch ($permission) {
 }
 
 // Права
-$permissionsForm = new XoopsGroupPermForm($formTitle, $moduleId, $permissionName, $permissionDescription, 'admin/perm.php?permission=' . $permission);
+$permissionsForm = new \XoopsGroupPermForm($formTitle, $moduleId, $permissionName, $permissionDescription, 'admin/perm.php?permission=' . $permission);
 
 $sql    = 'SELECT cid, pid, title FROM ' . $xoopsDB->prefix('instruction_cat') . ' ORDER BY title';
 $result = $xoopsDB->query($sql);

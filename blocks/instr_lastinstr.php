@@ -1,19 +1,29 @@
 <?php
+
+use Xoopsmodules\instruction;
+
 // Блоки модуля инструкций
 // Блок последних инструкций
 
 // Последние инструкции
+/**
+ * @param array $options
+ * @return array
+ */
 function b_instr_lastinstr_show($options = [])
 {
 
     // Подключаем функции
-//    $moduleDirName = dirname(__DIR__);
+    //    $moduleDirName = dirname(__DIR__);
     $moduleDirName = basename(dirname(__DIR__));
-    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
+    //    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
+    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/include/common.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //
-    $insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
+    //mb    $instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+    $db                 = \XoopsDatabaseFactory::getDatabase();
+    $instructionHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
 
     // Добавляем стили
     //global $xoTheme;
@@ -26,7 +36,7 @@ function b_instr_lastinstr_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = InstructionUtility::getItemIds();
+    $cat_view = Xoopsmodules\instruction\Utility::getItemIds();
     // Массив выходных данных
     $block = [];
 
@@ -34,7 +44,7 @@ function b_instr_lastinstr_show($options = [])
     if (is_array($cat_view) && count($cat_view) > 0) {
 
         // Находим последние инструкции
-        $sql = "SELECT `instrid`, `cid`, `title`, `pages`, `dateupdated` FROM {$insinstrHandler->table} WHERE `cid` IN (" . implode(', ', $cat_view) . ') AND `status` > 0 ORDER BY `dateupdated` DESC';
+        $sql = "SELECT `instrid`, `cid`, `title`, `pages`, `dateupdated` FROM {$instructionHandler->table} WHERE `cid` IN (" . implode(', ', $cat_view) . ') AND `status` > 0 ORDER BY `dateupdated` DESC';
         // Лимит запроса
         $result = $GLOBALS['xoopsDB']->query($sql, $limit);
         // Перебираем все значения
@@ -59,6 +69,10 @@ function b_instr_lastinstr_show($options = [])
 }
 
 // Редактирование последних инструкций
+/**
+ * @param array $options
+ * @return string
+ */
 function b_instr_lastinstr_edit($options = [])
 {
     $form = '';

@@ -1,4 +1,5 @@
 <?php namespace Xoopsmodules\instruction\common;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -44,7 +45,7 @@ trait ServerStats
         $gdlib = function_exists('gd_info') ? '<span style="color: green;">' . constant('CO_' . $moduleDirNameUpper . '_GDON') . '</span>' : '<span style="color: red;">' . constant('CO_' . $moduleDirNameUpper . '_GDOFF') . '</span>';
         $html  .= '<li>' . constant('CO_' . $moduleDirNameUpper . '_GDLIBSTATUS') . $gdlib;
         if (function_exists('gd_info')) {
-            if ($gdlib = true === gd_info()) {
+            if ($gdlib = (true === gd_info())) {
                 $html .= '<li>' . constant('CO_' . $moduleDirNameUpper . '_GDLIBVERSION') . '<b>' . $gdlib['GD Version'] . '</b>';
             }
         }

@@ -1,6 +1,10 @@
 <?php
 // Плагин для модуля "tag"
 // Информация об теге
+/**
+ * @param $items
+ * @return bool
+ */
 function instruction_tag_iteminfo(&$items)
 {
     if (empty($items) || !is_array($items)) {
@@ -15,7 +19,7 @@ function instruction_tag_iteminfo(&$items)
     }
 
     $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
-    $items_obj   = $itemHandler->getObjects(new Criteria('instrid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
+    $items_obj   = $itemHandler->getObjects(new \Criteria('instrid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
@@ -36,13 +40,16 @@ function instruction_tag_iteminfo(&$items)
 }
 
 // Синхронизация тегов
+/**
+ * @param $mid
+ */
 function instruction_tag_synchronization($mid)
 {
     $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
     $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */
-    if (version_compare(mysqli_get_server_info(), '4.1.0', 'ge')):
+    if (version_compare($GLOBALS['xoopsDB']->getServerVersion(), '4.1.0', 'ge')):
         $sql = "    DELETE FROM {$linkHandler->table}"
                . '    WHERE '
                . "        tag_modid = {$mid}"
@@ -52,7 +59,8 @@ function instruction_tag_synchronization($mid)
                . "                FROM {$itemHandler->table} "
                . "                WHERE {$itemHandler->table}.status > 0"
                . '            ) '
-               . '        )'; else:
+               . '        )';
+    else:
         $sql = "    DELETE {$linkHandler->table} FROM {$linkHandler->table}"
                . "    LEFT JOIN {$itemHandler->table} AS aa ON {$linkHandler->table}.tag_itemid = aa.{$itemHandler->keyName} "
                . '    WHERE '

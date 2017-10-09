@@ -64,8 +64,7 @@ return (object)[
         '/templates/admin/'
 
     ],
-    'oldFiles'        => [
-//        '/sql/mysql.sql',
+    'oldFiles'        => [//        '/sql/mysql.sql',
     ],
     'oldFolders'      => [
         '/images',

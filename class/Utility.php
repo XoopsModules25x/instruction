@@ -1,18 +1,18 @@
-<?php
+<?php namespace Xoopsmodules\instruction;
 
 use Xmf\Request;
 use Xoopsmodules\instruction\common;
 
-require_once __DIR__ . '/common/traitversionchecks.php';
-require_once __DIR__ . '/common/traitserverstats.php';
-require_once __DIR__ . '/common/traitfilesmgmt.php';
+require_once __DIR__ . '/common/VersionChecks.php';
+require_once __DIR__ . '/common/ServerStats.php';
+require_once __DIR__ . '/common/FilesManagement.php';
 
 require_once __DIR__ . '/../include/common.php';
 
 /**
- * Class InstructionUtility
+ * Class Utility
  */
-class InstructionUtility
+class Utility
 {
     use common\VersionChecks; //checkVerXoops, checkVerPhp Traits
 
@@ -21,6 +21,10 @@ class InstructionUtility
     use common\FilesManagement; // Files Management Trait
 
     // Права
+    /**
+     * @param string $permtype
+     * @return mixed
+     */
     public static function getItemIds($permtype = 'instruction_view')
     {
         //global $xoopsUser;
@@ -40,6 +44,13 @@ class InstructionUtility
     }
 
     // Редактор
+
+    /**
+     * @param        $caption
+     * @param        $name
+     * @param string $value
+     * @return bool|\XoopsFormEditor
+     */
     public static function getWysiwygForm($caption, $name, $value = '')
     {
         $editor                   = false;
@@ -52,11 +63,19 @@ class InstructionUtility
         $editor_configs['height'] = '350px';
         $editor_configs['editor'] = strtolower(xoops_getModuleOption('form_options', 'instruction'));
 
-        $editor = new XoopsFormEditor($caption, $name, $editor_configs);
+        $editor = new \XoopsFormEditor($caption, $name, $editor_configs);
         return $editor;
     }
 
     // Получение значения переменной, переданной через GET или POST запрос
+
+    /**
+     * @param        $global
+     * @param        $key
+     * @param string $default
+     * @param string $type
+     * @return int|string
+     */
     public static function cleanVars(&$global, $key, $default = '', $type = 'int')
     {
         switch ($type) {

@@ -1,19 +1,19 @@
 <?php
 
+use Xoopsmodules\instruction;
+
 if (!isset($moduleDirName)) {
     $moduleDirName = basename(dirname(__DIR__));
 }
 
-if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-} else {
-    $moduleHelper = Xmf\Module\Helper::getHelper('system');
-}
+/** @var Xmf\Module\Helper $moduleHelper */
+$helper = Xoopsmodules\instruction\Helper::getInstance();
 
 $pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
-$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
-$moduleHelper->loadLanguage('modinfo');
-$moduleHelper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
+$helper->loadLanguage('admin');
 
 // Административное меню
 $adminmenu = [

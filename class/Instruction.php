@@ -1,4 +1,4 @@
-<?php
+<?php namespace Xoopsmodules\instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
@@ -6,7 +6,11 @@
 
 include_once $GLOBALS['xoops']->path('include/common.php');
 
-class InstructionInstruction extends XoopsObject
+/**
+ * Class Instruction
+ * @package Xoopsmodules\instruction
+ */
+class Instruction extends \XoopsObject
 {
     // constructor
     public function __construct()
@@ -29,11 +33,14 @@ class InstructionInstruction extends XoopsObject
         $this->initVar('dobr', XOBJ_DTYPE_INT, 0, false);
     }
 
-    public function InstructionInstruction()
+    public function Instruction()
     {
         $this->__construct();
     }
 
+    /**
+     * @return mixed
+     */
     public function get_new_enreg()
     {
         $new_enreg = $GLOBALS['xoopsDB']->getInsertId();
@@ -41,6 +48,11 @@ class InstructionInstruction extends XoopsObject
     }
 
     // Получаем форму
+
+    /**
+     * @param bool|null|string $action
+     * @return \XoopsThemeForm
+     */
     public function getForm($action = false)
     {
         global $xoopsDB, $xoopsModule, $xoopsModuleConfig;
@@ -55,46 +67,41 @@ class InstructionInstruction extends XoopsObject
         $title = $this->isNew() ? sprintf(_AM_INSTRUCTION_FORMADDINSTR) : sprintf(_AM_INSTRUCTION_FORMEDITINSTR);
 
         // Форма
-        $form = new XoopsThemeForm($title, 'forminstr', $action, 'post', true);
+        $form = new \XoopsThemeForm($title, 'forminstr', $action, 'post', true);
         //$form->setExtra('enctype="multipart/form-data"');
         // Название инструкции
-        $form->addElement(new XoopsFormText(_AM_INSTRUCTION_TITLEC, 'title', 50, 255, $this->getVar('title')), true);
+        $form->addElement(new \XoopsFormText(_AM_INSTRUCTION_TITLEC, 'title', 50, 255, $this->getVar('title')), true);
         // Категория
-        $instructioncatHandler = xoops_getModuleHandler('category', 'instruction');
-        $criteria              = new CriteriaCompo();
+        $categoryHandler = new CategoryHandler;
+        $criteria        = new \CriteriaCompo();
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
-        $instructioncat_arr = $instructioncatHandler->getall($criteria);
+        $instructioncat_arr = $categoryHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
         include_once $GLOBALS['xoops']->path('class/tree.php');
-        $mytree = new XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
+        $mytree = new \XoopsObjectTree($instructioncat_arr, 'cid', 'pid');
 
         // $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
-        $moduleDirName = basename(__DIR__);
-        if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-        } else {
-            $moduleHelper = Xmf\Module\Helper::getHelper('system');
-        }
-        $module = $moduleHelper->getModule();
+        $helper = Helper::getInstance();
+        $module = $helper->getModule();
 
-        if (InstructionUtility::checkVerXoops($module, '2.5.9')) {
+        if (Utility::checkVerXoops($module, '2.5.9')) {
             $mytree_select = $mytree->makeSelectElement('cid', 'title', '--', $this->getVar('cid'), true, 0, '', _AM_INSTRUCTION_CATC);
             $form->addElement($mytree_select);
         } else {
-            $form->addElement(new XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
+            $form->addElement(new \XoopsFormLabel(_AM_INSTRUCTION_CATC, $mytree->makeSelBox('cid', 'title', '--', $this->getVar('cid'), true)));
         }
 
         // Описание
-        $form->addElement(InstructionUtility::getWysiwygForm(_AM_INSTRUCTION_DESCRIPTIONC, 'description', $this->getVar('description', 'e')), true);
+        $form->addElement(Utility::getWysiwygForm(_AM_INSTRUCTION_DESCRIPTIONC, 'description', $this->getVar('description', 'e')), true);
         // Статус
-        $form->addElement(new XoopsFormRadioYN(_AM_INSTRUCTION_ACTIVEC, 'status', $this->getVar('status')), false);
+        $form->addElement(new \XoopsFormRadioYN(_AM_INSTRUCTION_ACTIVEC, 'status', $this->getVar('status')), false);
 
         // Теги
+        $dir_tag_ok = false;
         if (is_dir('../../tag') || is_dir('../tag')) {
             $dir_tag_ok = true;
-        } else {
-            $dir_tag_ok = false;
         }
         // Если влючена поддержка тегов и есть модуль tag
         if (xoops_getModuleOption('usetag', 'instruction') && $dir_tag_ok) {
@@ -102,59 +109,23 @@ class InstructionInstruction extends XoopsObject
             // Подключаем форму тегов
             include_once $GLOBALS['xoops']->path('modules/tag/include/formtag.php');
             // Добавляем элемент в форму
-            $form->addElement(new XoopsFormTag('tag', 60, 255, $itemIdForTag, 0));
+            $form->addElement(new \XoopsFormTag('tag', 60, 255, $itemIdForTag, 0));
         }
 
         // Мета-теги ключевых слов
-        $form->addElement(new XoopsFormText(_AM_INSTRUCTION_METAKEYWORDSC, 'metakeywords', 50, 255, $this->getVar('metakeywords')), false);
+        $form->addElement(new \XoopsFormText(_AM_INSTRUCTION_METAKEYWORDSC, 'metakeywords', 50, 255, $this->getVar('metakeywords')), false);
         // Мета-теги описания
-        $form->addElement(new XoopsFormText(_AM_INSTRUCTION_METADESCRIPTIONC, 'metadescription', 50, 255, $this->getVar('metadescription')), false);
+        $form->addElement(new \XoopsFormText(_AM_INSTRUCTION_METADESCRIPTIONC, 'metadescription', 50, 255, $this->getVar('metadescription')), false);
 
         // Если мы редактируем категорию
         if (!$this->isNew()) {
-            $form->addElement(new XoopsFormHidden('instrid', $this->getVar('instrid')));
+            $form->addElement(new \XoopsFormHidden('instrid', $this->getVar('instrid')));
         }
         //
-        $form->addElement(new XoopsFormHidden('op', 'saveinstr'));
+        $form->addElement(new \XoopsFormHidden('op', 'saveinstr'));
         // Кнопка
-        $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+        $form->addElement(new \XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         return $form;
     }
 }
 
-class InstructionInstructionHandler extends XoopsPersistableObjectHandler
-{
-    public function __construct($db)
-    {
-        parent::__construct($db, 'instruction_instr', 'InstructionInstruction', 'instrid', 'title');
-    }
-
-    // Обновление даты обновления инструкций
-    public function updateDateupdated($instrid = 0, $time = null)
-    {
-        // Если не передали время
-        $time = null === $time ? time() : (int)$time;
-        //
-        $sql = sprintf('UPDATE `%s` SET `dateupdated` = %u WHERE `instrid` = %u', $this->table, $time, (int)$instrid);
-        //
-        return $this->db->query($sql);
-    }
-
-    // Обновление числа страниц
-    public function updatePages($instrid = 0)
-    {
-        $inspageHandler = xoops_getModuleHandler('page', 'instruction');
-        // Находим число активных страниц
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('instrid', $instrid, '='));
-        $criteria->add(new Criteria('status ', '0', '>'));
-        // Число страниц
-        $pages = $inspageHandler->getCount($criteria);
-        unset($criteria);
-
-        // Сохраняем это число
-        $sql = sprintf('UPDATE `%s` SET `pages` = %u, `dateupdated` = %u WHERE `instrid` = %u', $this->table, $pages, time(), $instrid);
-        //
-        return $this->db->query($sql);
-    }
-}

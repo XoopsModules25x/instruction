@@ -1,23 +1,24 @@
 <?php
 
 use Xmf\Request;
+use Xoopsmodules\instruction;
 
 require_once __DIR__ . '/header.php';
 // Подключаем трей
 include_once __DIR__ . '/class/tree.php';
 
 // Объявляем объекты
-$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
-$inscatHandler   = xoops_getModuleHandler('category', 'instruction');
-$inspageHandler  = xoops_getModuleHandler('page', 'instruction');
+//$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
+//$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
 $instrid = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Существует ли такая инструкция
-$criteria = new CriteriaCompo();
-$criteria->add(new Criteria('instrid', $instrid));
-$criteria->add(new Criteria('status ', '0', '>'));
-if (0 == $insinstrHandler->getCount($criteria)) {
+$criteria = new \CriteriaCompo();
+$criteria->add(new \Criteria('instrid', $instrid));
+$criteria->add(new \Criteria('status ', '0', '>'));
+if (0 == $instructionHandler->getCount($criteria)) {
     redirect_header('index.php', 3, _MD_INSTRUCTION_INSTRNOTEXIST);
     exit();
 }
@@ -25,7 +26,7 @@ if (0 == $insinstrHandler->getCount($criteria)) {
 unset($criteria);
 
 // Находим данные об инструкции
-$objInsinstr = $insinstrHandler->get($instrid);
+$objInsinstr = $instructionHandler->get($instrid);
 
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name() . ' - ' . $objInsinstr->getVar('title');
@@ -39,7 +40,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/
 $xoTheme->addScript(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/js/tree.js');
 
 // Права на просмотр инструкции
-$categories = InstructionUtility::getItemIds();
+$categories = Xoopsmodules\instruction\Utility::getItemIds();
 if (!in_array($objInsinstr->getVar('cid'), $categories)) {
     redirect_header(XOOPS_URL . '/modules/' . $moduleDirName . '/', 3, _NOPERM);
     exit();
@@ -88,14 +89,14 @@ $xoTheme->addMeta('meta', 'keywords', $objInsinstr->getVar('metakeywords'));
 $xoTheme->addMeta('meta', 'description', $objInsinstr->getVar('metadescription'));
 
 // Находим данные об категории
-$objInscat = $inscatHandler->get($objInsinstr->getVar('cid'));
+$objInscat = $categoryHandler->get($objInsinstr->getVar('cid'));
 
 // Навигация
-$criteria = new CriteriaCompo();
+$criteria = new \CriteriaCompo();
 $criteria->setSort('weight ASC, title');
 $criteria->setOrder('ASC');
-$inscat_arr    = $inscatHandler->getall($criteria);
-$mytree        = new XoopsObjectTree($inscat_arr, 'cid', 'pid');
+$inscat_arr    = $categoryHandler->getall($criteria);
+$mytree        = new \XoopsObjectTree($inscat_arr, 'cid', 'pid');
 $nav_parent_id = $mytree->getAllParent($objInsinstr->getVar('cid'));
 $titre_page    = $nav_parent_id;
 $nav_parent_id = array_reverse($nav_parent_id);
@@ -110,15 +111,15 @@ $xoopsTpl->assign('insNav', $navigation);
 unset($criteria);
 
 // Список страниц в данной инструкции
-$criteria = new CriteriaCompo();
-$criteria->add(new Criteria('instrid', $instrid, '='));
-$criteria->add(new Criteria('status ', '0', '>'));
+$criteria = new \CriteriaCompo();
+$criteria->add(new \Criteria('instrid', $instrid, '='));
+$criteria->add(new \Criteria('status ', '0', '>'));
 $criteria->setSort('weight');
 $criteria->setOrder('ASC');
-$ins_page = $inspageHandler->getall($criteria);
+$ins_page = $pageHandler->getall($criteria);
 unset($criteria);
 // Инициализируем
-$instree = new InstructionTree($ins_page, 'pageid', 'pid');
+$instree = new Xoopsmodules\instruction\Tree($ins_page, 'pageid', 'pid');
 // Выводим список страниц в шаблон
 $GLOBALS['xoopsTpl']->assign('insListPage', $instree->makePagesUser());
 

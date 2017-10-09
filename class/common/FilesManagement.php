@@ -1,4 +1,5 @@
 <?php namespace Xoopsmodules\instruction\common;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -22,6 +23,7 @@ trait FilesManagement
      * @param string $folder The full path of the directory to check
      *
      * @return void
+     * @throws \RuntimeException
      */
     public static function createFolder($folder)
     {
@@ -33,7 +35,8 @@ trait FilesManagement
 
                 file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
             }
-        } catch (Exception $e) {
+        }
+        catch (\Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         }
     }
@@ -88,12 +91,12 @@ trait FilesManagement
 
         $success = true;
         // remove old files
-        $dirInfo = new SplFileInfo($src);
+        $dirInfo = new \SplFileInfo($src);
         // validate is a directory
         if ($dirInfo->isDir()) {
             $fileList = array_diff(scandir($src, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($fileList as $k => $v) {
-                $fileInfo = new SplFileInfo("{$src}/{$v}");
+                $fileInfo = new \SplFileInfo("{$src}/{$v}");
                 if ($fileInfo->isDir()) {
                     // recursively handle subdirectories
                     if (!$success = self::deleteDirectory($fileInfo->getRealPath())) {
@@ -142,7 +145,7 @@ trait FilesManagement
         $success = true;
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 $filename = $fObj->getPathname();
@@ -185,7 +188,7 @@ trait FilesManagement
         }
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 rename($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
@@ -228,7 +231,7 @@ trait FilesManagement
         }
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 copy($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());

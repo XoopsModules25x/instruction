@@ -1,13 +1,14 @@
 <?php
 
 use Xmf\Request;
+use Xoopsmodules\instruction;
 
 require_once __DIR__ . '/header.php';
 
 // Объявляем объекты
-$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
-//$inscatHandler = xoops_getModuleHandler( 'category', 'instruction' );
-$inspageHandler  = xoops_getModuleHandler('page', 'instruction');
+//$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$categoryHandler = xoops_getModuleHandler( 'category', 'instruction' );
+//$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
 //
 $uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
@@ -20,16 +21,16 @@ $instrid = isset($_POST['instrid']) ? (int)$_POST['instrid'] : $instrid;
 $pageid = isset($_GET['pageid']) ? (int)$_GET['pageid'] : 0;
 $pageid = isset($_POST['pageid']) ? (int)$_POST['pageid'] : $pageid;
 // ID категории
-$cid    = isset($_POST['cid']) ? (int)$_POST['cid'] : 0;
+$cid = isset($_POST['cid']) ? (int)$_POST['cid'] : 0;
 // Вес
 $weight = isset($_POST['weight']) ? (int)$_POST['weight'] : 0;
 //
-$pid    = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
+$pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
 
 // Права на добавление
-$cat_submit = InstructionUtility::getItemIds($moduleDirName . '_submit');
+$cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
-$cat_edit   = InstructionUtility::getItemIds($moduleDirName . '_edit');
+$cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
 
 $op = isset($_GET['op']) ? $_GET['op'] : '';
 $op = isset($_POST['op']) ? $_POST['op'] : $op;
@@ -48,11 +49,11 @@ switch ($op) {
         // Если мы редактируем страницу
         if ($pageid) {
             // Получаем объект страницы
-            $objInspage = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
             // ID инструкции
             $instrid = $objInspage->getVar('instrid');
             // Объект инструкции
-            $objInsinstr = $insinstrHandler->get($instrid);
+            $objInsinstr = $instructionHandler->get($instrid);
             // Можно ли редактировать инструкцию в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_edit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_EDITPAGE);
@@ -63,9 +64,9 @@ switch ($op) {
             // Если нельзя добавлять не в одну категорию
             //if( ! count( $cat_submit ) ) redirect_header( 'index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMIT_PAGE );
             // Создаём объект страницы
-            $objInspage = $inspageHandler->create();
+            $objInspage = $pageHandler->create();
             // Объект инструкции
-            $objInsinstr = $insinstrHandler->get($instrid);
+            $objInsinstr = $instructionHandler->get($instrid);
             // Можно ли добавлять инструкции в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_submit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMITPAGE);
@@ -79,9 +80,9 @@ switch ($op) {
         // Массив данных об инструкции
         $instrs = [];
         // ID инструкции
-        $instrs['instrid']     = $objInsinstr->getVar('instrid');
+        $instrs['instrid'] = $objInsinstr->getVar('instrid');
         // Название страницы
-        $instrs['title']       = $objInsinstr->getVar('title');
+        $instrs['title'] = $objInsinstr->getVar('title');
         // Описание
         $instrs['description'] = $objInsinstr->getVar('description');
 
@@ -111,17 +112,17 @@ switch ($op) {
 
         // Если мы редактируем
         if ($pageid) {
-            $objInspage  = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
             // Объект инструкции
-            $objInsinstr = $insinstrHandler->get($objInspage->getVar('instrid'));
+            $objInsinstr = $instructionHandler->get($objInspage->getVar('instrid'));
             // Можно ли редактировать инструкцию в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_edit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_EDITPAGE);
             }
         } elseif ($instrid) {
-            $objInspage  = $inspageHandler->create();
+            $objInspage = $pageHandler->create();
             // Объект инструкции
-            $objInsinstr = $insinstrHandler->get($instrid);
+            $objInsinstr = $instructionHandler->get($instrid);
             // Можно ли добавлять инструкции в данной категории
             if (!in_array($objInsinstr->getVar('cid'), $cat_submit)) {
                 redirect_header('index.php', 3, _MD_INSTRUCTION_NOPERM_SUBMITPAGE);
@@ -181,7 +182,7 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($inspageHandler->insert($objInspage)) {
+            if ($pageHandler->insert($objInspage)) {
                 // Если мы редактируем
                 if ($pageid) {
                     // Обновление даты
@@ -195,7 +196,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $inspageHandler->updateposts($uid, $_POST['status'], 'add');
+                    $pageHandler->updateposts($uid, $_POST['status'], 'add');
                     // Инкремент страниц и обновление даты
                     $sql = sprintf('UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u', $GLOBALS['xoopsDB']->prefix($moduleDirName . '_instr'), $time, $instrid);
                     $GLOBALS['xoopsDB']->query($sql);

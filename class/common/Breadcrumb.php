@@ -1,4 +1,5 @@
 <?php namespace Xoopsmodules\instruction\common;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -19,7 +20,7 @@
  * @version     $Id: breadcrumb.php 12865 2014-11-22 07:03:35Z beckmi $
  *
  * Example:
- * $breadcrumb = new PedigreeBreadcrumb();
+ * $breadcrumb = new Breadcrumb();
  * $breadcrumb->addLink( 'bread 1', 'index1.php' );
  * $breadcrumb->addLink( 'bread 2', '' );
  * $breadcrumb->addLink( 'bread 3', 'index3.php' );
@@ -32,7 +33,7 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
  */
 class Breadcrumb
 {
-    public $dirname;
+    public  $dirname;
     private $bread = [];
 
     /**
@@ -69,7 +70,7 @@ class Breadcrumb
         }
 
         require_once $GLOBALS['xoops']->path('class/template.php');
-        $breadcrumbTpl = new XoopsTpl();
+        $breadcrumbTpl = new \XoopsTpl();
         $breadcrumbTpl->assign('breadcrumb', $this->bread);
         $html = $breadcrumbTpl->fetch('db:' . $this->dirname . '_common_breadcrumb.tpl');
         unset($breadcrumbTpl);
