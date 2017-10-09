@@ -227,7 +227,7 @@ switch ($op) {
             // Вставляем данные в БД
             if ($instructionHandler->insert($objInsinstr)) {
                 // Получаем ID созданной записи
-                $instrid_new = $instrid ?: $objInsinstr->get_new_enreg();
+                $instrid_new = $instrid ?: $objInsinstr->getNewInstertId();
                 // Обновление даты в категории
                 $categoryHandler->updateDateupdated($cid, $time);
                 // Тэги

@@ -35,10 +35,10 @@ class Category extends \XoopsObject
     /**
      * @return mixed
      */
-    public function get_new_enreg()
+    public function getNewInstertId()
     {
-        $new_enreg = $GLOBALS['xoopsDB']->getInsertId();
-        return $new_enreg;
+        $newEnreg = $GLOBALS['xoopsDB']->getInsertId();
+        return $newEnreg;
     }
 
     // Получаем форму

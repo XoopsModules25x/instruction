@@ -33,18 +33,13 @@ class Instruction extends \XoopsObject
         $this->initVar('dobr', XOBJ_DTYPE_INT, 0, false);
     }
 
-    public function Instruction()
-    {
-        $this->__construct();
-    }
-
     /**
      * @return mixed
      */
-    public function get_new_enreg()
+    public function getNewInstertId()
     {
-        $new_enreg = $GLOBALS['xoopsDB']->getInsertId();
-        return $new_enreg;
+        $newEnreg = $GLOBALS['xoopsDB']->getInsertId();
+        return $newEnreg;
     }
 
     // Получаем форму

@@ -153,7 +153,7 @@ switch ($op) {
             // Вставляем данные в БД
             if ($pageHandler->insert($objInspage)) {
                 // Находим ID созданной записи
-                $pageid_new = $pageid ?: $objInspage->get_new_enreg();
+                $pageid_new = $pageid ?: $objInspage->getNewInstertId();
                 //
                 $ret['pageid'] = $pageid_new;
                 // Получаем ID инструкции

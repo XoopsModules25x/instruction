@@ -149,7 +149,7 @@ switch ($op) {
             if ($categoryHandler->insert($objInstructioncat)) {
 
                 // ID категории. Если редактируем - то не изменяется. Если создаём новую - то получаем ID созданной записи.
-                $new_cid = $cid ?: $objInstructioncat->get_new_enreg();
+                $new_cid = $cid ?: $objInstructioncat->getNewInstertId();
 
                 // ===============
                 // ==== Права ====
