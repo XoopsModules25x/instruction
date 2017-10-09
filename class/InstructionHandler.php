@@ -48,6 +48,7 @@ class InstructionHandler extends \XoopsPersistableObjectHandler
     public function updatePages($instrid = 0)
     {
         //        $pageHandler = xoops_getModuleHandler('page', 'instruction');
+        $pageHandler = new PageHandler;
         // Находим число активных страниц
         $criteria = new \CriteriaCompo();
         $criteria->add(new \Criteria('instrid', $instrid, '='));

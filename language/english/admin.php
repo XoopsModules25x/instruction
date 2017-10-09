@@ -131,11 +131,3 @@ define('_AM_INSTRUCTION_TOTAL', 'Total in the module');
 define('_AM_INSTRUCTION_TOTAL_CAT', 'Total Categories');
 define('_AM_INSTRUCTION_TOTAL_INSTR', 'Total Instructions');
 define('_AM_INSTRUCTION_TOTAL_PAGE', 'Total pages');
-
-define('_AM_INSTRUCTION_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
-define('_AM_INSTRUCTION_UPGRADEFAILED1', "Update failed - couldn't add new fields");
-define('_AM_INSTRUCTION_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
-define('_AM_INSTRUCTION_ERROR_COLUMN', 'Could not create column in database : %s');
-define('_AM_INSTRUCTION_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
-define('_AM_INSTRUCTION_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
-define('_AM_INSTRUCTION_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');

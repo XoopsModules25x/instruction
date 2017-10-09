@@ -5,7 +5,7 @@ use Xoopsmodules\instruction;
 
 require_once __DIR__ . '/header.php';
 // Подключаем трей
-include_once __DIR__ . '/class/tree.php';
+include_once __DIR__ . '/class/Tree.php';
 
 $groups       = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
 $gpermHandler = xoops_getHandler('groupperm');
