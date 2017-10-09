@@ -1,7 +1,14 @@
 <?php
+
+use Xoopsmodules\instruction;
+
 // Блоки модуля инструкций
 
 // Последние страницы
+/**
+ * @param array $options
+ * @return array
+ */
 function b_instr_lastpage_show($options = [])
 {
 
@@ -11,8 +18,12 @@ function b_instr_lastpage_show($options = [])
     //
     $myts = MyTextSanitizer::getInstance();
     //
-    $insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
-    $inspageHandler  = xoops_getModuleHandler('page', 'instruction');
+    //mb    $instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+    //mb    $pageHandler  = xoops_getModuleHandler('page', 'instruction');
+
+    $db                 = \XoopsDatabaseFactory::getDatabase();
+    $instructionHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
+    $pageHandler        = new \Xoopsmodules\instruction\PageHandler($db);
 
     // Добавляем стили
     //global $xoTheme;
@@ -25,7 +36,7 @@ function b_instr_lastpage_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = InstructionUtility::getItemIds();
+    $cat_view = Xoopsmodules\instruction\Utility::getItemIds();
     // Массив выходных данных
     $block = [];
 
@@ -33,7 +44,7 @@ function b_instr_lastpage_show($options = [])
     if (is_array($cat_view) && count($cat_view) > 0) {
 
         // Находим последние страницы
-        $sql = "SELECT p.pageid, p.instrid, p.title, p.dateupdated, i.title, i.cid FROM {$inspageHandler->table} p, {$insinstrHandler->table} i WHERE p.instrid = i.instrid AND i.cid IN (" . implode(', ', $cat_view) . ') AND p.status > 0 AND i.status > 0 ORDER BY p.dateupdated DESC';
+        $sql = "SELECT p.pageid, p.instrid, p.title, p.dateupdated, i.title, i.cid FROM {$pageHandler->table} p, {$instructionHandler->table} i WHERE p.instrid = i.instrid AND i.cid IN (" . implode(', ', $cat_view) . ') AND p.status > 0 AND i.status > 0 ORDER BY p.dateupdated DESC';
         // Лимит запроса
         $result = $GLOBALS['xoopsDB']->query($sql, $limit);
         // Перебираем все значения
@@ -61,6 +72,10 @@ function b_instr_lastpage_show($options = [])
 }
 
 // Редактирование последних страниц
+/**
+ * @param array $options
+ * @return string
+ */
 function b_instr_lastpage_edit($options = [])
 {
     $form = '';

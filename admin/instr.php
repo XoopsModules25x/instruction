@@ -1,6 +1,7 @@
 <?php
 
 use Xmf\Request;
+use Xoopsmodules\instruction;
 
 //
 include __DIR__ . '/admin_header.php';
@@ -8,31 +9,32 @@ include __DIR__ . '/admin_header.php';
 //include __DIR__ . '/../class/utility.php';
 // Пагинатор
 include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+require_once __DIR__ . '/../include/common.php';
 
 // Admin Gui
 $adminObject = \Xmf\Module\Admin::getInstance();
 // Объявляем объекты
-$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
-$inscatHandler   = xoops_getModuleHandler('category', 'instruction');
-$inspageHandler  = xoops_getModuleHandler('page', 'instruction');
-//
+//$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
+//$pageHandler  = xoops_getModuleHandler('page', 'instruction');
+
 $uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 $time = time();
 
 // ID инструкции
-$instrid = InstructionUtility::cleanVars($_REQUEST, 'instrid', 0, 'int');
+$instrid = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'instrid', 0, 'int');
 // ID страницы
-$pageid  = InstructionUtility::cleanVars($_REQUEST, 'pageid', 0, 'int');
+$pageid = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'pageid', 0, 'int');
 // ID категории
-$cid     = InstructionUtility::cleanVars($_REQUEST, 'cid', 0, 'int');
+$cid = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'cid', 0, 'int');
 // Вес
-$weight  = InstructionUtility::cleanVars($_POST, 'weight', 0, 'int');
+$weight = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'weight', 0, 'int');
 //
-$pid     = InstructionUtility::cleanVars($_REQUEST, 'pid', 0, 'int');
+$pid = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'pid', 0, 'int');
 //
-$start   = InstructionUtility::cleanVars($_GET, 'start', 0, 'int');
+$start = Xoopsmodules\instruction\Utility::cleanVars($_GET, 'start', 0, 'int');
 //
-$limit   = xoops_getModuleOption('perpageadmin', 'instruction');
+$limit = xoops_getModuleOption('perpageadmin', 'instruction');
 
 $op = isset($_GET['op']) ? $_GET['op'] : 'main';
 $op = isset($_POST['op']) ? $_POST['op'] : $op;
@@ -50,14 +52,14 @@ switch ($op) {
         $adminObject->displayButton('left', '');
 
         //
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
 
         // Если была передана категория
         if ($cid) {
             // Добавляем в выборку ID категории
-            $criteria->add(new Criteria('cid', $cid, '='));
+            $criteria->add(new \Criteria('cid', $cid, '='));
             // Получаем объект категории
-            $objInscat = $inscatHandler->get($cid);
+            $objInscat = $categoryHandler->get($cid);
             // Если нет такой категории
             if (!is_object($objInscat)) {
                 redirect_header('cat.php', 3, _AM_INSTRUCTION_ERR_CATNOTSELECT);
@@ -65,7 +67,7 @@ switch ($op) {
         }
 
         // Число инструкций, удовлетворяющих данному условию
-        $numrows = $insinstrHandler->getCount($criteria);
+        $numrows = $instructionHandler->getCount($criteria);
 
         // Число выборки
         $criteria->setLimit($limit);
@@ -76,10 +78,10 @@ switch ($op) {
         // Порядок сортировки
         $criteria->setOrder('DESC');
         // Находим все справки
-        $instr_arr = $insinstrHandler->getall($criteria);
+        $instr_arr = $instructionHandler->getall($criteria);
         // Если записей больше чем $limit, то выводим пагинатор
         if ($numrows > $limit) {
-            $pagenav = new XoopsPageNav($numrows, $limit, $start, 'start', 'op=' . $op . '&amp;cid=' . $cid);
+            $pagenav = new \XoopsPageNav($numrows, $limit, $start, 'start', 'op=' . $op . '&amp;cid=' . $cid);
             $pagenav = $pagenav->renderNav(4);
         } else {
             $pagenav = '';
@@ -97,13 +99,13 @@ switch ($op) {
                 // ID
                 $insinstr_instrid = $instr_arr[$i]->getVar('instrid');
                 // Название
-                $insinstr_title   = $instr_arr[$i]->getVar('title');
+                $insinstr_title = $instr_arr[$i]->getVar('title');
                 // Статус
-                $insinstr_status  = $instr_arr[$i]->getVar('status');
+                $insinstr_status = $instr_arr[$i]->getVar('status');
                 // Количество страниц
-                $insinstr_pages   = $instr_arr[$i]->getVar('pages');
+                $insinstr_pages = $instr_arr[$i]->getVar('pages');
                 // Категория
-                $insinstr_cat     = $inscatHandler->get($instr_arr[$i]->getVar('cid'));
+                $insinstr_cat = $categoryHandler->get($instr_arr[$i]->getVar('cid'));
 
                 // Выводим в шаблон
                 $GLOBALS['xoopsTpl']->append('insListInstr', ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cat->getVar('cid'), 'class' => $class]);
@@ -144,10 +146,10 @@ switch ($op) {
 
         // Если мы редактируем инструкцию
         if ($instrid) {
-            $objInsinstr = $insinstrHandler->get($instrid);
+            $objInsinstr = $instructionHandler->get($instrid);
             // Создание новой страницы
         } else {
-            $objInsinstr = $insinstrHandler->create();
+            $objInsinstr = $instructionHandler->create();
         }
 
         // Выводим шаблон
@@ -170,9 +172,9 @@ switch ($op) {
         }
         // Если мы редактируем
         if ($instrid) {
-            $objInsinstr = $insinstrHandler->get($instrid);
+            $objInsinstr = $instructionHandler->get($instrid);
         } else {
-            $objInsinstr = $insinstrHandler->create();
+            $objInsinstr = $instructionHandler->create();
             // Указываем дату создания
             $objInsinstr->setVar('datecreated', $time);
             // Указываем пользователя
@@ -182,8 +184,8 @@ switch ($op) {
         $err         = false;
         $message_err = '';
         //
-        $instr_title       = InstructionUtility::cleanVars($_POST, 'title', '', 'string');
-        $instr_description = InstructionUtility::cleanVars($_POST, 'description', '', 'string');
+        $instr_title       = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'title', '', 'string');
+        $instr_description = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'description', '', 'string');
 
         // Дата обновления
         $objInsinstr->setVar('dateupdated', $time);
@@ -223,11 +225,11 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($insinstrHandler->insert($objInsinstr)) {
+            if ($instructionHandler->insert($objInsinstr)) {
                 // Получаем ID созданной записи
-                $instrid_new = $instrid ?: $objInsinstr->get_new_enreg();
+                $instrid_new = $instrid ?: $objInsinstr->getNewInstertId();
                 // Обновление даты в категории
-                $inscatHandler->updateDateupdated($cid, $time);
+                $categoryHandler->updateDateupdated($cid, $time);
                 // Тэги
                 if (xoops_getModuleOption('usetag', 'instruction')) {
                     $tagHandler = xoops_getModuleHandler('tag', 'tag');
@@ -274,19 +276,19 @@ switch ($op) {
         $adminObject->displayButton('left', '');
 
         //
-        $objInsinstr = $insinstrHandler->get($instrid);
+        $objInsinstr = $instructionHandler->get($instrid);
 
         // Находим все страницы в данной инструкции
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('instrid', $instrid, '='));
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('instrid', $instrid, '='));
         $criteria->setSort('weight');
         $criteria->setOrder('ASC');
-        $ins_page = $inspageHandler->getall($criteria);
+        $ins_page = $pageHandler->getall($criteria);
         //
         unset($criteria);
 
         // Инициализируем
-        $instree = new InstructionTree($ins_page, 'pageid', 'pid');
+        $instree = new instruction\Tree($ins_page, 'pageid', 'pid');
         // Выводим список страниц в шаблон
         $GLOBALS['xoopsTpl']->assign('insListPage', $instree->makePagesAdmin($objInsinstr, '--'));
 
@@ -304,7 +306,7 @@ switch ($op) {
         // Проверка на instrid
         // ==================
         // Объект инструкций
-        $objInsinstr = $insinstrHandler->get($instrid);
+        $objInsinstr = $instructionHandler->get($instrid);
 
         // Нажали ли мы на кнопку OK
         $ok = isset($_POST['ok']) ? (int)$_POST['ok'] : 0;
@@ -316,9 +318,9 @@ switch ($op) {
                 redirect_header('instr.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             // Находим все страницы, пренадлежащие этой инструкции
-            $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('instrid', $instrid));
-            $ins_page = $inspageHandler->getall($criteria);
+            $criteria = new \CriteriaCompo();
+            $criteria->add(new \Criteria('instrid', $instrid));
+            $ins_page = $pageHandler->getall($criteria);
             //
             unset($criteria);
             // Перебираем все страницы в данной инструкции
@@ -333,10 +335,10 @@ switch ($op) {
                 // Удаляем страницу
                 // Сделать проверку на удалённость страницы
                 // ========================================
-                $inspageHandler->delete($ins_page[$i]);
+                $pageHandler->delete($ins_page[$i]);
             }
             // Пытаемся удалить инструкцию
-            if ($insinstrHandler->delete($objInsinstr)) {
+            if ($instructionHandler->delete($objInsinstr)) {
                 // Редирект
                 redirect_header('instr.php', 3, _AM_INSTRUCTION_INSTRDELETED);
             } else {
@@ -368,13 +370,13 @@ switch ($op) {
         // Если мы редактируем страницу
         if ($pageid) {
             // Получаем объект страницы
-            $objInspage = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
             // ID инструкции
             $instrid = $objInspage->getVar('instrid');
             // Создание новой страницы
         } elseif ($instrid) {
             // Создаём объект страницы
-            $objInspage = $inspageHandler->create();
+            $objInspage = $pageHandler->create();
             // Устанавливаем родительскую страницу
             $objInspage->setVar('pid', $pid);
         } else {
@@ -407,9 +409,9 @@ switch ($op) {
 
         // Если мы редактируем
         if ($pageid) {
-            $objInspage = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
         } elseif ($instrid) {
-            $objInspage = $inspageHandler->create();
+            $objInspage = $pageHandler->create();
             // Если мы создаём страницу необходимо указать к какой инструкции
             $objInspage->setVar('instrid', $instrid);
             // Указываем дату создания
@@ -421,8 +423,8 @@ switch ($op) {
         }
 
         //
-        $page_title    = InstructionUtility::cleanVars($_POST, 'title', '', 'string');
-        $page_hometext = InstructionUtility::cleanVars($_POST, 'hometext', '', 'string');
+        $page_title    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'title', '', 'string');
+        $page_hometext = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'hometext', '', 'string');
 
         // Родительская страница
         $objInspage->setVar('pid', $pid);
@@ -435,15 +437,15 @@ switch ($op) {
         // Основной текст
         $objInspage->setVar('hometext', $page_hometext);
         // Сноска
-        $objInspage->setVar('footnote', InstructionUtility::cleanVars($_POST, 'footnote', '', 'string'));
+        $objInspage->setVar('footnote', Xoopsmodules\instruction\Utility::cleanVars($_POST, 'footnote', '', 'string'));
         // Статус
-        $objInspage->setVar('status', InstructionUtility::cleanVars($_POST, 'status', 0, 'int'));
+        $objInspage->setVar('status', Xoopsmodules\instruction\Utility::cleanVars($_POST, 'status', 0, 'int'));
         // Тип
-        $objInspage->setVar('type', InstructionUtility::cleanVars($_POST, 'type', 0, 'int'));
+        $objInspage->setVar('type', Xoopsmodules\instruction\Utility::cleanVars($_POST, 'type', 0, 'int'));
         // Мета-теги описания
-        $objInspage->setVar('keywords', InstructionUtility::cleanVars($_POST, 'keywords', '', 'string'));
+        $objInspage->setVar('keywords', Xoopsmodules\instruction\Utility::cleanVars($_POST, 'keywords', '', 'string'));
         // Мета-теги ключевых слов
-        $objInspage->setVar('description', InstructionUtility::cleanVars($_POST, 'description', '', 'string'));
+        $objInspage->setVar('description', Xoopsmodules\instruction\Utility::cleanVars($_POST, 'description', '', 'string'));
         //
         $dosmiley = (isset($_POST['dosmiley']) && (int)$_POST['dosmiley'] > 0) ? 1 : 0;
         $doxcode  = (isset($_POST['doxcode']) && (int)$_POST['doxcode'] > 0) ? 1 : 0;
@@ -494,13 +496,13 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($inspageHandler->insert($objInspage)) {
+            if ($pageHandler->insert($objInspage)) {
                 // Ссылка для редиректа
                 $redirect_url = 'instr.php?op=viewinstr&amp;instrid=' . $instrid . '#pageid_' . $pid;
                 // Получаем ID инструкции
                 $instrid = $objInspage->getInstrid();
                 // Обновляем в инструкции число страниц и дату
-                $insinstrHandler->updatePages($instrid);
+                $instructionHandler->updatePages($instrid);
                 // Если мы редактируем
                 if ($pageid) {
                     // Редирект
@@ -508,7 +510,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $inspageHandler->updateposts($uid, $_POST['status'], 'add');
+                    $pageHandler->updateposts($uid, $_POST['status'], 'add');
                     // Редирект
                     redirect_header($redirect_url, 3, _AM_INSTRUCTION_PAGEADDED);
                 }
@@ -539,7 +541,7 @@ switch ($op) {
         // Проверка на pageid
         // ==================
 
-        $objInspage = $inspageHandler->get($pageid);
+        $objInspage = $pageHandler->get($pageid);
         // Нажали ли мы на кнопку OK
         $ok = isset($_POST['ok']) ? (int)$_POST['ok'] : 0;
         // Если мы нажали на кнопку
@@ -552,11 +554,11 @@ switch ($op) {
             // ID инструкции
             $page_instrid = $objInspage->getVar('instrid');
             // Декримент комментов
-            $inspageHandler->updateposts($objInspage->getVar('uid'), $objInspage->getVar('status'), 'delete');
+            $pageHandler->updateposts($objInspage->getVar('uid'), $objInspage->getVar('status'), 'delete');
             // Пытаемся удалить страницу
-            if ($inspageHandler->delete($objInspage)) {
+            if ($pageHandler->delete($objInspage)) {
                 // Обновляем в инструкции число страниц и дату
-                $insinstrHandler->updatePages($page_instrid);
+                $instructionHandler->updatePages($page_instrid);
                 // Удаляем комментарии
                 xoops_comment_delete($GLOBALS['xoopsModule']->getVar('mid'), $pageid);
                 //
@@ -589,11 +591,11 @@ switch ($op) {
         foreach ($pageids as $key => $pageid) {
 
             // Объявляем объект
-            $objInspage = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
             // Устанавливаем вес
             $objInspage->setVar('weight', $weights[$key]);
             // Вставляем данные в БД
-            $inspageHandler->insert($objInspage);
+            $pageHandler->insert($objInspage);
             // Удаляем объект
             unset($objInspage);
         }

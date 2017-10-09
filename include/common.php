@@ -9,6 +9,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+use Xoopsmodules\instruction;
+
+//include __DIR__ . '/../preloads/autoloader.php';
+
 /**
  * @copyright    XOOPS Project https://xoops.org/
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -17,19 +21,19 @@
  * @author       XOOPS Development Team
  */
 
-if (!defined('INSTRUCTION_MODULE_PATH')) {
-    define('INSTRUCTION_DIRNAME', basename(dirname(__DIR__)));
-    define('INSTRUCTION_URL', XOOPS_URL . '/modules/' . INSTRUCTION_DIRNAME);
-    define('INSTRUCTION_IMAGE_URL', INSTRUCTION_URL . '/assets/images/');
-    define('INSTRUCTION_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . INSTRUCTION_DIRNAME);
-    define('INSTRUCTION_IMAGE_PATH', INSTRUCTION_ROOT_PATH . '/assets/images');
-    define('INSTRUCTION_ADMIN_URL', INSTRUCTION_URL . '/admin/');
-    define('INSTRUCTION_UPLOAD_URL', XOOPS_UPLOAD_URL . '/' . INSTRUCTION_DIRNAME);
-    define('INSTRUCTION_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . INSTRUCTION_DIRNAME);
-}
-xoops_loadLanguage('common', INSTRUCTION_DIRNAME);
+//if (!defined('INSTRUCTION_MODULE_PATH')) {
+//    define('INSTRUCTION_DIRNAME', basename(dirname(__DIR__)));
+//    define('INSTRUCTION_URL', XOOPS_URL . '/modules/' . INSTRUCTION_DIRNAME);
+//    define('INSTRUCTION_IMAGE_URL', INSTRUCTION_URL . '/assets/images/');
+//    define('INSTRUCTION_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . INSTRUCTION_DIRNAME);
+//    define('INSTRUCTION_IMAGE_PATH', INSTRUCTION_ROOT_PATH . '/assets/images');
+//    define('INSTRUCTION_ADMIN_URL', INSTRUCTION_URL . '/admin/');
+//    define('INSTRUCTION_UPLOAD_URL', XOOPS_UPLOAD_URL . '/' . INSTRUCTION_DIRNAME);
+//    define('INSTRUCTION_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . INSTRUCTION_DIRNAME);
+//}
+//xoops_loadLanguage('common', INSTRUCTION_DIRNAME);
 
-require_once INSTRUCTION_ROOT_PATH . '/class/utility.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/Utility.php';
 //require_once INSTRUCTION_ROOT_PATH . '/include/constants.php';
 //require_once INSTRUCTION_ROOT_PATH . '/include/seo_functions.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/metagen.php';
@@ -37,19 +41,38 @@ require_once INSTRUCTION_ROOT_PATH . '/class/utility.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/xoalbum.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/request.php';
 
-require_once INSTRUCTION_ROOT_PATH . '/class/helper.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/Helper.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/InstructionHandler.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/CategoryHandler.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/PageHandler.php';
 
 //xoops_load('constants', INSTRUCTION_DIRNAME);
-xoops_load('utility', INSTRUCTION_DIRNAME);
+//xoops_load('utility', INSTRUCTION_DIRNAME);
 
-/** @var \Xmf\Module\Helper $instruction */
-$instruction = Instruction::getInstance();
-$instruction->loadLanguage('common');
+///** @var Xoopsmodules\instruction\Helper $helper */
+//$helper = instruction\Helper::getInstance();
 
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+// Объявляем объекты
+//$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
+//$pageHandler = xoops_getModuleHandler( 'page', 'instruction' );
+
+$db = \XoopsDatabaseFactory::getDatabase();
+
+$helper             = instruction\Helper::getInstance();
+$utility            = new instruction\Utility();
+$instructionHandler = new instruction\InstructionHandler($db);
+$categoryHandler    = new instruction\CategoryHandler($db);
+$pageHandler        = new instruction\PageHandler($db);
+
+$helper->loadLanguage('common');
+
+$debug = false;
+
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
-    $xoopsTpl = new XoopsTpl();
+    $xoopsTpl = new \XoopsTpl();
 }
 
 $moduleDirName = basename(dirname(__DIR__));
-$GLOBALS['xoopsTpl']->assign('mod_url', XOOPS_URL . '/modules/' . $moduleDirName);
+$xoopsTpl->assign('mod_url', XOOPS_URL . '/modules/' . $moduleDirName);

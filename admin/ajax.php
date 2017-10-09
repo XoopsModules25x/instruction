@@ -1,4 +1,7 @@
 <?php
+
+use Xoopsmodules\instruction;
+
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
@@ -7,15 +10,15 @@ include __DIR__ . '/admin_header.php';
 $GLOBALS['xoopsLogger']->activated = false;
 
 // Объявляем объекты
-$insinstrHandler = xoops_getModuleHandler('instruction', 'instruction');
-$inscatHandler   = xoops_getModuleHandler('category', 'instruction');
-$inspageHandler  = xoops_getModuleHandler('page', 'instruction');
+//$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
+//$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
+//$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
 $uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 $time = time();
 
 // Опция
-$op = InstructionUtility::cleanVars($_POST, 'op', 'main', 'string');
+$op = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'op', 'main', 'string');
 
 // Выбор
 switch ($op) {
@@ -29,25 +32,25 @@ switch ($op) {
         $message_err = '';
 
         //
-        $title       = InstructionUtility::cleanVars($_POST, 'title', '', 'string');
-        $pid         = InstructionUtility::cleanVars($_POST, 'pid', 0, 'int');
-        $weight      = InstructionUtility::cleanVars($_POST, 'weight', 0, 'int');
-        $hometext    = InstructionUtility::cleanVars($_POST, 'hometext', '', 'string');
-        $footnote    = InstructionUtility::cleanVars($_POST, 'footnote', '', 'string');
-        $status      = InstructionUtility::cleanVars($_POST, 'status', 0, 'int');
-        $type        = InstructionUtility::cleanVars($_POST, 'type', 0, 'int');
-        $keywords    = InstructionUtility::cleanVars($_POST, 'keywords', '', 'string');
-        $description = InstructionUtility::cleanVars($_POST, 'description', '', 'string');
+        $title       = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'title', '', 'string');
+        $pid         = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'pid', 0, 'int');
+        $weight      = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'weight', 0, 'int');
+        $hometext    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'hometext', '', 'string');
+        $footnote    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'footnote', '', 'string');
+        $status      = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'status', 0, 'int');
+        $type        = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'type', 0, 'int');
+        $keywords    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'keywords', '', 'string');
+        $description = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'description', '', 'string');
         $dosmiley    = (isset($_POST['dosmiley']) && (int)$_POST['dosmiley'] > 0) ? 1 : 0;
         $doxcode     = (isset($_POST['doxcode']) && (int)$_POST['doxcode'] > 0) ? 1 : 0;
         $dobr        = (isset($_POST['dobr']) && (int)$_POST['dobr'] > 0) ? 1 : 0;
         $dohtml      = (isset($_POST['dohtml']) && (int)$_POST['dohtml'] > 0) ? 1 : 0;
-        //$dohtml      = InstructionUtility::cleanVars( $_POST, 'dohtml', 0, 'int' );
-        //$dosmiley    = InstructionUtility::cleanVars( $_POST, 'dosmiley', 0, 'int' );
-        //$doxcode     = InstructionUtility::cleanVars( $_POST, 'doxcode', 0, 'int' );
-        //$dobr        = InstructionUtility::cleanVars( $_POST, 'dobr', 0, 'int' );
-        $pageid  = InstructionUtility::cleanVars($_POST, 'pageid', 0, 'int');
-        $instrid = InstructionUtility::cleanVars($_POST, 'instrid', 0, 'int');
+        //$dohtml      = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dohtml', 0, 'int' );
+        //$dosmiley    = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dosmiley', 0, 'int' );
+        //$doxcode     = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'doxcode', 0, 'int' );
+        //$dobr        = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dobr', 0, 'int' );
+        $pageid  = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'pageid', 0, 'int');
+        $instrid = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'instrid', 0, 'int');
 
         // Проверка
         if (!$GLOBALS['xoopsSecurity']->check()) {
@@ -65,9 +68,9 @@ switch ($op) {
 
         // Если мы редактируем
         if ($pageid) {
-            $objInspage = $inspageHandler->get($pageid);
+            $objInspage = $pageHandler->get($pageid);
         } elseif ($instrid) {
-            $objInspage = $inspageHandler->create();
+            $objInspage = $pageHandler->create();
             // Если мы создаём страницу необходимо указать к какой инструкции
             $objInspage->setVar('instrid', $instrid);
             // Указываем дату создания
@@ -148,15 +151,15 @@ switch ($op) {
             // Если небыло ошибок
         } else {
             // Вставляем данные в БД
-            if ($inspageHandler->insert($objInspage)) {
+            if ($pageHandler->insert($objInspage)) {
                 // Находим ID созданной записи
-                $pageid_new = $pageid ?: $objInspage->get_new_enreg();
+                $pageid_new = $pageid ?: $objInspage->getNewInstertId();
                 //
                 $ret['pageid'] = $pageid_new;
                 // Получаем ID инструкции
                 $instrid = $objInspage->getInstrid();
                 // Обновляем в инструкции число страниц и дату
-                $insinstrHandler->updatePages($instrid);
+                $instructionHandler->updatePages($instrid);
                 // Если мы редактируем
                 if ($pageid) {
                     // Устанавливаем сообщение
@@ -169,7 +172,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $inspageHandler->updateposts($uid, $status, 'add');
+                    $pageHandler->updateposts($uid, $status, 'add');
 
                     // Устанавливаем сообщение
                     $ret['message'] = '<div class="successMsg" style="text-align: left;">' . _AM_INSTRUCTION_PAGEADDED . '</div>';

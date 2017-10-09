@@ -3,6 +3,10 @@
 // Функции обратного вызова комментариев
 
 // Функция вызывается при добавлении комментария
+/**
+ * @param $pageid
+ * @param $total_num
+ */
 function instruction_com_update($pageid, $total_num)
 {
     $db  = XoopsDatabaseFactory::getDatabaseConnection();
@@ -10,6 +14,9 @@ function instruction_com_update($pageid, $total_num)
     $db->query($sql);
 }
 
+/**
+ * @param $comment
+ */
 function instruction_com_approve(&$comment)
 {
     // notification mail here

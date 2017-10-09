@@ -1,7 +1,16 @@
 <?php
+
 include_once dirname(__DIR__) . '/include/common.php';
 require_once __DIR__ . '../../header.php';
 
+/**
+ * @param $queryarray
+ * @param $andor
+ * @param $limit
+ * @param $offset
+ * @param $userid
+ * @return array
+ */
 function instruction_search($queryarray, $andor, $limit, $offset, $userid)
 {
     // Подключаем функции
@@ -14,7 +23,7 @@ function instruction_search($queryarray, $andor, $limit, $offset, $userid)
     }
 
     // Права на просмотр
-    $categories = InstructionUtility::getItemIds();
+    $categories = Xoopsmodules\instruction\Utility::getItemIds();
     if (is_array($categories) && count($categories) > 0) {
         $sql .= ' AND i.cid IN ( ' . implode(', ', $categories) . ' ) ';
         // Если пользователь не имеет прав просмотра ни одной категории

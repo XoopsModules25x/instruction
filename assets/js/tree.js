@@ -24,10 +24,10 @@ function instr_tree_toggle(event) {
     }
 
     // определить новый класс для узла
-    var newClass = instr_hasClass(node, 'InstrTreeExpandOpen') ? 'InstrTreeExpandClosed' : 'InstrTreeExpandOpen'
+    var newClass = instr_hasClass(node, 'InstrTreeExpandOpen') ? 'InstrTreeExpandClosed' : 'InstrTreeExpandOpen';
     // заменить текущий класс на newClass
     // регексп находит отдельно стоящий open|close и меняет на newClass
-    var re = /(^|\s)(InstrTreeExpandOpen|InstrTreeExpandClosed)(\s|$)/
+    var re = /(^|\s)(InstrTreeExpandOpen|InstrTreeExpandClosed)(\s|$)/;
     node.className = node.className.replace(re, '$1' + newClass + '$3')
 }
 
