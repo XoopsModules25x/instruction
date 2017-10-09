@@ -85,7 +85,7 @@ trait FilesManagement
     public static function deleteDirectory($src)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -133,7 +133,7 @@ trait FilesManagement
     public static function rrmdir($src)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -173,7 +173,7 @@ trait FilesManagement
     public static function rmove($src, $dest)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -216,7 +216,7 @@ trait FilesManagement
     public static function rcopy($src, $dest)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 

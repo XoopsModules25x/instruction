@@ -7,11 +7,11 @@ $moduleDirName = basename(dirname(__DIR__));
 require_once __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/../include/common.php';
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 $db   = \XoopsDatabaseFactory::getDatabase();
 
 //if (is_object($GLOBALS['xoopsUser'])) {
-if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
+if ($GLOBALS['xoopsUser'] instanceof \XoopsUser) {
     if (!$helper->isUserAdmin()) {
         $helper->redirect(XOOPS_URL . '/', 3, _NOPERM);
     }
@@ -22,7 +22,7 @@ if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
 /** @var Xmf\Module\Admin $adminObject */
 $adminObject = \Xmf\Module\Admin::getInstance();
 
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
     $xoopsTpl = new \XoopsTpl();
 }
