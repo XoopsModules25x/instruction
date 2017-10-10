@@ -11,29 +11,27 @@ require_once __DIR__ . '/header.php';
 //$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
 //
-$uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
+$uid  = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 $time = time();
 
 // ID инструкции
-$instrid = isset($_GET['instrid']) ? (int)$_GET['instrid'] : 0;
-$instrid = isset($_POST['instrid']) ? (int)$_POST['instrid'] : $instrid;
+$instrid = Request::getInt('instrid', Request::getInt('instrid', 0, 'GET'), 'POST');
+
 // ID страницы
-$pageid = isset($_GET['pageid']) ? (int)$_GET['pageid'] : 0;
-$pageid = isset($_POST['pageid']) ? (int)$_POST['pageid'] : $pageid;
+$pageid = Request::getInt('pageid', Request::getInt('pageid', 0, 'GET'), 'POST');
 // ID категории
-$cid = isset($_POST['cid']) ? (int)$_POST['cid'] : 0;
+$cid = Request::getInt('cid', 0, 'POST');
 // Вес
-$weight = isset($_POST['weight']) ? (int)$_POST['weight'] : 0;
+$weight = Request::getInt('weight', 0, 'POST');
 //
-$pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
+$pid = Request::getInt('pid', 0, 'POST');
 
 // Права на добавление
 $cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
 $cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
 
-$op = isset($_GET['op']) ? $_GET['op'] : '';
-$op = isset($_POST['op']) ? $_POST['op'] : $op;
+$op = Request::getString('op', Request::getString('op', '', 'GET'), 'POST');
 
 switch ($op) {
 
@@ -143,14 +141,14 @@ switch ($op) {
         // Дата обновления
         $objInspage->setVar('dateupdated', $time);
         //
-        $objInspage->setVar('title', $_POST['title']);
+        $objInspage->setVar('title', Request::getString('title', '', 'POST'));
         $objInspage->setVar('weight', $weight);
-        $objInspage->setVar('hometext', $_POST['hometext']);
+        $objInspage->setVar('hometext', Request::getText('hometext', '', 'POST'));
         // Сноска
-        $objInspage->setVar('footnote', $_POST['footnote']);
-        $objInspage->setVar('status', $_POST['status']);
-        $objInspage->setVar('keywords', $_POST['keywords']);
-        $objInspage->setVar('description', $_POST['description']);
+        $objInspage->setVar('footnote', Request::getText('footnote', '', 'POST'));
+        $objInspage->setVar('status', Request::getInt('status', 0, 'POST'));
+        $objInspage->setVar('keywords', Request::getString('keywords', '', 'POST'));
+        $objInspage->setVar('description', Request::getText('description', '', 'POST'));
 
         // Проверка категорий
         if (!$pageid && !$instrid) {
@@ -196,7 +194,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $pageHandler->updateposts($uid, $_POST['status'], 'add');
+                    $pageHandler->updateposts($uid, Request::getInt('status', 0, 'POST'), 'add');
                     // Инкремент страниц и обновление даты
                     $sql = sprintf('UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u', $GLOBALS['xoopsDB']->prefix($moduleDirName . '_instr'), $time, $instrid);
                     $GLOBALS['xoopsDB']->query($sql);

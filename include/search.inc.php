@@ -1,7 +1,7 @@
 <?php
 
 include_once dirname(__DIR__) . '/include/common.php';
-require_once __DIR__ . '../../header.php';
+require_once __DIR__ . '/../../../header.php';
 
 /**
  * @param $queryarray
@@ -14,6 +14,7 @@ require_once __DIR__ . '../../header.php';
 function instruction_search($queryarray, $andor, $limit, $offset, $userid)
 {
     // Подключаем функции
+    $moduleDirName = basename(dirname(__DIR__));
     include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
 
     $sql = 'SELECT p.pageid, p.title, p.uid, p.datecreated, i.title FROM ' . $GLOBALS['xoopsDB']->prefix('instruction_page') . ' p, ' . $GLOBALS['xoopsDB']->prefix('instruction_instr') . ' i WHERE i.instrid = p.instrid AND i.status > 0 AND p.status > 0 AND p.type > 0';

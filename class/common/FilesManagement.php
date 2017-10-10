@@ -54,11 +54,14 @@ trait FilesManagement
     /**
      * @param $src
      * @param $dst
+     * @throws \RuntimeException
      */
     public static function recurseCopy($src, $dst)
     {
         $dir = opendir($src);
-        @mkdir($dst);
+        if (!mkdir($dst) && !is_dir($dst)) {
+            throw new \RuntimeException('The directory ' . $dst . ' could not be created.');
+        }
         while (false !== ($file = readdir($dir))) {
             if (('.' !== $file) && ('..' !== $file)) {
                 if (is_dir($src . '/' . $file)) {

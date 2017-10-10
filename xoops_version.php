@@ -5,7 +5,7 @@ use Xmf\Request;
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 xoops_load('XoopsEditorHandler');
-$editorHandler = XoopsEditorHandler::getInstance();
+$editorHandler = \XoopsEditorHandler::getInstance();
 $moduleDirName = basename(__DIR__);
 $xoops_url     = parse_url(XOOPS_URL);
 

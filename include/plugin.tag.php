@@ -37,6 +37,7 @@ function instruction_tag_iteminfo(&$items)
         }
     }
     unset($items_obj);
+    return '';
 }
 
 // Синхронизация тегов

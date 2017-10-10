@@ -1,4 +1,7 @@
 <?php
+
+use Xmf\Request;
+
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
@@ -12,7 +15,7 @@ $adminObject = \Xmf\Module\Admin::getInstance();
 xoops_cp_header();
 $adminObject->displayNavigation(basename(__FILE__));
 
-$permission                = Xoopsmodules\instruction\Utility::cleanVars($_REQUEST, 'permission', 1, 'int');
+$permission                = Request::getInt('permission', 1);
 $selected                  = ['', '', ''];
 $selected[$permission - 1] = ' selected';
 

@@ -19,13 +19,13 @@ $adminObject = \Xmf\Module\Admin::getInstance();
 $time = time();
 
 // ID категории
-$cid = instruction\Utility::cleanVars($_REQUEST, 'cid', 0, 'int');
+$cid = Request::getInt('cid', 0);
 // ID родителя
-$pid = instruction\Utility::cleanVars($_REQUEST, 'pid', 0, 'int');
+$pid = Request::getInt('pid', 0);
 // Вес
-$weight = instruction\Utility::cleanVars($_REQUEST, 'weight', 0, 'int');
+$weight = Request::getInt('weight', 0);
 // Опция
-$op = instruction\Utility::cleanVars($_REQUEST, 'op', 'main', 'string');
+$op = Request::getString('op', 'main');
 // Выбор
 switch ($op) {
 
@@ -118,11 +118,11 @@ switch ($op) {
         // Дата обновления
         $objInstructioncat->setVar('dateupdated', $time);
         $objInstructioncat->setVar('pid', $pid);
-        $objInstructioncat->setVar('title', $_POST['title']);
-        $objInstructioncat->setVar('description', $_POST['description']);
+        $objInstructioncat->setVar('title', Request::getString( 'title', '', 'POST'));
+        $objInstructioncat->setVar('description', Request::getString( 'description', '', 'POST'));
         $objInstructioncat->setVar('weight', $weight);
-        $objInstructioncat->setVar('metakeywords', $_POST['metakeywords']);
-        $objInstructioncat->setVar('metadescription', $_POST['metadescription']);
+        $objInstructioncat->setVar('metakeywords', Request::getString( 'metakeywords', '', 'POST'));
+        $objInstructioncat->setVar('metadescription', Request::getString( 'metadescription', '', 'POST'));
 
         // Проверка веса
         if (0 == $weight) {
@@ -181,20 +181,20 @@ switch ($op) {
 
                 // Добавляем права
                 // Права на просмотр
-                if (isset($_POST['groups_instr_view'])) {
-                    foreach ($_POST['groups_instr_view'] as $onegroup_id) {
+                if (Request::hasVar('groups_instr_view', 'POST')) {
+                    foreach (Request::getArray('groups_instr_view','', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_view', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на добавление
-                if (isset($_POST['groups_instr_submit'])) {
-                    foreach ($_POST['groups_instr_submit'] as $onegroup_id) {
+                if (Request::hasVar('groups_instr_submit', 'POST')) {
+                    foreach (Request::getArray('groups_instr_submit','', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_submit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на редактирование
-                if (isset($_POST['groups_instr_edit'])) {
-                    foreach ($_POST['groups_instr_edit'] as $onegroup_id) {
+                if (Request::hasVar('groups_instr_edit', 'POST')) {
+                    foreach (Request::getArray('groups_instr_edit','', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_edit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
@@ -253,7 +253,7 @@ switch ($op) {
         }
 
         // Нажали ли мы на кнопку OK
-        $ok = isset($_POST['ok']) ? (int)$_POST['ok'] : 0;
+        $ok = Request::getInt( 'ok', 0, 'POST');
         // Если мы нажали на кнопку
         if ($ok) {
 

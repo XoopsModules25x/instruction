@@ -375,13 +375,13 @@ class Tree extends \XoopsObjectTree
             // Не находить предыдущие и следующие для "Пустой страницы"
             if ($currpageid && $pagetype) {
                 // Если элемент равен текущей странице
-                if (isset($stat_prevpages) && ($currpageid == $pageid)) {
+                if (null !== $stat_prevpages && ($currpageid == $pageid)) {
                     // Забиваем массив предыдущей страницы
                     $prevpages['pageid'] = $stat_prevpages['pageid'];
                     $prevpages['title']  = $stat_prevpages['title'];
 
                     // Если предыдущий равен текущей странице
-                } elseif (isset($stat_prevpages) && ($currpageid == $stat_prevpages['pageid'])) {
+                } elseif (null !== $stat_prevpages && ($currpageid == $stat_prevpages['pageid'])) {
                     // Забиваем массив следующей страницы
                     $nextpages['pageid'] = $pageid;
                     $nextpages['title']  = $pagetitle;

@@ -1,5 +1,6 @@
 <?php
 
+use Xmf\Request;
 use Xoopsmodules\instruction;
 
 //
@@ -14,11 +15,11 @@ $GLOBALS['xoopsLogger']->activated = false;
 //$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
 //$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
-$uid  = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
+$uid  = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 $time = time();
 
 // Опция
-$op = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'op', 'main', 'string');
+$op = Request::getString( 'op', 'main', 'POST');
 
 // Выбор
 switch ($op) {
@@ -32,25 +33,25 @@ switch ($op) {
         $message_err = '';
 
         //
-        $title       = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'title', '', 'string');
-        $pid         = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'pid', 0, 'int');
-        $weight      = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'weight', 0, 'int');
-        $hometext    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'hometext', '', 'string');
-        $footnote    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'footnote', '', 'string');
-        $status      = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'status', 0, 'int');
-        $type        = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'type', 0, 'int');
-        $keywords    = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'keywords', '', 'string');
-        $description = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'description', '', 'string');
-        $dosmiley    = (isset($_POST['dosmiley']) && (int)$_POST['dosmiley'] > 0) ? 1 : 0;
-        $doxcode     = (isset($_POST['doxcode']) && (int)$_POST['doxcode'] > 0) ? 1 : 0;
-        $dobr        = (isset($_POST['dobr']) && (int)$_POST['dobr'] > 0) ? 1 : 0;
-        $dohtml      = (isset($_POST['dohtml']) && (int)$_POST['dohtml'] > 0) ? 1 : 0;
-        //$dohtml      = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dohtml', 0, 'int' );
-        //$dosmiley    = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dosmiley', 0, 'int' );
-        //$doxcode     = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'doxcode', 0, 'int' );
-        //$dobr        = Xoopsmodules\instruction\Utility::cleanVars( $_POST, 'dobr', 0, 'int' );
-        $pageid  = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'pageid', 0, 'int');
-        $instrid = Xoopsmodules\instruction\Utility::cleanVars($_POST, 'instrid', 0, 'int');
+        $title       = Request::getString( 'title', '', 'POST');
+        $pid         = Request::getInt( 'pid', 0, 'POST');
+        $weight      = Request::getInt( 'weight', 0, 'POST');
+        $hometext    = Request::getString( 'hometext', '', 'POST');
+        $footnote    = Request::getString( 'footnote', '', 'POST');
+        $status      = Request::getInt( 'status', 0, 'POST');
+        $type        = Request::getInt( 'type', 0, 'POST');
+        $keywords    = Request::getString( 'keywords', '', 'POST');
+        $description = Request::getString( 'description', '', 'POST');
+        $dosmiley    = (Request::getInt( 'dosmiley', 0, 'POST') > 0) ? 1 : 0;
+        $doxcode     = (Request::getInt( 'doxcode', 0, 'POST') > 0) ? 1 : 0;
+        $dobr        = (Request::getInt( 'dobr', 0, 'POST') > 0) ? 1 : 0;
+        $dohtml      = (Request::getInt( 'dohtml', 0, 'POST') > 0) ? 1 : 0;
+        //$dohtml      = Request::getInt( 'dohtml', 0, 'POST' );
+        //$dosmiley    = Request::getInt( 'dosmiley', 0, 'POST' );
+        //$doxcode     = Request::getInt( 'doxcode', 0, 'POST' );
+        //$dobr        = Request::getInt( 'dobr', 0, 'POST' );
+        $pageid  = Request::getInt( 'pageid', 0, 'POST');
+        $instrid = Request::getInt( 'instrid', 0, 'POST');
 
         // Проверка
         if (!$GLOBALS['xoopsSecurity']->check()) {

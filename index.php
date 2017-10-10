@@ -17,9 +17,9 @@ include_once $GLOBALS['xoops']->path('header.php');
 // Стили
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/style.css');
 //
-$cid = isset($_GET['cid']) ? (int)$_GET['cid'] : 0;
+$cid = Request::getInt('cid', 0, 'GET');
 //
-$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+$start = Request::getInt('start', 0, 'GET');
 //
 
 //mb $limit = xoops_getModuleOption('perpagemain', 'instruction');

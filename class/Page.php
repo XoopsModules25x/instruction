@@ -75,6 +75,8 @@ class Page extends \XoopsObject
 
         // Родительская страница
         //        $pageHandler = xoops_getModuleHandler('page', 'instruction');
+        $pageHandler = new PageHandler;
+
         $criteria = new \CriteriaCompo();
         // ID инструкции в которой данная страница
         $instrid_page = $this->isNew() ? $instrid : $this->getVar('instrid');

@@ -14,7 +14,7 @@ function b_instr_lastpage_show($options = [])
 
     // Подключаем функции
     $moduleDirName = basename(dirname(__DIR__));
-    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/class/utility.php');
+    include_once $GLOBALS['xoops']->path('modules/' . $moduleDirName . '/include/common.php');
     //
     $myts = MyTextSanitizer::getInstance();
     //

@@ -8,8 +8,6 @@
 
 include_once $GLOBALS['xoops']->path('include/common.php');
 
-include_once __DIR__ . '/../class/utility.php';
-
 /**
  * Class CategoryHandler
  * @package Xoopsmodules\instruction

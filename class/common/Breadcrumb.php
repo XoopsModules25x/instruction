@@ -20,7 +20,7 @@
  * @version     $Id: breadcrumb.php 12865 2014-11-22 07:03:35Z beckmi $
  *
  * Example:
- * $breadcrumb = new Breadcrumb();
+ * $breadcrumb = new \Breadcrumb();
  * $breadcrumb->addLink( 'bread 1', 'index1.php' );
  * $breadcrumb->addLink( 'bread 2', '' );
  * $breadcrumb->addLink( 'bread 3', 'index3.php' );
@@ -41,7 +41,7 @@ class Breadcrumb
      */
     public function __construct()
     {
-        $this->dirname = basename(dirname(__DIR__));
+        $this->dirname = basename(dirname(dirname(__DIR__)));
     }
 
     /**
@@ -59,7 +59,7 @@ class Breadcrumb
     }
 
     /**
-     * Render Pedigree BreadCrumb
+     * Render BreadCrumb
      *
      */
     public function render()

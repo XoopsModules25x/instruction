@@ -98,9 +98,7 @@ class Category extends \XoopsObject
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
 
-        $db              = \XoopsDatabaseFactory::getDatabase();
-        $categoryHandler = new CategoryHandler($db);
-
+        $categoryHandler = new CategoryHandler;
         $instructioncat_arr = $categoryHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей

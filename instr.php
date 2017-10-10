@@ -12,7 +12,7 @@ include_once __DIR__ . '/class/tree.php';
 //$categoryHandler   = xoops_getModuleHandler('category', 'instruction');
 //$pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
-$instrid = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$instrid = Request::getInt('id', 0, 'GET');
 
 // Существует ли такая инструкция
 $criteria = new \CriteriaCompo();
@@ -55,7 +55,7 @@ $instrs['title'] = $objInsinstr->getVar('title');
 // Описание
 $instrs['description'] = $objInsinstr->getVar('description');
 // Если админ, рисуем админлинк
-if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
+if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
     $instrs['adminlink'] = '&nbsp;<a href="'
                            . XOOPS_URL
                            . '/modules/'

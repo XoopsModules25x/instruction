@@ -7,7 +7,7 @@ require_once __DIR__ . '/header.php';
 // Подключаем трей
 include_once __DIR__ . '/class/tree.php';
 
-$groups       = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+$groups       = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
 $gpermHandler = xoops_getHandler('groupperm');
 
 // Права на просмотр страницы
@@ -20,9 +20,9 @@ $gpermHandler = xoops_getHandler('groupperm');
 
 // Получаем данные
 // ID страницы
-$pageid = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$pageid = Request::getInt('id', 0, 'GET');
 // Без кэша
-$nocache = Xoopsmodules\instruction\Utility::cleanVars($_GET, 'nocache', 0, 'int');
+$nocache = Request::getInt('nocache', 0, 'GET');
 
 // Существует ли такая страница
 $criteria = new \CriteriaCompo();
@@ -41,7 +41,7 @@ $objInspage = $pageHandler->get($pageid);
 $objInsinstr = $instructionHandler->get($objInspage->getVar('instrid'));
 
 // Если админ и ссылка на отключение кэша
-if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin() && $nocache) {
+if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAdmin() && $nocache) {
     // Отключаем кэш
     $GLOBALS['xoopsConfig']['module_cache'][$GLOBALS['xoopsModule']->getVar('mid')] = 0;
 }
@@ -88,7 +88,7 @@ $pages['keywords'] = $objInspage->getVar('keywords');
 $pages['description'] = $objInspage->getVar('description');
 //
 // Если админ, рисуем админлинк
-if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
+if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
     $pages['adminlink'] = '&nbsp;<a href="'
                           . XOOPS_URL
                           . '/modules/'

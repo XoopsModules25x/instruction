@@ -10,7 +10,7 @@ require_once __DIR__ . '/../include/common.php';
 $myts = \MyTextSanitizer::getInstance();
 $db   = \XoopsDatabaseFactory::getDatabase();
 
-//if (is_object($GLOBALS['xoopsUser'])) {
+//if (($GLOBALS['xoopsUser'] instanceof \XoopsUser)) {
 if ($GLOBALS['xoopsUser'] instanceof \XoopsUser) {
     if (!$helper->isUserAdmin()) {
         $helper->redirect(XOOPS_URL . '/', 3, _NOPERM);

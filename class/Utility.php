@@ -36,7 +36,7 @@ class Utility
         // Находим из базы
         $moduleHandler          = xoops_getHandler('module');
         $instrModule            = $moduleHandler->getByDirname('instruction');
-        $groups                 = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+        $groups                 = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
         $gpermHandler           = xoops_getHandler('groupperm');
         $categories             = $gpermHandler->getItemIds($permtype, $groups, $instrModule->getVar('mid'));
         $permissions[$permtype] = $categories;
