@@ -5,7 +5,7 @@ use Xoopsmodules\instruction;
 
 require_once __DIR__ . '/header.php';
 // Подключаем трей
-include_once __DIR__ . '/class/tree.php';
+include_once __DIR__ . '/class/Tree.php';
 
 // Объявляем объекты
 //$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');

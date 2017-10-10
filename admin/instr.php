@@ -264,7 +264,7 @@ switch ($op) {
     case 'viewinstr':
 
         // Подключаем трей
-        include_once XOOPS_ROOT_PATH . '/modules/instruction/class/tree.php';
+        include_once XOOPS_ROOT_PATH . '/modules/instruction/class/Tree.php';
 
         // Заголовок админки
         xoops_cp_header();

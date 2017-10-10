@@ -33,8 +33,8 @@ switch ($op) {
 
         // Подключаем трей
 
-        //        include_once __DIR__  . '/../class/tree.php';
-        //include_once $GLOBALS['xoops']->path('modules/instruction/class/tree.php');
+        //        include_once __DIR__  . '/../class/Tree.php';
+        //include_once $GLOBALS['xoops']->path('modules/instruction/class/Tree.php');
 
         // Заголовок админки
         xoops_cp_header();
