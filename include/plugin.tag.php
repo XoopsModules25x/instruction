@@ -60,8 +60,7 @@ function instruction_tag_synchronization($mid)
                . "                FROM {$itemHandler->table} "
                . "                WHERE {$itemHandler->table}.status > 0"
                . '            ) '
-               . '        )';
-    else:
+               . '        )'; else:
         $sql = "    DELETE {$linkHandler->table} FROM {$linkHandler->table}"
                . "    LEFT JOIN {$itemHandler->table} AS aa ON {$linkHandler->table}.tag_itemid = aa.{$itemHandler->keyName} "
                . '    WHERE '

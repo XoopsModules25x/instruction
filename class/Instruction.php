@@ -123,4 +123,3 @@ class Instruction extends \XoopsObject
         return $form;
     }
 }
-

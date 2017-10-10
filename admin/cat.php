@@ -118,11 +118,11 @@ switch ($op) {
         // Дата обновления
         $objInstructioncat->setVar('dateupdated', $time);
         $objInstructioncat->setVar('pid', $pid);
-        $objInstructioncat->setVar('title', Request::getString( 'title', '', 'POST'));
-        $objInstructioncat->setVar('description', Request::getString( 'description', '', 'POST'));
+        $objInstructioncat->setVar('title', Request::getString('title', '', 'POST'));
+        $objInstructioncat->setVar('description', Request::getString('description', '', 'POST'));
         $objInstructioncat->setVar('weight', $weight);
-        $objInstructioncat->setVar('metakeywords', Request::getString( 'metakeywords', '', 'POST'));
-        $objInstructioncat->setVar('metadescription', Request::getString( 'metadescription', '', 'POST'));
+        $objInstructioncat->setVar('metakeywords', Request::getString('metakeywords', '', 'POST'));
+        $objInstructioncat->setVar('metadescription', Request::getString('metadescription', '', 'POST'));
 
         // Проверка веса
         if (0 == $weight) {
@@ -182,19 +182,19 @@ switch ($op) {
                 // Добавляем права
                 // Права на просмотр
                 if (Request::hasVar('groups_instr_view', 'POST')) {
-                    foreach (Request::getArray('groups_instr_view','', 'POST') as $onegroup_id) {
+                    foreach (Request::getArray('groups_instr_view', '', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_view', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на добавление
                 if (Request::hasVar('groups_instr_submit', 'POST')) {
-                    foreach (Request::getArray('groups_instr_submit','', 'POST') as $onegroup_id) {
+                    foreach (Request::getArray('groups_instr_submit', '', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_submit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
                 // Права на редактирование
                 if (Request::hasVar('groups_instr_edit', 'POST')) {
-                    foreach (Request::getArray('groups_instr_edit','', 'POST') as $onegroup_id) {
+                    foreach (Request::getArray('groups_instr_edit', '', 'POST') as $onegroup_id) {
                         $gpermHandler->addRight('instruction_edit', $new_cid, $onegroup_id, $GLOBALS['xoopsModule']->getVar('mid'));
                     }
                 }
@@ -253,7 +253,7 @@ switch ($op) {
         }
 
         // Нажали ли мы на кнопку OK
-        $ok = Request::getInt( 'ok', 0, 'POST');
+        $ok = Request::getInt('ok', 0, 'POST');
         // Если мы нажали на кнопку
         if ($ok) {
 

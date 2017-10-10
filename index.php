@@ -135,7 +135,8 @@ if ($numrows > 0) {
 
         // Выводим в шаблон
         $GLOBALS['xoopsTpl']->append('insListInstr',
-                                     ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cid, 'permsubmit' => $perm_submit, 'permedit' => $perm_edit, 'class' => $class]);
+                                     ['instrid' => $insinstr_instrid, 'title' => $insinstr_title, 'status' => $insinstr_status, 'pages' => $insinstr_pages, 'ctitle' => $insinstr_cat->getVar('title'), 'cid' => $insinstr_cid, 'permsubmit' => $perm_submit, 'permedit' => $perm_edit, 'class' => $class]
+        );
     }
 
     // Языковые константы

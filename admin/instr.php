@@ -22,21 +22,21 @@ $uid  = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->g
 $time = time();
 
 // ID инструкции
-$instrid = Request::getInt( 'instrid', 0);
+$instrid = Request::getInt('instrid', 0);
 // ID страницы
-$pageid = Request::getInt( 'pageid', 0);
+$pageid = Request::getInt('pageid', 0);
 // ID категории
-$cid = Request::getInt( 'cid', 0);
+$cid = Request::getInt('cid', 0);
 // Вес
-$weight = Request::getInt( 'weight', 0, 'POST');
+$weight = Request::getInt('weight', 0, 'POST');
 //
-$pid = Request::getInt( 'pid', 0);
+$pid = Request::getInt('pid', 0);
 //
-$start = Request::getInt( 'start', 0, 'GET');
+$start = Request::getInt('start', 0, 'GET');
 //
 $limit = xoops_getModuleOption('perpageadmin', 'instruction');
 
-$op  = Request::getString('op', Request::getString('op', 'main', 'GET'), 'POST');
+$op = Request::getString('op', Request::getString('op', 'main', 'GET'), 'POST');
 
 // Выбор
 switch ($op) {
@@ -183,18 +183,18 @@ switch ($op) {
         $err         = false;
         $message_err = '';
         //
-        $instr_title       = Request::getString( 'title', '', 'POST');
-        $instr_description = Request::getString( 'description', '', 'POST');
+        $instr_title       = Request::getString('title', '', 'POST');
+        $instr_description = Request::getString('description', '', 'POST');
 
         // Дата обновления
         $objInsinstr->setVar('dateupdated', $time);
         //
         $objInsinstr->setVar('cid', $cid);
         $objInsinstr->setVar('title', $instr_title);
-        $objInsinstr->setVar('status', Request::getInt( 'status', 0));
+        $objInsinstr->setVar('status', Request::getInt('status', 0));
         $objInsinstr->setVar('description', $instr_description);
-        $objInsinstr->setVar('metakeywords', Request::getString( 'metakeywords', ''));
-        $objInsinstr->setVar('metadescription', Request::getString( 'metadescription', ''));
+        $objInsinstr->setVar('metakeywords', Request::getString('metakeywords', ''));
+        $objInsinstr->setVar('metadescription', Request::getString('metadescription', ''));
 
         // Проверка категорий
         if (!$cid) {
@@ -232,7 +232,7 @@ switch ($op) {
                 // Тэги
                 if (xoops_getModuleOption('usetag', 'instruction')) {
                     $tagHandler = xoops_getModuleHandler('tag', 'tag');
-                    $tagHandler->updateByItem(Request::getArray( 'tag', '', 'POST'), $instrid_new, $GLOBALS['xoopsModule']->getVar('dirname'), 0);
+                    $tagHandler->updateByItem(Request::getArray('tag', '', 'POST'), $instrid_new, $GLOBALS['xoopsModule']->getVar('dirname'), 0);
                 }
 
                 // Если мы редактируем
@@ -308,7 +308,7 @@ switch ($op) {
         $objInsinstr = $instructionHandler->get($instrid);
 
         // Нажали ли мы на кнопку OK
-        $ok = Request::getInt( 'ok', 0, 'POST');
+        $ok = Request::getInt('ok', 0, 'POST');
         //
         if ($ok) {
 
@@ -422,8 +422,8 @@ switch ($op) {
         }
 
         //
-        $page_title    = Request::getString( 'title', '', 'POST');
-        $page_hometext = Request::getString( 'hometext', '', 'POST');
+        $page_title    = Request::getString('title', '', 'POST');
+        $page_hometext = Request::getString('hometext', '', 'POST');
 
         // Родительская страница
         $objInspage->setVar('pid', $pid);
@@ -436,20 +436,20 @@ switch ($op) {
         // Основной текст
         $objInspage->setVar('hometext', $page_hometext);
         // Сноска
-        $objInspage->setVar('footnote', Request::getString( 'footnote', '', 'POST'));
+        $objInspage->setVar('footnote', Request::getString('footnote', '', 'POST'));
         // Статус
-        $objInspage->setVar('status', Request::getInt( 'status', 0, 'POST'));
+        $objInspage->setVar('status', Request::getInt('status', 0, 'POST'));
         // Тип
-        $objInspage->setVar('type', Request::getInt( 'type', 0, 'POST'));
+        $objInspage->setVar('type', Request::getInt('type', 0, 'POST'));
         // Мета-теги описания
-        $objInspage->setVar('keywords', Request::getString( 'keywords', '', 'POST'));
+        $objInspage->setVar('keywords', Request::getString('keywords', '', 'POST'));
         // Мета-теги ключевых слов
-        $objInspage->setVar('description', Request::getString( 'description', '', 'POST'));
+        $objInspage->setVar('description', Request::getString('description', '', 'POST'));
         //
-        $dosmiley    = (Request::getInt( 'dosmiley', 0, 'POST') > 0) ? 1 : 0;
-        $doxcode     = (Request::getInt( 'doxcode', 0, 'POST') > 0) ? 1 : 0;
-        $dobr        = (Request::getInt( 'dobr', 0, 'POST') > 0) ? 1 : 0;
-        $dohtml      = (Request::getInt( 'dohtml', 0, 'POST') > 0) ? 1 : 0;
+        $dosmiley = (Request::getInt('dosmiley', 0, 'POST') > 0) ? 1 : 0;
+        $doxcode  = (Request::getInt('doxcode', 0, 'POST') > 0) ? 1 : 0;
+        $dobr     = (Request::getInt('dobr', 0, 'POST') > 0) ? 1 : 0;
+        $dohtml   = (Request::getInt('dohtml', 0, 'POST') > 0) ? 1 : 0;
         //$doimage = ( isset( $_POST['doimage'] ) && intval( $_POST['doimage'] ) > 0 ) ? 1 : 0;
         $objInspage->setVar('dohtml', $dohtml);
         $objInspage->setVar('dosmiley', $dosmiley);
@@ -509,7 +509,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $pageHandler->updateposts($uid, Request::getInt( 'status', 0, 'POST'), 'add');
+                    $pageHandler->updateposts($uid, Request::getInt('status', 0, 'POST'), 'add');
                     // Редирект
                     redirect_header($redirect_url, 3, _AM_INSTRUCTION_PAGEADDED);
                 }
@@ -542,7 +542,7 @@ switch ($op) {
 
         $objInspage = $pageHandler->get($pageid);
         // Нажали ли мы на кнопку OK
-        $ok = Request::getInt( 'ok', 0, 'POST');
+        $ok = Request::getInt('ok', 0, 'POST');
         // Если мы нажали на кнопку
         if ($ok) {
 

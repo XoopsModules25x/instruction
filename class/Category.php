@@ -98,7 +98,7 @@ class Category extends \XoopsObject
         $criteria->setSort('weight ASC, title');
         $criteria->setOrder('ASC');
 
-        $categoryHandler = new CategoryHandler;
+        $categoryHandler    = new CategoryHandler;
         $instructioncat_arr = $categoryHandler->getall($criteria);
         unset($criteria);
         // Подключаем трей
@@ -192,4 +192,3 @@ class Category extends \XoopsObject
         return $form;
     }
 }
-

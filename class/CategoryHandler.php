@@ -25,7 +25,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
     // Обновление даты обновления категории
 
     /**
-     * @param int  $cid
+     * @param int      $cid
      * @param null|int $time
      * @return mixed
      */

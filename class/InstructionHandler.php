@@ -25,7 +25,7 @@ class InstructionHandler extends \XoopsPersistableObjectHandler
     // Обновление даты обновления инструкций
 
     /**
-     * @param int  $instrid
+     * @param int      $instrid
      * @param bool|int $time
      * @return mixed
      */

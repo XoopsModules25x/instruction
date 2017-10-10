@@ -50,7 +50,7 @@ class Page extends \XoopsObject
 
     /**
      * @param bool|null|string $action
-     * @param int  $instrid
+     * @param int              $instrid
      * @return \XoopsThemeForm
      */
     public function getForm($action = false, $instrid = 0)

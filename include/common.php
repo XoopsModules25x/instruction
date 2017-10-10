@@ -59,9 +59,9 @@ use Xoopsmodules\instruction;
 
 $db = \XoopsDatabaseFactory::getDatabase();
 
-$helper             = instruction\Helper::getInstance();
+$helper = instruction\Helper::getInstance();
 /** @var \Xoopsmodules\instruction\Utility $utility */
-$utility            = new instruction\Utility();
+$utility = new instruction\Utility();
 /** @var \Xoopsmodules\instruction\InstructionHandler $instructionHandler */
 $instructionHandler = new instruction\InstructionHandler($db);
 /** @var \Xoopsmodules\instruction\CategoryHandler $categoryHandler */
