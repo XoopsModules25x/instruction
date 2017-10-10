@@ -4,8 +4,8 @@ define('_AM_INSTRUCTION_FORMADDCAT', 'Category submission form');
 define('_AM_INSTRUCTION_FORMEDITCAT', 'Category edit form');
 define('_AM_INSTRUCTION_FORMADDINSTR', 'Instruction submission form');
 define('_AM_INSTRUCTION_FORMEDITINSTR', 'Instruction edit form');
-//define('_AM_INSTRUCTION_FORMADDPAGE', 'Page submission form');
-//define('_AM_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
+define('_AM_INSTRUCTION_FORMADDPAGE', 'Page submission form');
+define('_AM_INSTRUCTION_FORMEDITPAGE', 'Page edit form');
 define('_AM_INSTRUCTION_FORMDELPAGE', 'Do you really want to delete the page: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELCAT', 'Do you really want to delete the category: "%s" ?');
 define('_AM_INSTRUCTION_FORMDELINSTR', 'Do you really want to delete the instruction "%s" , and all its pages  ?');
@@ -87,8 +87,8 @@ define('_AM_INSTRUCTION_PERM_EDIT', 'Permissions to edit');
 define('_AM_INSTRUCTION_PERM_EDIT_DSC', 'Groups allowed to edit instructions from categories.');
 
 // Типы страницы
-//define('_AM_INSTR_PT_0', 'Tree leaf');
-//define('_AM_INSTR_PT_1', 'Page');
+define('_AM_INSTR_PT_0', 'Tree leaf');
+define('_AM_INSTR_PT_1', 'Page');
 
 // Редиректы
 define('_AM_INSTRUCTION_NEWCATADDED', 'New category is saved successfully.');

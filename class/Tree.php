@@ -32,6 +32,7 @@ class Tree extends \XoopsObjectTree
      */
     public function _makePagesAdminOptions($key, &$ret, $prefix_orig, $objInsinstr, $class = 'odd', $prefix_curr = '')
     {
+        $pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
         if ($key > 0) {
 
             //
@@ -58,7 +59,7 @@ class Tree extends \XoopsObjectTree
             // Действие - удаление
             $act_del = ($num_childs > 0) ? '<img src="../assets/images/icons/16/application_key.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" />' : '<a href="instr.php?op=delpage&pageid='
                                                                                                                                                                       . $pageid
-                                                                                                                                                                      . '"><img src="../assets/icons/delete_mini.png" alt="'
+                                                                                                                                                                      . '"><img src="'. $pathIcon16 . '/delete.png" alt="'
                                                                                                                                                                       . _AM_INSTRUCTION_DEL
                                                                                                                                                                       . '" title="'
                                                                                                                                                                       . _AM_INSTRUCTION_DEL
