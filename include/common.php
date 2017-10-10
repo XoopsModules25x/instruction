@@ -60,10 +60,14 @@ use Xoopsmodules\instruction;
 $db = \XoopsDatabaseFactory::getDatabase();
 
 $helper             = instruction\Helper::getInstance();
+/** @var \Xoopsmodules\instruction\Utility $utility */
 $utility            = new instruction\Utility();
+/** @var \Xoopsmodules\instruction\InstructionHandler $instructionHandler */
 $instructionHandler = new instruction\InstructionHandler($db);
-$categoryHandler    = new instruction\CategoryHandler($db);
-$pageHandler        = new instruction\PageHandler($db);
+/** @var \Xoopsmodules\instruction\CategoryHandler $categoryHandler */
+$categoryHandler = new instruction\CategoryHandler($db);
+/** @var \Xoopsmodules\instruction\PageHandler $pageHandler */
+$pageHandler = new instruction\PageHandler($db);
 
 $helper->loadLanguage('common');
 
