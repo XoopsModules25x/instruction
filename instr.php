@@ -62,7 +62,7 @@ if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAd
                            . $moduleDirName
                            . '/admin/instr.php?op=editinstr&instrid='
                            . $instrid
-                           . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt='
+                           . '"><img style="width:16px;" src="'. $pathIcon16 . '/edit.png" alt='
                            . _EDIT
                            . ' title='
                            . _EDIT
@@ -72,7 +72,7 @@ if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAd
                            . $moduleDirName
                            . '/admin/instr.php?op=delinstr&instrid='
                            . $instrid
-                           . '"><img style="width:16px;" src="./assets/icons/delete_mini.png" alt='
+                           . '"><img style="width:16px;" src="'. $pathIcon16 . '/delete.png" alt='
                            . _DELETE
                            . ' title='
                            . _DELETE

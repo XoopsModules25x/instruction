@@ -18,17 +18,17 @@
                 <td><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?cid=<{$insInstr.cid}>"><{$insInstr.ctitle}></a></td>
                 <td style="text-align:center; width:50px;"><{$insInstr.pages}></td>
                 <td style="text-align:center; width:180px;">
-                    <a href="instr.php?op=viewinstr&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/view_mini.png" alt="<{$lang_display}>" title="<{$lang_display}>"></a>&nbsp;<a href="instr.php?op=editpage&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/add_mini.png"
+                    <a href="instr.php?op=viewinstr&instrid=<{$insInstr.instrid}>"><img src="<{xoModuleIcons16 view.png}>" alt="<{$lang_display}>" title="<{$lang_display}>"></a>&nbsp;<a href="instr.php?op=editpage&instrid=<{$insInstr.instrid}>"><img src="<{xoModuleIcons16 add.png}>"
                                                                                                                                                                                                                                                            alt="<{$lang_addpage}>"
                                                                                                                                                                                                                                                            title="<{$lang_addpage}>"></a>&nbsp;<{if $insInstr.status}>
-                    <img src="../assets/icons/lock_mini.png" alt="<{$lang_lock}>" title="<{$lang_lock}>"><{else}><img src="../assets/icons/unlock_mini.png" alt="<{$lang_unlock}>" title="<{$lang_unlock}>"><{/if}>&nbsp;<a href="instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img
-                                src="../assets/icons/edit_mini.png" alt="<{$lang_edit}>" title="<{$lang_edit}>"></a>&nbsp;<a href="instr.php?op=delinstr&instrid=<{$insInstr.instrid}>"><img src="../assets/icons/delete_mini.png" alt="<{$lang_del}>" title="<{$lang_del}>"></a>
+                    <img src="../assets/images/icons/16/lock.png" alt="<{$lang_lock}>" title="<{$lang_lock}>"><{else}><img src="../assets/images/icons/16/lock_open.png" alt="<{$lang_unlock}>" title="<{$lang_unlock}>"><{/if}>&nbsp;<a href="instr.php?op=editinstr&instrid=<{$insInstr.instrid}>"><img
+                                src="<{xoModuleIcons16 edit.png}>" alt="<{$lang_edit}>" title="<{$lang_edit}>"></a>&nbsp;<a href="instr.php?op=delinstr&instrid=<{$insInstr.instrid}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$lang_del}>" title="<{$lang_del}>"></a>
                 </td>
             </tr>
         <{/foreach}>
     <{/if}>
     <tr class="foot">
-        <td><a href="instr.php?op=editinstr"><img src="../assets/icons/edit_mini.png" alt="<{$lang_addinstr}>" title="<{$lang_addinstr}>"></a></td>
+        <td><a href="instr.php?op=editinstr"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$lang_addinstr}>" title="<{$lang_addinstr}>"></a></td>
         <td></td>
         <td colspan="2"><{if $insPagenav}><{$insPagenav}><{/if}></td>
     </tr>

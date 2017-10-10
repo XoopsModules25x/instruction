@@ -71,6 +71,12 @@ $pageHandler = new instruction\PageHandler($db);
 
 $helper->loadLanguage('common');
 
+$pathIcon16    = Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32    = Xmf\Module\Admin::iconUrl('', 32);
+$pathModIcon16 = $helper->getModule()->getInfo('modicons16');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+
+
 $debug = false;
 
 if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)) {
@@ -80,3 +86,7 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)
 
 $moduleDirName = basename(dirname(__DIR__));
 $GLOBALS['xoopsTpl']->assign('mod_url', XOOPS_URL . '/modules/' . $moduleDirName);
+
+// Local icons path
+$GLOBALS['xoopsTpl']->assign('pathModIcon16', XOOPS_URL . '/modules/' . $moduleDirName . '/' . $pathModIcon16);
+$GLOBALS['xoopsTpl']->assign('pathModIcon32', $pathModIcon32);

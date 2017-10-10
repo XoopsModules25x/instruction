@@ -95,7 +95,7 @@ if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAd
                           . $moduleDirName
                           . '/admin/instr.php?op=editpage&pageid='
                           . $pages['pageid']
-                          . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt='
+                          . '"><img style="width:16px;" src="'. $pathModIcon16 . '/assets/images/icons/16/edit.png" alt='
                           . _EDIT
                           . ' title='
                           . _EDIT
@@ -114,7 +114,7 @@ if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAd
     $pages['adminlink'] = '&nbsp;';
     // Если можно редактировать
     if ($gpermHandler->checkRight($moduleDirName . '_edit', $objInsinstr->getVar('cid'), $groups, $GLOBALS['xoopsModule']->getVar('mid'))) {
-        $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="./assets/icons/edit_mini.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>';
+        $pages['adminlink'] .= '<a href="' . XOOPS_URL . '/modules/' . $moduleDirName . '/submit.php?op=editpage&pageid=' . $pages['pageid'] . '"><img style="width:16px;" src="'. $pathIcon16 . '/edit.png" alt=' . _EDIT . ' title=' . _EDIT . '></a>';
     }
 
     $pages['adminlink'] .= '&nbsp;';

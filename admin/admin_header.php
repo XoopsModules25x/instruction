@@ -27,13 +27,10 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)
     $xoopsTpl = new \XoopsTpl();
 }
 
-$pathIcon16    = Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32    = Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32    = \Xmf\Module\Admin::iconUrl('', 32);
 $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
-// Local icons path
-$xoopsTpl->assign('pathModIcon16', $pathIcon16);
-$xoopsTpl->assign('pathModIcon32', $pathIcon32);
 
 // Load language files
 $helper->loadLanguage('admin');
