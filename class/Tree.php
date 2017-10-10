@@ -433,6 +433,7 @@ class Tree extends \XoopsObjectTree
         $this->_makePagesUserTree($key, $ret, $currpageid, $lastpageids);
 
         $ret .= '</ul>
+</div>
 </div>';
 
         return $ret;
