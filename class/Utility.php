@@ -66,30 +66,4 @@ class Utility
         $editor = new \XoopsFormEditor($caption, $name, $editor_configs);
         return $editor;
     }
-
-    // Получение значения переменной, переданной через GET или POST запрос
-
-    /**
-     * @param        $global
-     * @param        $key
-     * @param string $default
-     * @param string $type
-     * @return int|string
-     */
-    public static function cleanVars(&$global, $key, $default = '', $type = 'int')
-    {
-        switch ($type) {
-            case 'string':
-                $ret = isset($global[$key]) ? $global[$key] : $default;
-                break;
-            case 'int':
-            default:
-                $ret = isset($global[$key]) ? (int)$global[$key] : (int)$default;
-                break;
-        }
-        if (false === $ret) {
-            return $default;
-        }
-        return $ret;
-    }
 }
