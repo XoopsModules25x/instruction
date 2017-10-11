@@ -32,6 +32,9 @@ $cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_su
 $cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
 
 $op = Request::getString('op', Request::getString('op', '', 'GET'), 'POST');
+// Load language files
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
 
 switch ($op) {
 

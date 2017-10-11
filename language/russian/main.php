@@ -57,8 +57,8 @@ define('_MD_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница п�
 define('_MD_INSTR_SAVEFORM', 'Сохранить');
 
 // Типы страницы
-define('_AM_INSTR_PT_0', 'Лист дерева');
-define('_AM_INSTR_PT_1', 'Страница');
+//define('_AM_INSTR_PT_0', 'Лист дерева');
+//define('_AM_INSTR_PT_1', 'Страница');
 
 // Описание элементов форм
 define('_MD_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
@@ -73,5 +73,5 @@ define('_MD_INSTRUCTION_MAIL', 'Mail');
 define('_MD_INSTRUCTION_MAIL_INTART', 'Нашли интересную статью.');
 define('_MD_INSTRUCTION_MAIL_INTARTFOUND', 'Вот интересная статья, которую я нашел на ');
 
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
-define('_AM_INSTRUCTION_TITLEC', 'Название:');
+//define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
+//define('_AM_INSTRUCTION_TITLEC', 'Название:');
