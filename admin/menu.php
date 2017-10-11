@@ -7,13 +7,16 @@ if (!isset($moduleDirName)) {
 }
 
 /** @var Xmf\Module\Helper $moduleHelper */
-$helper = Xoopsmodules\instruction\Helper::getInstance();
+if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+} else {
+    $moduleHelper = Xmf\Module\Helper::getHelper('system');
+}
 
 $pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
-$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
-$helper->loadLanguage('modinfo');
-$helper->loadLanguage('admin');
+$moduleHelper->loadLanguage('modinfo');
+$moduleHelper->loadLanguage('admin');
 
 // Административное меню
 $adminmenu = [
