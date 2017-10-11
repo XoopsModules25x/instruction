@@ -4,12 +4,12 @@
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
 
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/XoopsModules25x/tag.svg?style=flat)](https://scrutinizer-ci.com/g/aerograf/instruction/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e3dcfe7c560407abf9157d470686abb)](https://www.codacy.com/app/aerograf/instruction?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=XoopsModules25x/tools&amp;utm_campaign=Badge_Grade)
-[![Code Climate](https://codeclimate.com/github/XoopsModules25x/tools/badges/gpa.svg)](https://codeclimate.com/github/aerograf/instruction)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/XoopsModules25x/tag.svg?style=flat)](https://scrutinizer-ci.com/g/mambax7/instruction/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e3dcfe7c560407abf9157d470686abb)](https://www.codacy.com/app/mambax7/instruction?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=XoopsModules25x/tools&amp;utm_campaign=Badge_Grade)
+[![Code Climate](https://codeclimate.com/github/XoopsModules25x/tools/badges/gpa.svg)](https://codeclimate.com/github/mambax7/instruction)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/91e7df34-7400-4c7f-9698-fef589a19768/mini.png)](https://insight.sensiolabs.com/projects/91e7df34-7400-4c7f-9698-fef589a19768)
-[![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/tag.svg?style=flat)](https://github.com/aerograf/instruction/tags/)
-[![Latest Version](https://img.shields.io/github/release/XoopsModules25x/tag.svg?style=flat)](https://github.com/aerograf/instruction/releases/)
+[![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/tag.svg?style=flat)](https://github.com/mambax7/instruction/tags/)
+[![Latest Version](https://img.shields.io/github/release/XoopsModules25x/tag.svg?style=flat)](https://github.com/mambax7/instruction/releases/)
 
 The INSTRUCTION module for [XOOPS CMS](https://xoops.org) is intended for creating structured instructions, books, etc. 
 
