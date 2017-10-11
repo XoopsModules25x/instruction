@@ -108,6 +108,7 @@ class Tree extends \XoopsObjectTree
      */
     public function makePagesAdmin(&$objInsinstr, $prefix = '-', $key = 0)
     {
+        $pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
         $ret = '<form name="inspages" action="instr.php" method="post">
   <table width="100%" cellspacing="1" class="outer">
     <tr>
@@ -123,7 +124,7 @@ class Tree extends \XoopsObjectTree
         $this->_makePagesAdminOptions($key, $ret, $prefix, $objInsinstr);
 
         $ret .= '<tr class="foot">
-      <td><a href="instr.php?op=editpage&instrid=' . $objInsinstr->getVar('instrid') . '"><img src="'. $pathIcon16 . '/add.png" alt="' . _AM_INSTRUCTION_ADDPAGE . '" title="' . _AM_INSTRUCTION_ADDPAGE . '"></a></td>
+      <td><a href="instr.php?op=editpage&instrid=' . $objInsinstr->getVar('instrid') . '"><img src="'. $pathIcon16 . '/add.png" alt="' . _AM_INSTRUCTION_ADDPAGE . '" title="' . _AM_INSTRUCTION_ADDPAGE . '" /></a></td>
       <td colspan="2">
         <input type="hidden" name="instrid" value="' . $objInsinstr->getVar('instrid') . '" />
         <input type="hidden" name="op" value="updpage" />

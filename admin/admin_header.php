@@ -35,4 +35,4 @@ $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 // Load language files
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
-$helper->loadLanguage('main');
+//$helper->loadLanguage('main');
