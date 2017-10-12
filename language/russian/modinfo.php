@@ -5,9 +5,9 @@ define('_MI_INSTRUCTION_IMAGE', 'images/ru_slogo.png');
 
 // The name of this module
 define('_MI_INSTRUCTION_NAME', 'Инструкции');
+
 // A brief description of this module
 define('_MI_INSTRUCTION_DESC', 'Инструкции');
-
 define('_MI_INSTRUCTION_ADMIN_HOME', 'Главная');
 define('_MI_INSTRUCTION_ADMIN_HOME_DESC', 'На главную');
 define('_MI_INSTRUCTION_ADMIN_CAT', 'Категории');
@@ -18,10 +18,8 @@ define('_MI_INSTRUCTION_ADMIN_PERM', 'Права');
 define('_MI_INSTRUCTION_ADMIN_PERM_DESC', 'Права');
 define('_MI_INSTRUCTION_ADMIN_ABOUT', 'О Модуле');
 define('_MI_INSTRUCTION_ADMIN_ABOUT_DESC', 'Информация о модуле');
-
 define('_MI_INSTRUCTION_FORM_OPTIONS', 'Редактор');
 define('_MI_INSTRUCTION_FORM_OPTIONS_DESC', 'Выберите редактор');
-
 define('_MI_INSTRUCTION_PERPAGEADMIN', 'Количество отображаемых элементов на страницу в админке');
 define('_MI_INSTRUCTION_PERPAGEADMINDSC', 'Укажите количество отображаемых элементов на страницу в админке');
 define('_MI_INSTRUCTION_PERPAGEMAIN', 'Количество отображаемых элементов на страницу в модуле');
