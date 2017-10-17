@@ -184,7 +184,7 @@ switch ($op) {
         $message_err = '';
         //
         $instr_title       = Request::getString('title', '', 'POST');
-        $instr_description = Request::getString('description', '', 'POST');
+        $instr_description = Request::getText('description', '', 'POST');
 
         // Дата обновления
         $objInsinstr->setVar('dateupdated', $time);
@@ -423,7 +423,7 @@ switch ($op) {
 
         //
         $page_title    = Request::getString('title', '', 'POST');
-        $page_hometext = Request::getString('hometext', '', 'POST');
+        $page_hometext = Request::getText('hometext', '', 'POST');
 
         // Родительская страница
         $objInspage->setVar('pid', $pid);
@@ -444,7 +444,7 @@ switch ($op) {
         // Мета-теги описания
         $objInspage->setVar('keywords', Request::getString('keywords', '', 'POST'));
         // Мета-теги ключевых слов
-        $objInspage->setVar('description', Request::getString('description', '', 'POST'));
+        $objInspage->setVar('description', Request::getText('description', '', 'POST'));
         //
         $dosmiley = (Request::getInt('dosmiley', 0, 'POST') > 0) ? 1 : 0;
         $doxcode  = (Request::getInt('doxcode', 0, 'POST') > 0) ? 1 : 0;
