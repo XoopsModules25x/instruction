@@ -46,6 +46,12 @@ use Xoopsmodules\instruction;
 //require_once INSTRUCTION_ROOT_PATH . '/class/CategoryHandler.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/PageHandler.php';
 
+require_once __DIR__  . '/../class/Helper.php';
+require_once __DIR__  . '/../class/Utility.php';
+require_once __DIR__  . '/../class/InstructionHandler.php';
+require_once __DIR__  . '/../class/CategoryHandler.php';
+require_once __DIR__  . '/../class/PageHandler.php';
+
 //xoops_load('constants', INSTRUCTION_DIRNAME);
 //xoops_load('utility', INSTRUCTION_DIRNAME);
 
