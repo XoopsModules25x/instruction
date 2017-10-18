@@ -36,12 +36,12 @@ switch ($op) {
         $title       = Request::getString('title', '', 'POST');
         $pid         = Request::getInt('pid', 0, 'POST');
         $weight      = Request::getInt('weight', 0, 'POST');
-        $hometext    = Request::getString('hometext', '', 'POST');
+        $hometext    = Request::getText('hometext', '', 'POST');
         $footnote    = Request::getString('footnote', '', 'POST');
         $status      = Request::getInt('status', 0, 'POST');
         $type        = Request::getInt('type', 0, 'POST');
         $keywords    = Request::getString('keywords', '', 'POST');
-        $description = Request::getString('description', '', 'POST');
+        $description = Request::getText('description', '', 'POST');
         $dosmiley    = (Request::getInt('dosmiley', 0, 'POST') > 0) ? 1 : 0;
         $doxcode     = (Request::getInt('doxcode', 0, 'POST') > 0) ? 1 : 0;
         $dobr        = (Request::getInt('dobr', 0, 'POST') > 0) ? 1 : 0;

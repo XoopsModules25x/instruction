@@ -4,7 +4,7 @@ use Xmf\Request;
 use Xoopsmodules\instruction;
 
 require_once __DIR__ . '/header.php';
-
+require_once __DIR__ . '/include/common.php';
 // Объявляем объекты
 //$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
 //$categoryHandler = xoops_getModuleHandler( 'category', 'instruction' );
@@ -15,23 +15,24 @@ $uid  = ($GLOBALS['xoopsUser'] instanceof \XoopsUser) ? $GLOBALS['xoopsUser']->g
 $time = time();
 
 // ID инструкции
-$instrid = Request::getInt('instrid', Request::getInt('instrid', 0, 'GET'), 'POST');
-
+$instrid = Request::getInt('instrid', 0);
 // ID страницы
-$pageid = Request::getInt('pageid', Request::getInt('pageid', 0, 'GET'), 'POST');
+$pageid = Request::getInt('pageid', 0);
 // ID категории
-$cid = Request::getInt('cid', 0, 'POST');
+$cid = Request::getInt('cid', 0);
 // Вес
 $weight = Request::getInt('weight', 0, 'POST');
 //
-$pid = Request::getInt('pid', 0, 'POST');
-
+$pid = Request::getInt('pid', 0);
+//
+$start = Request::getInt('start', 0, 'GET');
+//
 // Права на добавление
 $cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
 $cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
 
-$op = Request::getString('op', Request::getString('op', '', 'GET'), 'POST');
+$op = Request::getString('op', Request::getString('op', 'main', 'GET'), 'POST');
 // Load language files
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
@@ -150,9 +151,19 @@ switch ($op) {
         // Сноска
         $objInspage->setVar('footnote', Request::getText('footnote', '', 'POST'));
         $objInspage->setVar('status', Request::getInt('status', 0, 'POST'));
+        $objInspage->setVar('type', Request::getInt('type', 0, 'POST'));
         $objInspage->setVar('keywords', Request::getString('keywords', '', 'POST'));
         $objInspage->setVar('description', Request::getText('description', '', 'POST'));
-
+        $dosmiley = (Request::getInt('dosmiley', 0, 'POST') > 0) ? 1 : 0;
+        $doxcode  = (Request::getInt('doxcode', 0, 'POST') > 0) ? 1 : 0;
+        $dobr     = (Request::getInt('dobr', 0, 'POST') > 0) ? 1 : 0;
+        $dohtml   = (Request::getInt('dohtml', 0, 'POST') > 0) ? 1 : 0;
+        //$doimage = ( isset( $_POST['doimage'] ) && intval( $_POST['doimage'] ) > 0 ) ? 1 : 0;
+        $objInspage->setVar('dohtml', $dohtml);
+        $objInspage->setVar('dosmiley', $dosmiley);
+        $objInspage->setVar('doxcode', $doxcode);
+        //$objInspage->setVar( 'doimage', $doimage );
+        $objInspage->setVar('dobr', $dobr);
         // Проверка категорий
         if (!$pageid && !$instrid) {
             $err         = true;

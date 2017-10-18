@@ -50,7 +50,9 @@ function instruction_tag_iteminfo(&$items)
  */
 function instruction_tag_synchronization($mid)
 {
-    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
+    $db = \XoopsDatabaseFactory::getDatabase();
+    $itemHandler = new instruction\InstructionHandler($db);
+    //$itemHandler = xoops_getModuleHandler('instruction', 'instruction');
     $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */

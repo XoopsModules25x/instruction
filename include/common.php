@@ -40,10 +40,10 @@ require_once INSTRUCTION_ROOT_PATH . '/class/Utility.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/xoalbum.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/request.php';
 
-require_once INSTRUCTION_ROOT_PATH . '/class/Helper.php';
-require_once INSTRUCTION_ROOT_PATH . '/class/InstructionHandler.php';
-require_once INSTRUCTION_ROOT_PATH . '/class/CategoryHandler.php';
-require_once INSTRUCTION_ROOT_PATH . '/class/PageHandler.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/Helper.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/InstructionHandler.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/CategoryHandler.php';
+//require_once INSTRUCTION_ROOT_PATH . '/class/PageHandler.php';
 
 require_once __DIR__  . '/../class/Helper.php';
 require_once __DIR__  . '/../class/Utility.php';
