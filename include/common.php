@@ -12,7 +12,6 @@
 use Xoopsmodules\instruction;
 
 //include __DIR__ . '/../preloads/autoloader.php';
-
 /**
  * @copyright    XOOPS Project https://xoops.org/
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -21,19 +20,19 @@ use Xoopsmodules\instruction;
  * @author       XOOPS Development Team
  */
 
-//if (!defined('INSTRUCTION_MODULE_PATH')) {
-//    define('INSTRUCTION_DIRNAME', basename(dirname(__DIR__)));
+if (!defined('INSTRUCTION_MODULE_PATH')) {
+    define('INSTRUCTION_DIRNAME', basename(dirname(__DIR__)));
 //    define('INSTRUCTION_URL', XOOPS_URL . '/modules/' . INSTRUCTION_DIRNAME);
 //    define('INSTRUCTION_IMAGE_URL', INSTRUCTION_URL . '/assets/images/');
-//    define('INSTRUCTION_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . INSTRUCTION_DIRNAME);
+    define('INSTRUCTION_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . INSTRUCTION_DIRNAME);
 //    define('INSTRUCTION_IMAGE_PATH', INSTRUCTION_ROOT_PATH . '/assets/images');
 //    define('INSTRUCTION_ADMIN_URL', INSTRUCTION_URL . '/admin/');
 //    define('INSTRUCTION_UPLOAD_URL', XOOPS_UPLOAD_URL . '/' . INSTRUCTION_DIRNAME);
-//    define('INSTRUCTION_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . INSTRUCTION_DIRNAME);
-//}
+    define('INSTRUCTION_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . INSTRUCTION_DIRNAME);
+}
 //xoops_loadLanguage('common', INSTRUCTION_DIRNAME);
 
-//require_once INSTRUCTION_ROOT_PATH . '/class/Utility.php';
+require_once INSTRUCTION_ROOT_PATH . '/class/Utility.php';
 //require_once INSTRUCTION_ROOT_PATH . '/include/constants.php';
 //require_once INSTRUCTION_ROOT_PATH . '/include/seo_functions.php';
 //require_once INSTRUCTION_ROOT_PATH . '/class/metagen.php';
@@ -74,6 +73,8 @@ $instructionHandler = new instruction\InstructionHandler($db);
 $categoryHandler = new instruction\CategoryHandler($db);
 /** @var \Xoopsmodules\instruction\PageHandler $pageHandler */
 $pageHandler = new instruction\PageHandler($db);
+
+$adminObject = \Xmf\Module\Admin::getInstance();
 
 $helper->loadLanguage('common');
 

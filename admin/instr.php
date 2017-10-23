@@ -232,7 +232,7 @@ switch ($op) {
                 // Тэги
                 if (xoops_getModuleOption('usetag', 'instruction')) {
                     $tagHandler = xoops_getModuleHandler('tag', 'tag');
-                    $tagHandler->updateByItem(Request::getArray('tag', '', 'POST'), $instrid_new, $GLOBALS['xoopsModule']->getVar('dirname'), 0);
+                    $tagHandler->updateByItem($_POST['tag'], $instrid_new, $GLOBALS['xoopsModule']->getVar('dirname'), 0);
                 }
 
                 // Если мы редактируем

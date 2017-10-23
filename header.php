@@ -9,6 +9,7 @@ $moduleDirName = basename(__DIR__);
 
 //
 //include_once __DIR__ . '/class/utility.php';
+include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 require_once __DIR__ . '/include/common.php';
 
 //$helper = new \Xoopsmodules\instruction\Helper::getHelper($moduleDirName);

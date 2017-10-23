@@ -16,6 +16,7 @@ class Page extends \XoopsObject
     public function __construct()
     {
         //	$this->XoopsObject();
+        parent::__construct();
         $this->initVar('pageid', XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar('pid', XOBJ_DTYPE_INT, 0, false, 11);
         $this->initVar('instrid', XOBJ_DTYPE_INT, 0, false, 11);
@@ -108,7 +109,7 @@ class Page extends \XoopsObject
         // Вес
         $form->addElement(new \XoopsFormText(_AM_INSTRUCTION_WEIGHTC, 'weight', 5, 5, $this->getVar('weight')), true);
         // Основной текст
-        $form->addElement(Utility::getWysiwygForm(_AM_INSTRUCTION_HOMETEXTC, 'hometext', $this->getVar('hometext', 'e')), true);
+        $form->addElement(Utility::getWysiwygForm(_AM_INSTRUCTION_HOMETEXTC, 'hometext', $this->getVar('hometext', 'e')), false);
         // Сноска
         $form_footnote = new \XoopsFormTextArea(_AM_INSTRUCTION_FOOTNOTEC, 'footnote', $this->getVar('footnote', 'e'));
         $form_footnote->setDescription(_AM_INSTRUCTION_FOOTNOTE_DSC);

@@ -28,7 +28,7 @@
         <{/foreach}>
     <{/if}>
     <tr class="foot">
-        <td><a href="instr.php?op=editinstr"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$lang_addinstr}>" title="<{$lang_addinstr}>"></a></td>
+        <td><a href="instr.php?op=editinstr"><img src="<{xoModuleIcons16 add.png}>" alt="<{$lang_addinstr}>" title="<{$lang_addinstr}>"></a></td>
         <td></td>
         <td colspan="2"><{if $insPagenav}><{$insPagenav}><{/if}></td>
     </tr>

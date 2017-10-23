@@ -118,7 +118,7 @@ define('_AM_INSTRUCTION_ERR_CATNOTEMPTY', 'Ошибка: В данной кат�
 define('_AM_INSTRUCTION_ERR_CATNOTSELECT', 'Ошибка: Вы не выбрали категорию!');
 define('_AM_INSTRUCTION_ERR_CATCHILDREN', 'Ошибка: У даннай категории существуют дочернии категории!');
 
-define('_AM_INSTRUCTION_BADREQUEST', 'Не правильный запрос...');
+//define('_AM_INSTRUCTION_BADREQUEST', 'Не правильный запрос...');
 //define('_AM_MODULEADMIN_ABOUT_BY', 'by ');
 //define('_AM_MODULEADMIN_ABOUT_AMOUNT', 'Amount');
 //define('_AM_MODULEADMIN_ABOUT_AMOUNT_TTL', 'Please enter USD amount e.g. $25.00');

@@ -3,26 +3,22 @@
 define('_MD_INSTRUCTION_MODULE_NAME', 'Инструкции');
 define('_MD_INSTRUCTION_PAGENOTEXIST', 'Такая страница не существует.');
 define('_MD_INSTRUCTION_INSTRNOTEXIST', 'Такая инструкция не существует.');
-
 define('_MD_INSTRUCTION_LISTPAGES', "<strong class='maxi bold'>Оглавление -</strong>");
 define('_MD_INSTRUCTION_MENU', 'Меню');
 define('_MD_INSTRUCTION_FOOTNOTESC', 'Примечания:');
-
 define('_MD_INSTRUCTION_TITLE', 'Название');
 define('_MD_INSTRUCTION_CAT', 'Категория');
 define('_MD_INSTRUCTION_ACTION', 'Действие');
 define('_MD_INSTRUCTION_PAGES', 'Страниц');
+
 // Действие
 define('_MD_INSTRUCTION_ADDPAGE', 'Добавить страницу');
 define('_MD_INSTRUCTION_EDIT', 'Редактировать');
-
 define('_MD_INSTRUCTION_NOPERM_CAT', 'У Вас нет прав на просмотр данной категории!');
 define('_MD_INSTRUCTION_NOPERM_SUBMIT_PAGE', 'У Вас нет прав на добавление страниц!');
 define('_MD_INSTRUCTION_NOPERM_EDITPAGE', 'У Вас нет прав на редактирование этой страницы!');
 define('_MD_INSTRUCTION_NOPERM_SUBMITPAGE', 'У Вас нет прав на добавление этой страницы!');
-
 define('_MD_INSTRUCTION_BADREQUEST', 'Не правильный запрос...');
-
 define('_MD_INSTRUCTION_GO', 'Перейти');
 define('_MD_INSTRUCTION_SELCAT', '<strong>Раздел описаний:</strong> ');
 
@@ -57,8 +53,8 @@ define('_MD_INSTR_PAGETYPEC_DESC', 'Лист дерева - Страница п�
 define('_MD_INSTR_SAVEFORM', 'Сохранить');
 
 // Типы страницы
-define('_AM_INSTR_PT_0', 'Лист дерева');
-define('_AM_INSTR_PT_1', 'Страница');
+//define('_AM_INSTR_PT_0', 'Лист дерева');
+//define('_AM_INSTR_PT_1', 'Страница');
 
 // Описание элементов форм
 define('_MD_INSTRUCTION_FOOTNOTE_DSC', 'Сноска внизу страницы.<br>Разделять знаком "|".');
@@ -73,5 +69,5 @@ define('_MD_INSTRUCTION_MAIL', 'Mail');
 define('_MD_INSTRUCTION_MAIL_INTART', 'Нашли интересную статью.');
 define('_MD_INSTRUCTION_MAIL_INTARTFOUND', 'Вот интересная статья, которую я нашел на ');
 
-define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
-define('_AM_INSTRUCTION_TITLEC', 'Название:');
+//define('_AM_INSTRUCTION_FORMADDPAGE', 'Форма добавления страницы');
+//define('_AM_INSTRUCTION_TITLEC', 'Название:');
