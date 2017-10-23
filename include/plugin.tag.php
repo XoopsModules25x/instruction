@@ -18,7 +18,9 @@ function instruction_tag_iteminfo(&$items)
         }
     }
 
-    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
+//mb    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
+    $db                 = \XoopsDatabaseFactory::getDatabase();
+    $itemHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
     $items_obj   = $itemHandler->getObjects(new \Criteria('instrid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
@@ -46,7 +48,9 @@ function instruction_tag_iteminfo(&$items)
  */
 function instruction_tag_synchronization($mid)
 {
-    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
+    //mb    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
+    $db                 = \XoopsDatabaseFactory::getDatabase();
+    $itemHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
     $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */
