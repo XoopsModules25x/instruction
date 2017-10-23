@@ -75,5 +75,5 @@ return (object)[
         '/images/icons/32',
     ],
     'modCopyright'    => "<a href='https://xoops.org' title='XOOPS Project' target='_blank'>
-                     <img src='" . $capsDirName . '_AUTHOR_LOGOIMG' . '\' alt=\'XOOPS Project\' /></a>',
+                     <img src='" . $capsDirName . '_AUTHOR_LOGOIMG' . '\' alt=\'XOOPS Project\' ></a>',
 ];

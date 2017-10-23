@@ -76,8 +76,8 @@ function b_instr_lastinstr_show($options = [])
 function b_instr_lastinstr_edit($options = [])
 {
     $form = '';
-    $form .= _MB_INSTR_DISPLAYINSTRC . ' <input name="options[0]" size="5" maxlength="255" value="' . $options[0] . '" type="text" /><br>' . "\n";
-    $form .= _MB_INSTR_NUMCHARSC . ' <input name="options[1]" size="5" maxlength="255" value="' . $options[1] . '" type="text" /><br>' . "\n";
+    $form .= _MB_INSTR_DISPLAYINSTRC . ' <input name="options[0]" size="5" maxlength="255" value="' . $options[0] . '" type="text" ><br>' . "\n";
+    $form .= _MB_INSTR_NUMCHARSC . ' <input name="options[1]" size="5" maxlength="255" value="' . $options[1] . '" type="text" ><br>' . "\n";
 
     // Возвращаем форму
     return $form;
