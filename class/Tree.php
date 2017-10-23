@@ -174,11 +174,8 @@ class Tree extends \XoopsObjectTree
             $num_instrs = isset($cidinstrids[$catid]) ? $cidinstrids[$catid] : 0;
 
             // Действие - удаление
-<<<<<<< HEAD
-            $act_del = (($num_instrs > 0) || ($num_childs > 0)) ? '<img src="../assets/images/icons/16/application_key.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" />' : '<a href="cat.php?op=delcat&cid='
-=======
             $act_del = (($num_instrs > 0) || ($num_childs > 0)) ? '<img src="'. $pathIcon16 . '/delete.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" >' : '<a href="cat.php?op=delcat&cid='
->>>>>>> 47133ad9c7052268eb2f7b0080e74f12ea8184ed
+
                                                                                                                                                                                            . $catid
                                                                                                                                                                                            . '"><img src="'. $pathIcon16 . '/delete.png" alt="'
                                                                                                                                                                                            . _AM_INSTRUCTION_DEL
