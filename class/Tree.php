@@ -57,7 +57,7 @@ class Tree extends \XoopsObjectTree
             $num_childs = count($page_childs);
 
             // Действие - удаление
-            $act_del = ($num_childs > 0) ? '<img src="../assets/images/icons/16/application_key.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" />' : '<a href="instr.php?op=delpage&pageid='
+            $act_del = ($num_childs > 0) ? '<img src="../assets/images/icons/16/application_key.png" alt="' . _AM_INSTR_NODELPAGE . '" title="' . _AM_INSTR_NODELPAGE . '" >' : '<a href="instr.php?op=delpage&pageid='
                                                                                                                                                                       . $pageid
                                                                                                                                                                       . '"><img src="'. $pathIcon16 . '/delete.png" alt="'
                                                                                                                                                                       . _AM_INSTRUCTION_DEL
@@ -70,14 +70,14 @@ class Tree extends \XoopsObjectTree
             $ret .= '<tr class="' . $class . '">
       <td>' . $prefix_curr . ' ' . $page_link . '</td>
       <td align="center" width="50">
-        <input type="text" name="weights[]" size="2" value="' . $pageweight . '" />
-        <input type="hidden" name="pageids[]" value="' . $pageid . '" />
+        <input type="text" name="weights[]" size="2" value="' . $pageweight . '" >
+        <input type="hidden" name="pageids[]" value="' . $pageid . '" >
       </td>
       <td align="center" width="180">';
             // Просмотре без кэша
-            $ret .= ' <a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../assets/images/icons/16/database_black.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" /></a> ';
+            $ret .= ' <a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/page.php?id=' . $pageid . '&amp;nocache=1"><img src="../assets/images/icons/16/database_black.png" alt="' . _AM_INSTR_DISPLAY_NOCACHE . '" title="' . _AM_INSTR_DISPLAY_NOCACHE . '" ></a> ';
             // Добавить подстраницу
-            $ret .= ' <a href="instr.php?op=editpage&instrid=' . $instrid . '&pid=' . $pageid . '"><img src="'. $pathIcon16 . '/add.png" alt="' . _AM_INSTRUCTION_ADDSUBPAGE . '" title="' . _AM_INSTRUCTION_ADDSUBPAGE . '" /></a> ';
+            $ret .= ' <a href="instr.php?op=editpage&instrid=' . $instrid . '&pid=' . $pageid . '"><img src="'. $pathIcon16 . '/add.png" alt="' . _AM_INSTRUCTION_ADDSUBPAGE . '" title="' . _AM_INSTRUCTION_ADDSUBPAGE . '" ></a> ';
 
             if ($pagestatus) {
                 $ret .= ' <img src="../assets/images/icons/16/lock.png" alt="' . _AM_INSTRUCTION_LOCK . '" title="' . _AM_INSTRUCTION_LOCK . '"> ';
@@ -126,9 +126,9 @@ class Tree extends \XoopsObjectTree
         $ret .= '<tr class="foot">
       <td><a href="instr.php?op=editpage&instrid=' . $objInsinstr->getVar('instrid') . '"><img src="'. $pathIcon16 . '/add.png" alt="' . _AM_INSTRUCTION_ADDPAGE . '" title="' . _AM_INSTRUCTION_ADDPAGE . '" /></a></td>
       <td colspan="2">
-        <input type="hidden" name="instrid" value="' . $objInsinstr->getVar('instrid') . '" />
-        <input type="hidden" name="op" value="updpage" />
-        <input type="submit" value="' . _SUBMIT . '" />
+        <input type="hidden" name="instrid" value="' . $objInsinstr->getVar('instrid') . '" >
+        <input type="hidden" name="op" value="updpage" >
+        <input type="submit" value="' . _SUBMIT . '" >
       </td>
     </tr>
   </table>
@@ -174,19 +174,23 @@ class Tree extends \XoopsObjectTree
             $num_instrs = isset($cidinstrids[$catid]) ? $cidinstrids[$catid] : 0;
 
             // Действие - удаление
+<<<<<<< HEAD
             $act_del = (($num_instrs > 0) || ($num_childs > 0)) ? '<img src="../assets/images/icons/16/application_key.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" />' : '<a href="cat.php?op=delcat&cid='
+=======
+            $act_del = (($num_instrs > 0) || ($num_childs > 0)) ? '<img src="'. $pathIcon16 . '/delete.png" alt="' . _AM_INSTR_NODELCAT . '" title="' . _AM_INSTR_NODELCAT . '" >' : '<a href="cat.php?op=delcat&cid='
+>>>>>>> 47133ad9c7052268eb2f7b0080e74f12ea8184ed
                                                                                                                                                                                            . $catid
                                                                                                                                                                                            . '"><img src="'. $pathIcon16 . '/delete.png" alt="'
                                                                                                                                                                                            . _AM_INSTRUCTION_DEL
                                                                                                                                                                                            . '" title="'
                                                                                                                                                                                            . _AM_INSTRUCTION_DEL
-                                                                                                                                                                                           . '" /></a>';
+                                                                                                                                                                                           . '" ></a>';
             // Действие - просмотр
-            $act_view = ($num_instrs > 0) ? '<a href="instr.php?cid=' . $catid . '"><img src="'. $pathIcon16 . '/view.png" alt="' . _AM_INSTR_VIEWINSTR . '" title="' . _AM_INSTR_VIEWINSTR . '" /></a>' : '<img src="../assets/images/icons/16/document_protect.png" alt="'
+            $act_view = ($num_instrs > 0) ? '<a href="instr.php?cid=' . $catid . '"><img src="'. $pathIcon16 . '/view.png" alt="' . _AM_INSTR_VIEWINSTR . '" title="' . _AM_INSTR_VIEWINSTR . '" ></a>' : '<img src="../assets/images/icons/16/document_protect.png" alt="'
                                                                                                                                                                                                              . _AM_INSTR_NOVIEWINSTR
                                                                                                                                                                                                              . '" title="'
                                                                                                                                                                                                              . _AM_INSTR_NOVIEWINSTR
-                                                                                                                                                                                                             . '" />';
+                                                                                                                                                                                                             . '" >';
 
             $ret .= '<tr class="' . $class . '">
       <td>' . $prefix_curr . ' <a href="' . XOOPS_URL . '/modules/' . INST_DIRNAME . '/index.php?cid=' . $catid . '">' . $cattitle . '</a></td>

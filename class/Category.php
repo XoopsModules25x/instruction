@@ -81,7 +81,7 @@ class Category extends \XoopsObject
         }
         $imageselect->setExtra( "onchange='showImgSelected(\"image3\", \"downloadscat_img\", \"" . $uploadirectory . "\", \"\", \"" . XOOPS_URL . "\")'" );
         $imgtray->addElement($imageselect,false);
-        $imgtray -> addElement( new \XoopsFormLabel( '', "<br><img src='" . XOOPS_URL . "/" . $uploadirectory . "/" . $downloadscat_img . "' name='image3' id='image3' alt='' />" ) );
+        $imgtray -> addElement( new \XoopsFormLabel( '', "<br><img src='" . XOOPS_URL . "/" . $uploadirectory . "/" . $downloadscat_img . "' name='image3' id='image3' alt='' >" ) );
         $fileseltray= new \XoopsFormElementTray('','<br>');
         $fileseltray->addElement(new \XoopsFormFile(_AM_TDMDOWNLOADS_FORMUPLOAD , 'attachedfile', $xoopsModuleConfig['maxuploadsize']), false);
         $fileseltray->addElement(new \XoopsFormLabel('' ), false);
