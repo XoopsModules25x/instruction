@@ -1,11 +1,12 @@
-<?php namespace Xoopsmodules\instruction;
+<?php 
 
+namespace XoopsModules\Instruction;
 use Xmf\Request;
-use Xoopsmodules\instruction\common;
+use XoopsModules\Instruction\Common;
 
-require_once __DIR__ . '/common/VersionChecks.php';
-require_once __DIR__ . '/common/ServerStats.php';
-require_once __DIR__ . '/common/FilesManagement.php';
+//require_once __DIR__ . '/Common/VersionChecks.php';
+//require_once __DIR__ . '/Common/ServerStats.php';
+//require_once __DIR__ . '/Common/FilesManagement.php';
 
 require_once __DIR__ . '/../include/common.php';
 
@@ -14,11 +15,11 @@ require_once __DIR__ . '/../include/common.php';
  */
 class Utility
 {
-    use common\VersionChecks; //checkVerXoops, checkVerPhp Traits
+    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
 
-    use common\ServerStats; // getServerStats Trait
+    use Common\ServerStats; // getServerStats Trait
 
-    use common\FilesManagement; // Files Management Trait
+    use Common\FilesManagement; // Files Management Trait
 
     // Права
     /**

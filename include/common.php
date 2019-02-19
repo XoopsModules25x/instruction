@@ -9,7 +9,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 //include __DIR__ . '/../preloads/autoloader.php';
 /**
@@ -64,15 +64,15 @@ require_once __DIR__  . '/../class/PageHandler.php';
 
 $db = \XoopsDatabaseFactory::getDatabase();
 
-$helper = instruction\Helper::getInstance();
+$helper = Instruction\Helper::getInstance();
 /** @var \Xoopsmodules\instruction\Utility $utility */
-$utility = new instruction\Utility();
+$utility = new Instruction\Utility();
 /** @var \Xoopsmodules\instruction\InstructionHandler $instructionHandler */
-$instructionHandler = new instruction\InstructionHandler($db);
+$instructionHandler = new Instruction\InstructionHandler($db);
 /** @var \Xoopsmodules\instruction\CategoryHandler $categoryHandler */
-$categoryHandler = new instruction\CategoryHandler($db);
+$categoryHandler = new Instruction\CategoryHandler($db);
 /** @var \Xoopsmodules\instruction\PageHandler $pageHandler */
-$pageHandler = new instruction\PageHandler($db);
+$pageHandler = new Instruction\PageHandler($db);
 
 $adminObject = \Xmf\Module\Admin::getInstance();
 

@@ -5,7 +5,7 @@
  * @param $items
  * @return bool
  */
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
  
 function instruction_tag_iteminfo(&$items)
 {
@@ -19,16 +19,10 @@ function instruction_tag_iteminfo(&$items)
             $items_id[] = (int)$item_id;
         }
     }
-<<<<<<< HEAD
     $db = \XoopsDatabaseFactory::getDatabase();
-    $itemHandler = new instruction\InstructionHandler($db);
+    //$itemHandler = new Instruction\InstructionHandler($db);
     //$itemHandler = xoops_getModuleHandler('instruction', 'instruction');
-=======
-
-//mb    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
-    $db                 = \XoopsDatabaseFactory::getDatabase();
-    $itemHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
->>>>>>> 47133ad9c7052268eb2f7b0080e74f12ea8184ed
+    $itemHandler = new \XoopsModules\Instruction\InstructionHandler($db);
     $items_obj   = $itemHandler->getObjects(new \Criteria('instrid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
@@ -57,15 +51,10 @@ function instruction_tag_iteminfo(&$items)
  */
 function instruction_tag_synchronization($mid)
 {
-<<<<<<< HEAD
     $db = \XoopsDatabaseFactory::getDatabase();
-    $itemHandler = new instruction\InstructionHandler($db);
+    //$itemHandler = new instruction\InstructionHandler($db);
     //$itemHandler = xoops_getModuleHandler('instruction', 'instruction');
-=======
-    //mb    $itemHandler = xoops_getModuleHandler('instruction', 'instruction');
-    $db                 = \XoopsDatabaseFactory::getDatabase();
-    $itemHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
->>>>>>> 47133ad9c7052268eb2f7b0080e74f12ea8184ed
+    $itemHandler = new \XoopsModules\Instruction\InstructionHandler($db);
     $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */

@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\instruction;
+<?php namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
@@ -118,7 +118,8 @@ class Page extends \XoopsObject
         // Статус
         $form->addElement(new \XoopsFormRadioYN(_AM_INSTRUCTION_ACTIVEC, 'status', $this->getVar('status')), false);
         // Тип страницы
-        $form_type = new \XoopsFormSelect(_AM_INSTR_PAGETYPEC, 'type', $this->getVar('type'));
+        $form_type = $this->getVar('type');
+        $form_type = new \XoopsFormSelect(_AM_INSTR_PAGETYPEC, 'type', $form_type);
         $form_type->setDescription(_AM_INSTR_PAGETYPEC_DESC);
         $form_type->addOptionArray($pagetypes);
         $form->addElement($form_type, false);

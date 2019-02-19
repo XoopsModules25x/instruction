@@ -1,7 +1,7 @@
 <?php
 
 use Xmf\Request;
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 //
 include __DIR__ . '/admin_header.php';
@@ -58,7 +58,7 @@ switch ($op) {
         unset($criteria);
 
         // Инициализируем
-        $cattree = new instruction\Tree($ins_cat, 'cid', 'pid');
+        $cattree = new Instruction\Tree($ins_cat, 'cid', 'pid');
         // Выводим списко категорий в шаблон
         $GLOBALS['xoopsTpl']->assign('insListCat', $cattree->makeCatsAdmin('--', $cidinstrids));
 
@@ -160,7 +160,7 @@ switch ($op) {
                 // Если мы редактируем категорию, то старые права нужно удалить
                 if ($cid) {
                     // Права на просмотр
-                    $criteria = new\ CriteriaCompo();
+                    $criteria = new \CriteriaCompo();
                     $criteria->add(new \Criteria('gperm_itemid', $new_cid, '='));
                     $criteria->add(new \Criteria('gperm_modid', $GLOBALS['xoopsModule']->getVar('mid'), '='));
                     $criteria->add(new \Criteria('gperm_name', 'instruction_view', '='));

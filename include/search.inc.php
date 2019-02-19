@@ -24,7 +24,7 @@ function instruction_search($queryarray, $andor, $limit, $offset, $userid)
     }
 
     // Права на просмотр
-    $categories = Xoopsmodules\instruction\Utility::getItemIds();
+    $categories = XoopsModules\Instruction\Utility::getItemIds();
     if (is_array($categories) && count($categories) > 0) {
         $sql .= ' AND i.cid IN ( ' . implode(', ', $categories) . ' ) ';
         // Если пользователь не имеет прав просмотра ни одной категории

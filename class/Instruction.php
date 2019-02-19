@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\instruction;
+<?php namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");

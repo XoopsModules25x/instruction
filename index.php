@@ -1,7 +1,7 @@
 <?php
 
 use Xmf\Request;
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 require_once __DIR__ . '/header.php';
 
@@ -26,11 +26,11 @@ $start = Request::getInt('start', 0, 'GET');
 $limit = xoops_getModuleOption('perpagemain', 'instruction');
 
 // Права на просмотр
-$categories = Xoopsmodules\instruction\Utility::getItemIds();
+$categories = XoopsModules\Instruction\Utility::getItemIds();
 // Права на добавление
-$cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_submit');
+$cat_submit = XoopsModules\Instruction\Utility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
-$cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
+$cat_edit = XoopsModules\Instruction\Utility::getItemIds($moduleDirName . '_edit');
 
 // Находим список категорий
 $criteria = new \CriteriaCompo();
@@ -47,7 +47,7 @@ $moduleDirName = basename(__DIR__);
 //$helper = \Helper::getInstance();
 $module = $helper->getModule();
 
-if (Xoopsmodules\instruction\Utility::checkVerXoops($module, '2.5.9')) {
+if (XoopsModules\Instruction\Utility::checkVerXoops($module, '2.5.9')) {
     $cat_select = $mytree->makeSelectElement('cid', 'title', '--', $cid, true, 0, "onChange='javascript: document.insformselcat.submit()'", '');
     $GLOBALS['xoopsTpl']->assign('insFormSelCat', $cat_select->render());
 } else {

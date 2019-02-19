@@ -16,7 +16,7 @@ if ( $com_itemid > 0 ) {
 	if ( $result ) {
 		list( $ptitle, $icid ) = $GLOBALS['xoopsDB']->fetchRow( $result );
 		// Проверка прав на доступ к данной категории
-		$categories = Xoopsmodules\instruction\Utility::getItemIds();
+		$categories = XoopsModules\Instruction\Utility::getItemIds();
 		if( ! in_array( $icid, $categories ) ) {
 			redirect_header('javascript:history.go(-1)', 3, _NOPERM );
 			exit();

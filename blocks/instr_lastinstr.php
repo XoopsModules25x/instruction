@@ -1,6 +1,6 @@
 <?php
 
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 // Блоки модуля инструкций
 // Блок последних инструкций
@@ -36,7 +36,7 @@ function b_instr_lastinstr_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = Xoopsmodules\instruction\Utility::getItemIds();
+    $cat_view = XoopsModules\Instruction\Utility::getItemIds();
     // Массив выходных данных
     $block = [];
 

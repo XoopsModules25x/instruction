@@ -1,6 +1,6 @@
 <?php
 
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 include __DIR__ . '/../../../include/cp_header.php';
 include __DIR__ . '/admin_header.php';

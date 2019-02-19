@@ -1,7 +1,7 @@
 <?php
 
 use Xmf\Request;
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 //
 include __DIR__ . '/admin_header.php';
@@ -287,7 +287,7 @@ switch ($op) {
         unset($criteria);
 
         // Инициализируем
-        $instree = new instruction\Tree($ins_page, 'pageid', 'pid');
+        $instree = new Instruction\Tree($ins_page, 'pageid', 'pid');
         // Выводим список страниц в шаблон
         $GLOBALS['xoopsTpl']->assign('insListPage', $instree->makePagesAdmin($objInsinstr, '--'));
 
@@ -436,7 +436,7 @@ switch ($op) {
         // Основной текст
         $objInspage->setVar('hometext', $page_hometext);
         // Сноска
-        $objInspage->setVar('footnote', Request::getString('footnote', '', 'POST'));
+        $objInspage->setVar('footnote', Request::getText('footnote', '', 'POST'));
         // Статус
         $objInspage->setVar('status', Request::getInt('status', 0, 'POST'));
         // Тип
@@ -509,7 +509,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $pageHandler->updateposts($uid, Request::getInt('status', 0, 'POST'), 'add');
+                    $pageHandler->updatePosts($uid, Request::getInt('status', 0, 'POST'), 'add');
                     // Редирект
                     redirect_header($redirect_url, 3, _AM_INSTRUCTION_PAGEADDED);
                 }
@@ -553,7 +553,7 @@ switch ($op) {
             // ID инструкции
             $page_instrid = $objInspage->getVar('instrid');
             // Декримент комментов
-            $pageHandler->updateposts($objInspage->getVar('uid'), $objInspage->getVar('status'), 'delete');
+            $pageHandler->updatePosts($objInspage->getVar('uid'), $objInspage->getVar('status'), 'delete');
             // Пытаемся удалить страницу
             if ($pageHandler->delete($objInspage)) {
                 // Обновляем в инструкции число страниц и дату

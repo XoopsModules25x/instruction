@@ -173,7 +173,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $pageHandler->updateposts($uid, $status, 'add');
+                    $pageHandler->updatePosts($uid, $status, 'add');
 
                     // Устанавливаем сообщение
                     $ret['message'] = '<div class="successMsg" style="text-align: left;">' . _AM_INSTRUCTION_PAGEADDED . '</div>';

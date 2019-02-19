@@ -1,7 +1,7 @@
 <?php
 
 use Xmf\Request;
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 require_once __DIR__ . '/header.php';
 // Подключаем трей
@@ -58,7 +58,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/css/
 $xoTheme->addScript(XOOPS_URL . '/modules/' . $moduleDirName . '/assets/js/tree.js');
 
 // Права на просмотр инструкции
-$categories = Xoopsmodules\instruction\Utility::getItemIds();
+$categories = XoopsModules\Instruction\Utility::getItemIds();
 if (!in_array($objInsinstr->getVar('cid'), $categories)) {
     redirect_header(XOOPS_URL . '/modules/' . $moduleDirName . '/', 3, _NOPERM);
     exit();
@@ -160,7 +160,7 @@ unset($criteria);
 $prevpages = [];
 $nextpages = [];
 // Инициализируем
-$instree = new Xoopsmodules\instruction\Tree($ins_page, 'pageid', 'pid');
+$instree = new XoopsModules\Instruction\Tree($ins_page, 'pageid', 'pid');
 // Выводим список страниц в шаблон
 $GLOBALS['xoopsTpl']->assign('insListPage', $instree->makePagesUser($pageid, $prevpages, $nextpages));
 // Выводим в шаблон

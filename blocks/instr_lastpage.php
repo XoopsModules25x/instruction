@@ -1,6 +1,6 @@
 <?php
 
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 // Блоки модуля инструкций
 
@@ -22,8 +22,8 @@ function b_instr_lastpage_show($options = [])
     //mb    $pageHandler  = xoops_getModuleHandler('page', 'instruction');
 
     $db                 = \XoopsDatabaseFactory::getDatabase();
-    $instructionHandler = new \Xoopsmodules\instruction\InstructionHandler($db);
-    $pageHandler        = new \Xoopsmodules\instruction\PageHandler($db);
+    $instructionHandler = new \XoopsModules\Instruction\InstructionHandler($db);
+    $pageHandler        = new \XoopsModules\Instruction\PageHandler($db);
 
     // Добавляем стили
     //global $xoTheme;
@@ -36,7 +36,7 @@ function b_instr_lastpage_show($options = [])
     $numchars = $options[1];
 
     // Права на просмотр
-    $cat_view = Xoopsmodules\instruction\Utility::getItemIds();
+    $cat_view = XoopsModules\Instruction\Utility::getItemIds();
     // Массив выходных данных
     $block = [];
 

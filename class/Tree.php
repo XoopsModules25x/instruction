@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\instruction;
+<?php namespace XoopsModules\Instruction;
 
 // Автор: andrey3761
 // Вывод древообразного списка страниц в панели администрирования
@@ -108,7 +108,7 @@ class Tree extends \XoopsObjectTree
      */
     public function makePagesAdmin(&$objInsinstr, $prefix = '-', $key = 0)
     {
-        $pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
+        $pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
         $ret = '<form name="inspages" action="instr.php" method="post">
   <table width="100%" cellspacing="1" class="outer">
     <tr>

@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\instruction;
+<?php namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
@@ -30,7 +30,7 @@ class PageHandler extends \XoopsPersistableObjectHandler
      * @param $status
      * @param $action
      */
-    public function updateposts($uid, $status, $action)
+    public function updatePosts($uid, $status, $action)
     {
         //
         switch ($action) {

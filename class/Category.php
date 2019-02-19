@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\instruction;
+<?php namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
@@ -114,7 +114,7 @@ class Category extends \XoopsObject
             $mytree_select = $mytree->makeSelectElement('pid', 'title', '--', $this->getVar('pid'), true, 0, '', _AM_INSTRUCTION_PCATC);
             $form->addElement($mytree_select);
         } else {
-            $form->addElement(new \XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelectElement('pid', 'title', '--', $this->getVar('pid'), true)));
+            $form->addElement(new \XoopsFormLabel(_AM_INSTRUCTION_PCATC, $mytree->makeSelBox('pid', 'title', '--', $this->getVar('pid'), true)));
         }
 
         // Вес

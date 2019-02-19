@@ -1,7 +1,7 @@
 <?php
 
 use Xmf\Request;
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/include/common.php';
@@ -28,9 +28,9 @@ $pid = Request::getInt('pid', 0);
 $start = Request::getInt('start', 0, 'GET');
 //
 // Права на добавление
-$cat_submit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_submit');
+$cat_submit = XoopsModules\Instruction\Utility::getItemIds($moduleDirName . '_submit');
 // Права на редактирование
-$cat_edit = Xoopsmodules\instruction\Utility::getItemIds($moduleDirName . '_edit');
+$cat_edit = XoopsModules\Instruction\Utility::getItemIds($moduleDirName . '_edit');
 
 $op = Request::getString('op', Request::getString('op', 'main', 'GET'), 'POST');
 // Load language files
@@ -208,7 +208,7 @@ switch ($op) {
                     // Если мы добавляем
                 } else {
                     // Инкримент комментов
-                    $pageHandler->updateposts($uid, Request::getInt('status', 0, 'POST'), 'add');
+                    $pageHandler->updatePosts($uid, Request::getInt('status', 0, 'POST'), 'add');
                     // Инкремент страниц и обновление даты
                     $sql = sprintf('UPDATE %s SET `pages` = `pages` + 1, `dateupdated` = %u WHERE `instrid` = %u', $GLOBALS['xoopsDB']->prefix($moduleDirName . '_instr'), $time, $instrid);
                     $GLOBALS['xoopsDB']->query($sql);

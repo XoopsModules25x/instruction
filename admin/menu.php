@@ -1,6 +1,6 @@
 <?php
 
-use Xoopsmodules\instruction;
+use XoopsModules\Instruction;
 
 if (!isset($moduleDirName)) {
     $moduleDirName = basename(dirname(__DIR__));
