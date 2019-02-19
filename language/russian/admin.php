@@ -118,7 +118,7 @@ define('_AM_INSTRUCTION_ERR_CATNOTEMPTY', 'Ошибка: В данной кат�
 define('_AM_INSTRUCTION_ERR_CATNOTSELECT', 'Ошибка: Вы не выбрали категорию!');
 define('_AM_INSTRUCTION_ERR_CATCHILDREN', 'Ошибка: У даннай категории существуют дочернии категории!');
 
-//define('_AM_INSTRUCTION_BADREQUEST', 'Не правильный запрос...');
+define('_AM_INSTRUCTION_BADREQUEST', 'Не правильный запрос...');
 //define('_AM_MODULEADMIN_ABOUT_BY', 'by ');
 //define('_AM_MODULEADMIN_ABOUT_AMOUNT', 'Amount');
 //define('_AM_MODULEADMIN_ABOUT_AMOUNT_TTL', 'Please enter USD amount e.g. $25.00');
@@ -131,3 +131,18 @@ define('_AM_INSTRUCTION_TOTAL', 'Всего в модуле');
 define('_AM_INSTRUCTION_TOTAL_CAT', 'Всего категорий');
 define('_AM_INSTRUCTION_TOTAL_INSTR', 'Всего инструкций');
 define('_AM_INSTRUCTION_TOTAL_PAGE', 'Всего страниц');
+
+define('_AM_INSTRUCTION_UPGRADEFAILED0', "Обновление не удалось - не удалось переименовать поле '%s'");
+define('_AM_INSTRUCTION_UPGRADEFAILED1', "Обновление не удалось - не удалось добавить новые поля");
+define('_AM_INSTRUCTION_UPGRADEFAILED2', "Обновление не удалось - не удалось переименовать таблицу '%s'");
+define('_AM_INSTRUCTION_ERROR_COLUMN', 'Не удалось создать столбец в базе данных: %s');
+define('_AM_INSTRUCTION_ERROR_BAD_XOOPS', 'Этот модуль требует XOOPS %s+ (%s установлен)');
+define('_AM_INSTRUCTION_ERROR_BAD_PHP', 'Для этого модуля требуется версия PHP %s+ (%s установлена)');
+define('_AM_INSTRUCTION_ERROR_TAG_REMOVAL', 'Не удалось удалить теги из модуля тегов');
+
+define('_AM_INSTRUCTION_FOLDERS_DELETED_OK', 'Папки загрузки были удалены');
+
+// Error Msgs
+define('_AM_INSTRUCTION_ERROR_BAD_DEL_PATH', 'Не удалось удалить каталог %s ');
+define('_AM_INSTRUCTION_ERROR_BAD_REMOVE', 'Не удалось удалить %s');
+define('_AM_INSTRUCTION_ERROR_NO_PLUGIN', 'Невозможно загрузить плагин');
