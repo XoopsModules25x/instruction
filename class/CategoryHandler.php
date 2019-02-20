@@ -1,10 +1,14 @@
-<?php namespace XoopsModules\Instruction;
+<?php 
+
+namespace XoopsModules\Instruction;
 
 // ааа
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
 //}
+
+use XoopsModules\Instruction;
 
 include_once $GLOBALS['xoops']->path('include/common.php');
 

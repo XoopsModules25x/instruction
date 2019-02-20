@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction;
+<?php
+
+namespace XoopsModules\Instruction;
 
 // Автор: andrey3761
 // Вывод древообразного списка страниц в панели администрирования
@@ -10,7 +12,7 @@ include_once $GLOBALS['xoops']->path('include/common.php');
 // Подключаем трей
 include_once $GLOBALS['xoops']->path('class/tree.php');
 
-// Наследник класса XoopsObjectTree
+use XoopsModules\Instruction;
 
 /**
  * Class Tree

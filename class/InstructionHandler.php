@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction;
+<?php
+
+namespace XoopsModules\Instruction;
 
 //use Xoopsmodules\instruction;
 

@@ -1,15 +1,21 @@
-<?php namespace XoopsModules\Instruction;
+<?php
+
+namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
 //}
 
-include_once $GLOBALS['xoops']->path('include/common.php');
+//include_once $GLOBALS['xoops']->path('include/common.php');
 
 /**
  * Class Instruction
  * @package Xoopsmodules\instruction
  */
+use Xmf\Request;
+//use XoopsModules\Instruction;
+use XoopsModules\Instruction\Common;
+
 class Instruction extends \XoopsObject
 {
     // constructor

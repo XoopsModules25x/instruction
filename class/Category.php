@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction;
+<?php
+
+namespace XoopsModules\Instruction;
 
 //if (!defined("XOOPS_ROOT_PATH")) {
 //	die("XOOPS root path not defined");
@@ -14,6 +16,9 @@
  * Class Category
  * @package Xoopsmodules\instruction
  */
+ 
+use XoopsModules\Instruction\Common;
+
 class Category extends \XoopsObject
 {
     // constructor

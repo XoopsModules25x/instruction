@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction\Common;
+<?php
+
+namespace XoopsModules\Instruction\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -26,7 +28,7 @@
  * $breadcrumb->addLink( 'bread 3', 'index3.php' );
  * echo $breadcrumb->render();
  */
-defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+defined('XOOPS_ROOT_PATH') || die('XOOPS Root Path not defined');
 
 /**
  * Class PedigreeBreadcrumb

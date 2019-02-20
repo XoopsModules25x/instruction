@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction\Common;
+<?php
+
+namespace XoopsModules\Instruction\Common;
 
 /*
  You may not change or alter any portion of this comment or credits

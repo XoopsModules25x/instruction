@@ -1,12 +1,12 @@
 <?php
-
+namespace XoopsModules\Instruction;
 use Xmf\Request;
 use XoopsModules\Instruction;
 
 //
 include __DIR__ . '/admin_header.php';
 // Функции модуля
-//include __DIR__ . '/../class/utility.php';
+//include dirname(__DIR__) . '/class/Utility.php';
 // Пагинатор
 include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 require_once __DIR__ . '/../include/common.php';
@@ -436,7 +436,8 @@ switch ($op) {
         // Основной текст
         $objInspage->setVar('hometext', $page_hometext);
         // Сноска
-        $objInspage->setVar('footnote', Request::getText('footnote', '', 'POST'));
+        $objInspage->setVar('footnote', Request::getString('footnote', '', 'POST'));
+        //$objInspage->setVar('footnote', Request::getText('footnote', '', 'POST'));
         // Статус
         $objInspage->setVar('status', Request::getInt('status', 0, 'POST'));
         // Тип

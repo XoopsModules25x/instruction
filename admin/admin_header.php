@@ -36,3 +36,7 @@ $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
 //$helper->loadLanguage('main');
+include dirname(__DIR__) . '/class/Instruction.php';
+include dirname(__DIR__) . '/class/Category.php';
+include dirname(__DIR__) . '/class/Page.php';
+include dirname(__DIR__) . '/class/Tree.php';

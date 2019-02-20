@@ -6,6 +6,7 @@ use XoopsModules\Instruction;
 require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/include/common.php';
 // Объявляем объекты
+
 //$instructionHandler = xoops_getModuleHandler('instruction', 'instruction');
 //$categoryHandler = xoops_getModuleHandler( 'category', 'instruction' );
 //$pageHandler  = xoops_getModuleHandler('page', 'instruction');

@@ -1,19 +1,21 @@
 <?php 
 
 namespace XoopsModules\Instruction;
+
+include dirname(__DIR__) . '/class/Common/VersionChecks.php';
+include dirname(__DIR__) . '/class/Common/ServerStats.php';
+include dirname(__DIR__) . '/class/Common/FilesManagement.php';
+
+//require_once __DIR__ . '/../include/common.php';
+//include dirname(__DIR__) . '/preloads/autoloader.php';
 use Xmf\Request;
+use XoopsModules\Instruction;
 use XoopsModules\Instruction\Common;
-
-//require_once __DIR__ . '/Common/VersionChecks.php';
-//require_once __DIR__ . '/Common/ServerStats.php';
-//require_once __DIR__ . '/Common/FilesManagement.php';
-
-require_once __DIR__ . '/../include/common.php';
 
 /**
  * Class Utility
  */
-class Utility
+class Utility extends \XoopsObject
 {
     use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
 

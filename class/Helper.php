@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Instruction;
+<?php 
+
+namespace XoopsModules\Instruction;
 
 /*
  * You may not change or alter any portion of this comment or credits
@@ -17,7 +19,7 @@
  * @since
  * @author       XOOPS Development Team
  */
-//defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Helper
@@ -34,6 +36,7 @@ class Helper extends \Xmf\Module\Helper
     {
         $this->debug   = $debug;
         $this->dirname = basename(dirname(__DIR__));
+        //parent::__construct($moduleDirName);
     }
 
     /**
@@ -57,5 +60,22 @@ class Helper extends \Xmf\Module\Helper
     public function getDirname()
     {
         return $this->dirname;
+    }
+
+    /**
+     * Get an Object Handler
+     *
+     * @param string $name name of handler to load
+     *
+     * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
+     */
+    public function getHandler($name)
+    {
+        $ret   = false;
+        $db    = \XoopsDatabaseFactory::getDatabaseConnection();
+        $class = '\\XoopsModules\\' . ucfirst(mb_strtolower(basename(dirname(__DIR__)))) . '\\' . $name . 'Handler';
+        $ret   = new $class($db);
+
+        return $ret;
     }
 }

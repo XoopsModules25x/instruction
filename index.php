@@ -7,7 +7,6 @@ require_once __DIR__ . '/header.php';
 
 // Пагинатор
 include_once $GLOBALS['xoops']->path('class/pagenav.php');
-
 // Задание тайтла
 $xoopsOption['xoops_pagetitle'] = $GLOBALS['xoopsModule']->name();
 // Шаблон
